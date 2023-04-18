@@ -82,13 +82,13 @@ tile_t **initialise_map(char *source)
 layer_t *initialise_layer(void)
 {
     layer_t *layer = malloc(sizeof(layer_t) * 4);
-    layer[0].tiles = initialise_map("ressources/first_level/walls.txt");
+    layer[0].tiles = initialise_map("ressources/level1/walls.txt");
     layer[0].sprite_sheet = initialise_tileset("ressources/sprites/walls.png");
-    layer[1].tiles = initialise_map("ressources/first_level/floor.txt");
+    layer[1].tiles = initialise_map("ressources/level1/floor.txt");
     layer[1].sprite_sheet = initialise_tileset("ressources/sprites/floor.png");
-    layer[2].tiles = initialise_map("ressources/first_level/deco.txt");
+    layer[2].tiles = initialise_map("ressources/level1/deco.txt");
     layer[2].sprite_sheet = initialise_tileset("ressources/sprites/deco.png");
-    layer[3].tiles = initialise_map("ressources/first_level/interactible.txt");
+    layer[3].tiles = initialise_map("ressources/level1/interactible.txt");
     layer[3].sprite_sheet = initialise_tileset("ressources/sprites/interactible.png");
     return (layer);
 }
