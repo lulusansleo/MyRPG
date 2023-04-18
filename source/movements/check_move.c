@@ -20,6 +20,5 @@ void get_move(PLAYER, LAYER)
         if (sfKeyboard_isKeyPressed(DOWN))
             move_down(player, layer);
         sfClock_restart(player->clock);
-        printf("x = %f, y = %f\n", player->pos.x/16, player->pos.y/16);
     }
 }
