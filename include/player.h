@@ -27,6 +27,6 @@
     void draw_player(entity_t *, sfRenderWindow *);
 
     /* init_player.c */
-    entity_t *init_player(void);
+    entity_t *init_entity(char *);
 
 #endif /* !PLAYER_H_ */
