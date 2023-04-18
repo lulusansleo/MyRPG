@@ -5,7 +5,7 @@
 ** player
 */
 
-#define TXT_PLYR "./map-hero.png"
+#define TXT_PLYR "./ressources/sprites/hero.png"
 
 #include "player.h"
 
