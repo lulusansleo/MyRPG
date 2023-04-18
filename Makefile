@@ -10,6 +10,8 @@ SRC = 	source/display/window.c \
 		source/map/initalise.c \
 		source/map/draw.c \
 		source/sprites/initialise.c \
+		source/movements/horizontal_move.c\
+		source/player/init_player.c\
 
 OBJ = $(SRC:.c=.o)
 
