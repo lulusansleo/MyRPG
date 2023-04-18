@@ -10,6 +10,7 @@ SRC = 	source/display/window.c \
 		source/map/initalise.c \
 		source/map/draw.c \
 		source/sprites/initialise.c \
+		source/map/free_map.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -50,6 +51,9 @@ fclean: clean
 
 re: fclean
 	$(MAKE) all
+
+debug: CFLAGS += -g
+debug: re
 
 valgrind: 	re
 			valgrind $(EXEC) $(VALGRIND_PARAMS)

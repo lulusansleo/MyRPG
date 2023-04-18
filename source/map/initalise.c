@@ -28,16 +28,16 @@ int my_getnbr_pimp(char **str)
     int nb = 0;
     int neg = 1;
 
-    while (**str == '-' || **str == '+') {
+    while ((**str == '-' || **str == '+')) {
         if (**str == '-')
             neg *= -1;
         ++(*str);
     }
-    while (**str >= '0' && **str <= '9') {
+    while ((**str >= '0' && **str <= '9')) {
         nb = nb * 10 + **str - '0';
         (*str)++;
     }
-    while (**str == ',' || **str == ' ')
+    while ((**str == ',' || **str == ' '))
         ++(*str);
     return (nb * neg);
 }
@@ -46,7 +46,9 @@ tile_t *getnbr_on_line(char **line, tile_t *map_line, int len)
 {
     for (int i = 0; i < len; i++) {
         map_line[i].type = my_getnbr_pimp(line);
+        printf("%d", map_line[i].type);
     }
+    printf("\n");
     map_line[len].type = -1;
     return (map_line);
 }
@@ -56,14 +58,15 @@ tile_t **initialise_map(char *source)
     char **buffer = get_array_from_source(source);
     tile_t **map = malloc(sizeof(tile_t *) * (my_array_len(buffer) + 1));
     int len = 0;
-    for (len = 0; buffer[0][len] != '\0'; len++);
-    char *copy = malloc(sizeof(char) * (my_strlen(buffer[0]) + 1));
-    char *tmp = copy;
-
+    char *copy;
+    for (int i = 0; buffer[0][i] != '\0'; i++) {
+        if (buffer[0][i] == ',')
+            len++;
+    }
     map[my_array_len(buffer)] = NULL;
     for (int i = 0; buffer[i]; i++) {
         map[i] = malloc(sizeof(tile_t) * (len + 1));
-        copy = tmp;
+        copy = buffer[i];
         copy = my_strncpy(copy, buffer[i], my_strlen(buffer[i]));
         map[i] = getnbr_on_line(&copy, map[i], len);
         free(buffer[i]);
@@ -79,7 +82,7 @@ layer_t *initialise_layer(void)
     layer[0].sprite_sheet = initialise_tileset("ressources/sprites/walls.png");
     layer[1].tiles = initialise_map("ressources/first_level/floor.txt");
     layer[1].sprite_sheet = initialise_tileset("ressources/sprites/floor.png");
-// layer[2].tiles = initialise_map("ressources/first_level/objects.txt");
-// layer[2].sprite_sheet = initialise_tileset("ressources/sprites/objects.png");
+    layer[2].tiles = initialise_map("ressources/first_level/deco.txt");
+    layer[2].sprite_sheet = initialise_tileset("ressources/sprites/deco.png");
     return (layer);
 }

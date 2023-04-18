@@ -24,7 +24,8 @@ void draw_layer(tile_t **layer, tilesheet_t *tileset, sfRenderWindow *window)
             tileset->rect = get_tile_rect(layer[i][j].type);
             sfSprite_setPosition(tileset->sprite, (sfVector2f){j * 16, i * 16});
             sfSprite_setTextureRect(tileset->sprite, tileset->rect);
-            sfRenderWindow_drawSprite(window, tileset->sprite, NULL);
+            if (layer[i][j].type != 0)
+                sfRenderWindow_drawSprite(window, tileset->sprite, NULL);
         }
     }
 }

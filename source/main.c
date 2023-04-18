@@ -14,16 +14,19 @@ int main(void)
     sfRenderWindow *window = initalise_window();
     sfEvent *event = malloc(sizeof(sfEvent));
     layer_t *layers = initialise_layer();
-    free(buffer);
     while (sfRenderWindow_isOpen(window)) {
         while (sfRenderWindow_pollEvent(window, event)) {
             if (event->type == sfEvtClosed)
                 sfRenderWindow_close(window);
         }
         sfRenderWindow_clear(window, sfBlack);
-        draw_layer(layers[0].tiles, layers[0].sprite_sheet, window);
         draw_layer(layers[1].tiles, layers[1].sprite_sheet, window);
+        draw_layer(layers[0].tiles, layers[0].sprite_sheet, window);
+        draw_layer(layers[2].tiles, layers[2].sprite_sheet, window);
         sfRenderWindow_display(window);
     }
+    sfRenderWindow_destroy(window);
+    free(event);
+    free_layer(layers);
     return (0);
 }
