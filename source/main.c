@@ -20,8 +20,11 @@ int main(void)
         while (sfRenderWindow_pollEvent(window, event)) {
             if (event->type == sfEvtClosed)
                 sfRenderWindow_close(window);
+            if (event->type == sfEvtKeyPressed)
+                get_move(player, layers);
+            if (event->type == sfEvtKeyReleased)
+                get_release(player);
         }
-        get_move(player, layers);
         sfRenderWindow_clear(window, sfBlack);
         draw_map(layers, window);
         draw_player(player, window);
