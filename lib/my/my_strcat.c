@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-char *my_strcat(char *dest, char const *src)
+char *my_strcat(char *dest, char *src)
 {
     char *tmp = malloc(sizeof(char) * (my_strlen(dest) + my_strlen(src) + 1));
     int a = my_strlen(dest);
@@ -17,5 +17,6 @@ char *my_strcat(char *dest, char const *src)
     for (int i = 0; src[i] != '\0'; i++)
         tmp[a + i] = src[i];
     tmp[a + my_strlen(src)] = '\0';
+    free(dest);
     return tmp;
 }

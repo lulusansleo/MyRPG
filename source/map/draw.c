@@ -17,7 +17,8 @@ static sfIntRect get_tile_rect(int type)
     return (rect);
 }
 
-void draw_layer(tile_t **layer, tilesheet_t *tileset, sfRenderWindow *window)
+static void draw_layer(tile_t **layer, tilesheet_t *tileset,
+sfRenderWindow *window)
 {
     for (int i = 0; layer[i]; i++) {
         for (int j = 0; layer[i][j].type != -1; j++) {
@@ -27,5 +28,12 @@ void draw_layer(tile_t **layer, tilesheet_t *tileset, sfRenderWindow *window)
             if (layer[i][j].type != 0)
                 sfRenderWindow_drawSprite(window, tileset->sprite, NULL);
         }
+    }
+}
+
+void draw_map(layer_t *layers, sfRenderWindow *window)
+{
+    for (int i = 0; i < 3; i++) {
+        draw_layer(layers[i].tiles, layers[i].sprite_sheet, window);
     }
 }

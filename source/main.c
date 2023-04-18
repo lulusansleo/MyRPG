@@ -23,10 +23,7 @@ int main(void)
         }
         get_move(player, layers[0]);
         sfRenderWindow_clear(window, sfBlack);
-        draw_layer(layers[1].tiles, layers[1].sprite_sheet, window);
-        draw_layer(layers[0].tiles, layers[0].sprite_sheet, window);
-        draw_layer(layers[2].tiles, layers[2].sprite_sheet, window);
-        draw_layer(layers[3].tiles, layers[3].sprite_sheet, window);
+        draw_map(layers, window);
         draw_player(player, window);
         sfRenderWindow_display(window);
     }

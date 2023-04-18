@@ -8,7 +8,7 @@
 #include "map.h"
 #include "my.h"
 
-char **get_array_from_source(char *source)
+static char **get_array_from_source(char *source)
 {
     int fd = open(source, O_RDONLY);
     struct stat st;
@@ -22,7 +22,7 @@ char **get_array_from_source(char *source)
     return (double_array);
 }
 
-int my_getnbr_pimp(char **str)
+static int my_getnbr_pimp(char **str)
 {
     int i = 0;
     int nb = 0;
@@ -42,7 +42,7 @@ int my_getnbr_pimp(char **str)
     return (nb * neg);
 }
 
-tile_t *getnbr_on_line(char **line, tile_t *map_line, int len)
+static tile_t *getnbr_on_line(char **line, tile_t *map_line, int len)
 {
     for (int i = 0; i < len; i++) {
         map_line[i].type = my_getnbr_pimp(line);
@@ -57,7 +57,7 @@ tile_t *getnbr_on_line(char **line, tile_t *map_line, int len)
     return (map_line);
 }
 
-tile_t **initialise_map(char *source)
+static tile_t **initialise_map(char *source)
 {
     char **buffer = get_array_from_source(source);
     tile_t **map = malloc(sizeof(tile_t *) * (my_array_len(buffer) + 1));
@@ -79,16 +79,22 @@ tile_t **initialise_map(char *source)
     return (map);
 }
 
-layer_t *initialise_layer(void)
+layer_t *initialise_layer(int level, int floor)
 {
+    char lv[2] = "0";
+    char fl[2] = "0";
+
+    lv[0] += level;
+    fl[0] += floor;
     layer_t *layer = malloc(sizeof(layer_t) * 4);
-    layer[0].tiles = initialise_map("ressources/level1/walls.txt");
+    layer[0].tiles = initialise_map(get_level_path(lv, fl, 0));
     layer[0].sprite_sheet = initialise_tileset("ressources/sprites/walls.png");
-    layer[1].tiles = initialise_map("ressources/level1/floor.txt");
+    layer[1].tiles = initialise_map(get_level_path(lv, fl, 1));
     layer[1].sprite_sheet = initialise_tileset("ressources/sprites/floor.png");
-    layer[2].tiles = initialise_map("ressources/level1/deco.txt");
+    layer[2].tiles = initialise_map(get_level_path(lv, fl, 3));
     layer[2].sprite_sheet = initialise_tileset("ressources/sprites/deco.png");
-    layer[3].tiles = initialise_map("ressources/level1/interactible.txt");
-    layer[3].sprite_sheet = initialise_tileset("ressources/sprites/interactible.png");
+    layer[3].tiles = initialise_map(get_level_path(lv, fl, 2));
+    layer[3].sprite_sheet =
+    initialise_tileset("ressources/sprites/interactible.png");
     return (layer);
 }
