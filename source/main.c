@@ -14,8 +14,8 @@ int main(void)
 {
     sfRenderWindow *window = initalise_window();
     sfEvent *event = malloc(sizeof(sfEvent));
-    layer_t *layers = initialise_layer();
-    entity_t *player = init_player(TXT_PLYR);
+    layer_t *layers = initialise_layer(1, 1);
+    entity_t *player = init_entity(TXT_PLYR);
     while (sfRenderWindow_isOpen(window)) {
         while (sfRenderWindow_pollEvent(window, event)) {
             if (event->type == sfEvtClosed)

@@ -30,9 +30,9 @@ typedef struct layer_s {
     tilesheet_t *sprite_sheet;
 } layer_t;
 
-void draw_layer(tile_t **layer, tilesheet_t *tileset, sfRenderWindow *window);
-tile_t **initialise_map(char *source);
 tilesheet_t *initialise_tileset(char *path);
-layer_t *initialise_layer(void);
+layer_t *initialise_layer(int level, int floor);
+char *get_level_path(char *level, char *floor, int type);
+char *get_level_path(char *level, char *floor, int type);
 
 #endif /* !MAP_H */
