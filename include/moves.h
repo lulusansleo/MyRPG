@@ -27,6 +27,12 @@
     /* check_move.c */
     void get_move(PLAYER, LAYER);
 
+    /* collision.c */
+    float coll_right(layer_t *, entity_t *);
+    float coll_left(layer_t *, entity_t *);
+    float coll_up(layer_t *, entity_t *);
+    float coll_down(layer_t *, entity_t *);
+
     /* horizontal_move.c */
     void move_left(PLAYER, LAYER);
     void move_right(PLAYER, LAYER);
