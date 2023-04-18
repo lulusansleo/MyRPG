@@ -21,7 +21,6 @@ void get_release(PLAYER)
 
 void get_move(PLAYER, LAYER)
 {
-    sfTime time;
     if (sfKeyboard_isKeyPressed(LEFT))
         player->move.x = -SPEED;
     if (sfKeyboard_isKeyPressed(RIGHT))
@@ -30,8 +29,14 @@ void get_move(PLAYER, LAYER)
         player->move.y = -SPEED;
     if (sfKeyboard_isKeyPressed(DOWN))
         player->move.y = SPEED;
+}
+
+void do_move(PLAYER)
+{
+    sfTime time;
+    
     time = sfClock_getElapsedTime(player->clock);
-    if (sfTime_asSeconds(time) >= 0.001) {
+    if (sfTime_asSeconds(time) >= 0.01) {
         player->pos.x += player->move.x;
         player->pos.y += player->move.y;
         sfSprite_setPosition(player->sprite, player->pos);
