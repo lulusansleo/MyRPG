@@ -46,6 +46,14 @@ tile_t *getnbr_on_line(char **line, tile_t *map_line, int len)
 {
     for (int i = 0; i < len; i++) {
         map_line[i].type = my_getnbr_pimp(line);
+        if (map_line[i].type >= 324)
+            map_line[i].type -= 324;
+        // if (map_line[i].type >= 200)
+        //     map_line[i].type -= 200;
+        if (map_line[i].type >= 198)
+            map_line[i].type -= 198;
+        if (map_line[i].type >= 108)
+            map_line[i].type -= 108;
         printf("%d", map_line[i].type);
     }
     printf("\n");
@@ -77,12 +85,14 @@ tile_t **initialise_map(char *source)
 
 layer_t *initialise_layer(void)
 {
-    layer_t *layer = malloc(sizeof(layer_t) * 3);
+    layer_t *layer = malloc(sizeof(layer_t) * 4);
     layer[0].tiles = initialise_map("ressources/first_level/walls.txt");
     layer[0].sprite_sheet = initialise_tileset("ressources/sprites/walls.png");
     layer[1].tiles = initialise_map("ressources/first_level/floor.txt");
     layer[1].sprite_sheet = initialise_tileset("ressources/sprites/floor.png");
     layer[2].tiles = initialise_map("ressources/first_level/deco.txt");
     layer[2].sprite_sheet = initialise_tileset("ressources/sprites/deco.png");
+    layer[3].tiles = initialise_map("ressources/first_level/interactible.txt");
+    layer[3].sprite_sheet = initialise_tileset("ressources/sprites/interactible.png");
     return (layer);
 }
