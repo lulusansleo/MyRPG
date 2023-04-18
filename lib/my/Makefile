@@ -71,17 +71,17 @@ CPPFLAGS	=	-Wall -Wextra
 all:	build
 
 build:	$(OBJ)
-	gcc -c $(SRC)
+	$(CC) -c $(SRC)
 	ar rc $(LIBNAME) $(OBJ)
 	cp $(MYH) ../../include/
 	cp $(LIBNAME) ../
 
 clean:
-	rm -f $(OBJ)
+	$(RM) -f $(OBJ)
 
 fclean:	clean
-	rm -f $(LIBNAME)
-	rm ../$(LIBNAME)
+	$(RM) -f $(LIBNAME)
+	$(RM) ../$(LIBNAME)
 
 re:	fclean all
 
