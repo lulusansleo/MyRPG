@@ -48,15 +48,11 @@ tile_t *getnbr_on_line(char **line, tile_t *map_line, int len)
         map_line[i].type = my_getnbr_pimp(line);
         if (map_line[i].type >= 324)
             map_line[i].type -= 324;
-        // if (map_line[i].type >= 200)
-        //     map_line[i].type -= 200;
         if (map_line[i].type >= 198)
             map_line[i].type -= 198;
         if (map_line[i].type >= 108)
             map_line[i].type -= 108;
-        printf("%d", map_line[i].type);
     }
-    printf("\n");
     map_line[len].type = -1;
     return (map_line);
 }
