@@ -20,5 +20,3 @@ void free_layer(layer_t *layer)
     }
     free(layer);
 }
-
-    
