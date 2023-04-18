@@ -13,6 +13,10 @@
     #define SPEED player->speed
     #define PLAYER player_t *player
     #define TILESET tilesheet *tileset
+    #define LEFT sfKeyQ 
+    #define RIGHT sfKeyD
+    #define UP sfKeyZ
+    #define DOWN sfKeyS
 
     #include <stdio.h>
     #include "graphical.h"
@@ -22,11 +26,15 @@
         sfIntRect rect;
     } player_s;
 
-    /* horizontal_move.c */
+    /* check_move.c */
     void get_move(void);
-    void move_left(void);
-    void move_right(void);
-    void move_up(void);
-    void move_down(void);
+
+    /* horizontal_move.c */
+    void move_left(PLAYER, TILESET);
+    void move_right(PLAYER, TILESET);
+
+    /*vertical_move.c */
+    void move_up(PLAYER, TILESET);
+    void move_down(PLAYER, TILESET);
 
 #endif /* !MOVES_H_ */
