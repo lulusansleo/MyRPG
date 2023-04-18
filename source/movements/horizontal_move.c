@@ -7,7 +7,6 @@
 
 #include "moves.h"
 
-
 void move_left(PLAYER, LAYER)
 {
     player->pos.x -= player->speed;  

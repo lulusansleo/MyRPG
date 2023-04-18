@@ -7,7 +7,7 @@
 
 #include "player.h"
 
-void draw_player(player_t *player, sfRenderWindow *window)
+void draw_player(entity_t *player, sfRenderWindow *window)
 {
     sfRenderWindow_drawSprite(window, player->sprite, NULL);
 }

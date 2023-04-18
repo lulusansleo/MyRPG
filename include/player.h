@@ -8,16 +8,25 @@
 #ifndef PLAYER_H_
     #define PLAYER_H_
 
+    #define TXT_PLYR "./ressources/sprites/hero.png"
+
     #include <stdlib.h>
     #include "graphical.h"
 
-    typedef struct player_s {
+    typedef struct entity_s {
         sfVector2f pos;
         sfIntRect rect;
         float speed;
         sfClock *clock;
         sfTexture *texture;
         sfSprite *sprite;
-    } player_t;
+        int type;
+    } entity_t;
+
+    /* draw_player.c */
+    void draw_player(entity_t *, sfRenderWindow *);
+
+    /* init_player.c */
+    entity_t *init_player(void);
 
 #endif /* !PLAYER_H_ */

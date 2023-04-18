@@ -5,11 +5,6 @@
 ** check_move
 */
 
-#define LEFT sfKeyQ
-#define RIGHT sfKeyD
-#define UP sfKeyZ
-#define DOWN sfKeyS
-
 #include "moves.h"
 
 void get_move(PLAYER, LAYER)

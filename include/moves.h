@@ -11,8 +11,12 @@
     #define PX player->pos.x
     #define PY player->pos.y
     #define SPEED player->speed
-    #define PLAYER player_t *player
+    #define PLAYER entity_t *player
     #define LAYER layer_t *layer
+    #define LEFT sfKeyQ
+    #define RIGHT sfKeyD
+    #define UP sfKeyZ
+    #define DOWN sfKeyS
 
     #include <stdio.h>
     #include "graphical.h"
