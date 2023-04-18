@@ -8,6 +8,20 @@
 #include "map.h"
 #include "my.h"
 
+char **get_array_from_source(char *source)
+{
+    int fd = open(source, O_RDONLY);
+    struct stat st;
+    char *buffer;
+    stat(source, &st);
+    buffer = malloc(sizeof(char) * st.st_size + 1);
+    read(fd, buffer, st.st_size);
+    buffer[st.st_size] = '\0';
+    char **double_array = my_str_to_word_array_sep(buffer, '\n');
+    free(buffer);
+    return (double_array);
+}
+
 int my_getnbr_pimp(char **str)
 {
     int i = 0;
@@ -37,11 +51,12 @@ tile_t *getnbr_on_line(char **line, tile_t *map_line, int len)
     return (map_line);
 }
 
-tile_t **initialise_map(char **buffer)
+tile_t **initialise_map(char *source)
 {
+    char **buffer = get_array_from_source(source);
     tile_t **map = malloc(sizeof(tile_t *) * (my_array_len(buffer) + 1));
     int len = 0;
-    for (len = 0; buffer[len]; len++);
+    for (len = 0; buffer[0][len] != '\0'; len++);
     char *copy = malloc(sizeof(char) * (my_strlen(buffer[0]) + 1));
     char *tmp = copy;
 
@@ -55,4 +70,16 @@ tile_t **initialise_map(char **buffer)
     }
     free(buffer);
     return (map);
+}
+
+layer_t *initialise_layer(void)
+{
+    layer_t *layer = malloc(sizeof(layer_t) * 3);
+    layer[0].tiles = initialise_map("ressources/first_level/walls.txt");
+    layer[0].sprite_sheet = initialise_tileset("ressources/sprites/walls.png");
+    layer[1].tiles = initialise_map("ressources/first_level/floor.txt");
+    layer[1].sprite_sheet = initialise_tileset("ressources/sprites/floor.png");
+// layer[2].tiles = initialise_map("ressources/first_level/objects.txt");
+// layer[2].sprite_sheet = initialise_tileset("ressources/sprites/objects.png");
+    return (layer);
 }
