@@ -21,7 +21,7 @@ int main(void)
             if (event->type == sfEvtClosed)
                 sfRenderWindow_close(window);
         }
-        get_move(player, layers[0]);
+        get_move(player, layers);
         sfRenderWindow_clear(window, sfBlack);
         draw_map(layers, window);
         draw_player(player, window);
