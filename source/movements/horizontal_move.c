@@ -17,7 +17,6 @@ void move_left(PLAYER, LAYER)
     } else {
         player->pos.x -= SPEED;
     }
-    sfSprite_setPosition(player->sprite, player->pos);  
 }
 
 void move_right(PLAYER,LAYER)
@@ -29,5 +28,4 @@ void move_right(PLAYER,LAYER)
     } else {
         player->pos.x += SPEED;
     }
-    sfSprite_setPosition(player->sprite, player->pos);
 }

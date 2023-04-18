@@ -14,6 +14,7 @@
     #include "graphical.h"
 
     typedef struct entity_s {
+        sfVector2f move;
         sfVector2f pos;
         sfIntRect rect;
         float speed;
