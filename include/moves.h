@@ -12,29 +12,23 @@
     #define PY player->pos.y
     #define SPEED player->speed
     #define PLAYER player_t *player
-    #define TILESET tilesheet *tileset
-    #define LEFT sfKeyQ 
-    #define RIGHT sfKeyD
-    #define UP sfKeyZ
-    #define DOWN sfKeyS
+    #define LAYER layer_t *layer
 
     #include <stdio.h>
     #include "graphical.h"
-    
-    typedef struct player_t {
-        sfVector2f pos;
-        sfIntRect rect;
-    } player_s;
+    #include "moves.h"
+    #include "map.h"
+    #include "player.h"
 
     /* check_move.c */
-    void get_move(void);
+    void get_move(PLAYER, LAYER);
 
     /* horizontal_move.c */
-    void move_left(PLAYER, TILESET);
-    void move_right(PLAYER, TILESET);
+    void move_left(PLAYER, LAYER);
+    void move_right(PLAYER, LAYER);
 
     /*vertical_move.c */
-    void move_up(PLAYER, TILESET);
-    void move_down(PLAYER, TILESET);
+    void move_up(PLAYER, LAYER);
+    void move_down(PLAYER, LAYER);
 
 #endif /* !MOVES_H_ */
