@@ -7,13 +7,14 @@
 
 #include "moves.h"
 
-void move_up(PLAYER, TILESET)
+void move_up(PLAYER, LAYER)
 {
-    printf("move_up\n");
+    player->pos.y -= player->speed;
+    sfSprite_setPosition(player->sprite, player->pos);
 }
 
-void move_down(PLAYER, TILESET)
+void move_down(PLAYER, LAYER)
 {
-    if ((PX + SPEED) )
-    printf("move down\n");
+    player->pos.y += player->speed;
+    sfSprite_setPosition(player->sprite, player->pos);
 }
