@@ -12,9 +12,6 @@ SRC = 	source/display/window.c \
 		source/sprites/initialise.c \
 		source/map/free_map.c \
 		source/movements/check_move.c\
-		source/movements/horizontal_move.c\
-		source/movements/vertical_move.c\
-		source/movements/collision.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
 		source/map/get_level_path.c\
