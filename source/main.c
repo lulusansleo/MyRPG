@@ -15,7 +15,7 @@ int main(void)
     sfRenderWindow *window = initalise_window();
     sfEvent *event = malloc(sizeof(sfEvent));
     layer_t *layers = initialise_layer();
-    player_t *player = init_player();
+    entity_t *player = init_player(TXT_PLYR);
     while (sfRenderWindow_isOpen(window)) {
         while (sfRenderWindow_pollEvent(window, event)) {
             if (event->type == sfEvtClosed)
@@ -33,5 +33,5 @@ int main(void)
     sfRenderWindow_destroy(window);
     free(event);
     free_layer(layers);
-    return (0);
+    return(0);
 }
