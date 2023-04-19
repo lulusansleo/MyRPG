@@ -16,6 +16,11 @@ SRC = 	source/display/window.c \
 		source/movements/vertical_move.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
+		source/npc/init_npc.c	\
+		source/npc/draw_npc.c	\
+		source/npc/attack_npc.c	\
+
+
 
 OBJ = $(SRC:.c=.o)
 
@@ -32,7 +37,7 @@ CPPFLAGS = -iquote include
 LDFLAGS = -L/lib -lmy -lcsfml-graphics -lcsfml-window \
 		  -lcsfml-system -lcsfml-audio
 
-LIB 	=	-lmy
+LIB 	=	-lmy -lm
 
 DIR	=	-L./lib/
 

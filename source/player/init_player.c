@@ -23,5 +23,5 @@ entity_t *init_entity(char *path)
 (entity->sprite, entity->rect);
     sfSprite_setPosition
 (entity->sprite, entity->pos);
-    return(entity);
+    return (entity);
 }
