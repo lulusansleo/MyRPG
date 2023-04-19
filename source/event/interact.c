@@ -34,5 +34,13 @@ layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate)
         layers = reload_level(layers, gamestate->level, gamestate->floor);
         return (layers);
     }
+    if (type == 29) {
+        layers[3].tiles[pos.y][pos.x].type = 30;
+        open_door(layers, pos);
+    }
+    if (type == 30) {
+        layers[3].tiles[pos.y][pos.x].type = 29;
+        close_door(layers, pos);
+    }
     return (layers);
 }
