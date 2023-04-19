@@ -7,7 +7,7 @@
 
 #include "event.h"
 
-void manage_event(sfEvent *event, sfWindow *window, entity_t *player, layer_t **layers)
+void manage_event(EVENT, WINDOW, PLAYER, layer_t **layers)
 {
     while (sfRenderWindow_pollEvent(window, event)) {
         if (event->type == sfEvtClosed)

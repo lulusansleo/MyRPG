@@ -10,6 +10,7 @@
 #include "my.h"
 #include "player.h"
 #include "event.h"
+#include "entity.h"
 
 int main(void)
 {
@@ -28,7 +29,7 @@ int main(void)
     }
     sfRenderWindow_destroy(window);
     free(event);
-    free_entity(player);
+    destroy_player(player);
     free_layer(layers);
     return(0);
 }

@@ -8,6 +8,10 @@
 #ifndef EVENT_H_
     #define EVENT_H_
 
+    #define EVENT sfEvent *event
+    #define WINDOW sfWindow *window
+    #define PLAYER entity_t *player
+
     #include "graphical.h"
     #include "player.h"
     #include "map.h"

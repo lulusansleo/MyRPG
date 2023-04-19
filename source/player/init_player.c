@@ -20,6 +20,5 @@ entity_t *init_entity(char *path)
     sfSprite_setTexture(entity->sprite, entity->texture, sfTrue);
     sfSprite_setTextureRect(entity->sprite, entity->rect);
     sfSprite_setPosition(entity->sprite, entity->pos);
-
-    return(entity);
+    return entity;
 }
