@@ -9,9 +9,19 @@
     #define PLAYER_H_
 
     #define TXT_PLYR "./ressources/sprites/hero.png"
+    #define TXT_NPC "./ressources/sprites/mob.png"
+    #define NUM_MOBS 2
+    #define MAX_Y 200
+    #define MAX_X 200
+    #define ATTACK_RADIUS 100
 
+    #include "map.h"
+    #include "my.h"
+    #include "gamestate.h"
     #include <stdlib.h>
-    #include "graphical.h"
+    #include <stdlib.h>
+    #include <time.h>
+    #include <math.h>
 
     typedef struct entity_s {
         sfVector2f acceleration;

@@ -17,8 +17,11 @@ entity_t *init_entity(char *path)
     entity->texture =
     sfTexture_createFromFile(TXT_PLYR, NULL);
     entity->sprite = sfSprite_create();
-    sfSprite_setTexture(entity->sprite, entity->texture, sfTrue);
-    sfSprite_setTextureRect(entity->sprite, entity->rect);
-    sfSprite_setPosition(entity->sprite, entity->pos);
-    return entity;
+    sfSprite_setTexture
+(entity->sprite, entity->texture, sfTrue);
+    sfSprite_setTextureRect
+(entity->sprite, entity->rect);
+    sfSprite_setPosition
+(entity->sprite, entity->pos);
+    return (entity);
 }
