@@ -35,4 +35,7 @@ layer_t *initialise_layer(int level, int floor);
 char *get_level_path(char *level, char *floor, int type);
 char *get_level_path(char *level, char *floor, int type);
 
+/* reload level */
+layer_t *reload_level(layer_t *layer, int level, int floor);
+
 #endif /* !MAP_H */

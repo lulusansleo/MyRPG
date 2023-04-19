@@ -10,9 +10,6 @@
 void free_layer(layer_t *layer)
 {
     for (int i = 0; i < 2; i++) {
-        // for (int j = 0; layer[i].tiles[j]->type != -1; j++) {
-        //     free(layer[i].tiles[j]);
-        // }
         free(layer[i].tiles);
         sfTexture_destroy(layer[i].sprite_sheet->texture);
         sfSprite_destroy(layer[i].sprite_sheet->sprite);

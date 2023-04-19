@@ -33,7 +33,7 @@ sfRenderWindow *window)
 
 void draw_map(layer_t *layers, sfRenderWindow *window)
 {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         draw_layer(layers[i].tiles, layers[i].sprite_sheet, window);
     }
 }

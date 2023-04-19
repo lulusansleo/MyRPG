@@ -5,7 +5,6 @@
 ** mouvement&attack_npc
 */
 
-#include "window.h"
 #include "map.h"
 #include "my.h"
 #include "player.h"
