@@ -12,7 +12,6 @@
 
 int main(void)
 {
-    int is_collide = 0;
     sfRenderWindow *window = initalise_window();
     sfEvent *event = malloc(sizeof(sfEvent));
     layer_t *layers = initialise_layer(1, 1);
@@ -21,14 +20,13 @@ int main(void)
         while (sfRenderWindow_pollEvent(window, event)) {
             if (event->type == sfEvtClosed)
                 sfRenderWindow_close(window);
-            if (event->type == sfEvtKeyPressed && !is_collide)
+            if (event->type == sfEvtKeyPressed)
                 get_move(player, layers);
             if (event->type == sfEvtKeyReleased)
                 get_release(player);
         }
-        if (!is_collide)
-            do_move(player);
-        is_collide = push_back(player, layers);
+        collision(player, layers);
+        do_move(player);
         sfRenderWindow_clear(window, sfBlack);
         draw_map(layers, window);
         draw_player(player, window);

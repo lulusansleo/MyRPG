@@ -17,6 +17,7 @@
     #define RIGHT sfKeyD
     #define UP sfKeyZ
     #define DOWN sfKeyS
+    #define PUSH_BACK 2
 
     #include <stdio.h>
     #include "graphical.h"
@@ -25,7 +26,7 @@
     #include "player.h"
 
     /* check_move.c */
-    void get_move(PLAYER, LAYER);
+    void get_move(PLAYER);
 
     /* collision.c */
     float coll_right(layer_t *, entity_t *);

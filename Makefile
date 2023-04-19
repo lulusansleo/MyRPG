@@ -32,7 +32,7 @@ CPPFLAGS = -iquote include
 LDFLAGS = -L/lib -lmy -lcsfml-graphics -lcsfml-window \
 		  -lcsfml-system -lcsfml-audio
 
-LIB 	=	-lmy
+LIB 	=	-lmy -lm
 
 DIR	=	-L./lib/
 

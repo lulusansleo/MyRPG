@@ -9,17 +9,17 @@
 
 void get_release(PLAYER)
 {
-    if (sfKeyboard_isKeyPressed(LEFT) == sfFalse)
+    if (sfKeyboard_isKeyPressed(LEFT))
         player->move.x = 0;
-    else if (sfKeyboard_isKeyPressed(RIGHT) == sfFalse)
+    else if (sfKeyboard_isKeyPressed(RIGHT))
         player->move.x = 0;
-    if (sfKeyboard_isKeyPressed(UP) == sfFalse)
+    if (sfKeyboard_isKeyPressed(UP))
         player->move.y = 0;
-    else if (sfKeyboard_isKeyPressed(DOWN) == sfFalse)
+    else if (sfKeyboard_isKeyPressed(DOWN))
         player->move.y = 0;
 }
 
-void get_move(PLAYER, LAYER)
+void get_move(PLAYER)
 {
     if (sfKeyboard_isKeyPressed(LEFT))
         player->move.x = -SPEED;
@@ -34,7 +34,7 @@ void get_move(PLAYER, LAYER)
 void do_move(PLAYER)
 {
     sfTime time;
-    
+
     time = sfClock_getElapsedTime(player->clock);
     if (sfTime_asSeconds(time) >= 0.01) {
         player->pos.x += player->move.x;
