@@ -24,6 +24,8 @@ SRC = 	source/display/window.c \
 		source/movements/check_move.c\
 		source/event/manage_event.c\
 		source/event/interact.c\
+		source/map/load_level.c\
+		source/event/door.c\
 
 OBJ = $(SRC:.c=.o)
 
