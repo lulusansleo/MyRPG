@@ -14,31 +14,31 @@
 
 int main(void)
 {
-    game_elements_t game_elements = init_game_elements();
-    while (sfRenderWindow_isOpen(game_elements.window)) {
-        while (sfRenderWindow_pollEvent(game_elements.window,
-        game_elements.event)) {
-            if (game_elements.event->type == sfEvtClosed)
-                sfRenderWindow_close(game_elements.window);
+    sfRenderWindow *window = initalise_window();
+    sfEvent *event = malloc(sizeof(sfEvent));
+    layer_t *layers = initialise_layer(1, 1);
+    entity_t *player = init_entity(TXT_PLYR);
+    entity_t **mobs = init_mobs(NUM_MOBS, layers[0]);
+    while (sfRenderWindow_isOpen(window)) {
+        while (sfRenderWindow_pollEvent(window, event)) {
+            if (event->type == sfEvtClosed)
+                sfRenderWindow_close(window);
+            if (event->type == sfEvtKeyPressed)
+                get_move(player, layers);
+            if (event->type == sfEvtKeyReleased)
+                get_release(player);
         }
-        get_move(game_elements.player, game_elements.layers[0]);
-        main_move(game_elements.player, game_elements.mobs,
-        game_elements.npc_move_clock, NUM_MOBS);
-        sfRenderWindow_clear(game_elements.window, sfBlack);
-        for (int i = 0; i < 4; i++) {
-            draw_layer(game_elements.layers[i].tiles,
-            game_elements.layers[i].sprite_sheet, game_elements.window);
-        }
-        draw_player(game_elements.player, game_elements.window);
-        for (int i = 0; i < NUM_MOBS; i++) {
-            draw_player(game_elements.mobs[i], game_elements.window);
-        }
-        sfRenderWindow_display(game_elements.window);
+        collision(player, layers);
+        do_move(player);
+        npc_move(player, mobs, NUM_MOBS);
+        sfRenderWindow_clear(window, sfBlack);
+        draw_map(layers, window);
+        draw_player(player, window);
+        draw_mobs(mobs, window);
+        sfRenderWindow_display(window);
     }
-    sfRenderWindow_destroy(game_elements.window);
-    free(game_elements.event);
-    free_layer(game_elements.layers);
-    free(game_elements.mobs);
-
+    sfRenderWindow_destroy(window);
+    free(event);
+    free_layer(layers);
     return 0;
 }

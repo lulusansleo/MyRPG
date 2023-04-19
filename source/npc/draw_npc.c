@@ -7,7 +7,20 @@
 
 #include "player.h"
 
-void draw_npc(entity_t *npc, sfRenderWindow *window)
+void draw_mobs(entity_t **mobs, sfRenderWindow *window)
 {
-    sfRenderWindow_drawSprite(window, npc->sprite, NULL);
+    for (int i = 0; i < NUM_MOBS; i++) {
+        sfRenderWindow_drawSprite(window, mobs[i]->sprite, NULL);
+    }
+}
+
+void free_mobs(entity_t **mobs)
+{
+    for (int i = 0; i < NUM_MOBS; i++) {
+        sfTexture_destroy(mobs[i]->texture);
+        sfSprite_destroy(mobs[i]->sprite);
+        sfClock_destroy(mobs[i]->clock);
+        free(mobs[i]);
+    }
+    free (mobs);
 }

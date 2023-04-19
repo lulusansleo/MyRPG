@@ -10,7 +10,7 @@
 void free_layer(layer_t *layer)
 {
     for (int i = 0; i < 2; i++) {
-        // for (int j = 0; layer[i].tiles[j]->type != 0; j++) {
+        // for (int j = 0; layer[i].tiles[j]->type != -1; j++) {
         //     free(layer[i].tiles[j]);
         // }
         free(layer[i].tiles);

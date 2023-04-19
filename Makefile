@@ -12,15 +12,14 @@ SRC = 	source/display/window.c \
 		source/sprites/initialise.c \
 		source/map/free_map.c \
 		source/movements/check_move.c\
-		source/movements/horizontal_move.c\
-		source/movements/vertical_move.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
-		source/npc/init_npc.c	\
+		source/npc/position_npc.c	\
 		source/npc/draw_npc.c	\
 		source/npc/attack_npc.c	\
-
-
+		source/npc/initiate_npc.c	\
+		source/map/get_level_path.c\
+		source/movements/collision.c\
 
 OBJ = $(SRC:.c=.o)
 

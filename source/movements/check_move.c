@@ -7,19 +7,39 @@
 
 #include "moves.h"
 
-void get_move(PLAYER, LAYER)
+void get_release(PLAYER)
 {
-    sfTime time = sfClock_getElapsedTime(player->clock);
-    if (sfTime_asMilliseconds(time) >= 100) {
-        if (sfKeyboard_isKeyPressed(LEFT))
-            move_left(player, layer);
-        if (sfKeyboard_isKeyPressed(RIGHT))
-            move_right(player, layer);
-        if (sfKeyboard_isKeyPressed(UP))
-            move_up(player, layer);
-        if (sfKeyboard_isKeyPressed(DOWN))
-            move_down(player, layer);
+    if (sfKeyboard_isKeyPressed(LEFT))
+        player->move.x = 0;
+    else if (sfKeyboard_isKeyPressed(RIGHT))
+        player->move.x = 0;
+    if (sfKeyboard_isKeyPressed(UP))
+        player->move.y = 0;
+    else if (sfKeyboard_isKeyPressed(DOWN))
+        player->move.y = 0;
+}
+
+void get_move(PLAYER)
+{
+    if (sfKeyboard_isKeyPressed(LEFT))
+        player->move.x = -SPEED;
+    if (sfKeyboard_isKeyPressed(RIGHT))
+        player->move.x = SPEED;
+    if (sfKeyboard_isKeyPressed(UP))
+        player->move.y = -SPEED;
+    if (sfKeyboard_isKeyPressed(DOWN))
+        player->move.y = SPEED;
+}
+
+void do_move(PLAYER)
+{
+    sfTime time;
+
+    time = sfClock_getElapsedTime(player->clock);
+    if (sfTime_asSeconds(time) >= 0.01) {
+        player->pos.x += player->move.x;
+        player->pos.y += player->move.y;
+        sfSprite_setPosition(player->sprite, player->pos);
         sfClock_restart(player->clock);
-        printf("x = %f, y = %f\n", player->pos.x/16, player->pos.y/16);
     }
 }
