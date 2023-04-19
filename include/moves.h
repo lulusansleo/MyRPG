@@ -10,7 +10,7 @@
 
     #define PX player->pos.x
     #define PY player->pos.y
-    #define MAX_SPEED 5
+    #define MAX_SPEED 2.0
     #define DASH_SPEED 10
     #define SPEED player->speed
     #define PLAYER entity_t *player

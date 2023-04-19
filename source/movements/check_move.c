@@ -7,28 +7,24 @@
 
 #include "moves.h"
 
-void get_release(PLAYER)
+void get_release(PLAYER, sfEvent *event)
 {
-    if (sfKeyboard_isKeyPressed(LEFT))
+    if (event->key.code == LEFT || event->key.code == RIGHT)
         player->move.x = 0;
-    else if (sfKeyboard_isKeyPressed(RIGHT))
-        player->move.x = 0;
-    if (sfKeyboard_isKeyPressed(UP))
-        player->move.y = 0;
-    else if (sfKeyboard_isKeyPressed(DOWN))
+    if (event->key.code == UP || event->key.code == DOWN)
         player->move.y = 0;
 }
 
 void get_move(PLAYER)
 {
     if (sfKeyboard_isKeyPressed(LEFT))
-        player->move.x = -SPEED;
+        player->move.x = -MAX_SPEED;
     if (sfKeyboard_isKeyPressed(RIGHT))
-        player->move.x = SPEED;
+        player->move.x = MAX_SPEED;
     if (sfKeyboard_isKeyPressed(UP))
-        player->move.y = -SPEED;
+        player->move.y = -MAX_SPEED;
     if (sfKeyboard_isKeyPressed(DOWN))
-        player->move.y = SPEED;
+        player->move.y = MAX_SPEED;
 }
 
 void do_move(PLAYER)

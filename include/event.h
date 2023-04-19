@@ -15,8 +15,9 @@
     #include "graphical.h"
     #include "player.h"
     #include "map.h"
+    #include "gamestate.h"
 
     /* manage_event.c */
-    void manage_event(sfEvent *, sfWindow *, entity_t *, layer_t **);
+    layer_t *manage_event(gamestate_t *gamestate, entity_t *player, layer_t *);
 
 #endif /* !EVENT_H_ */
