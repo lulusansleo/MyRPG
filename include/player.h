@@ -17,6 +17,7 @@
 
     #include "map.h"
     #include "my.h"
+    #include "gamestate.h"
     #include <stdlib.h>
     #include <stdlib.h>
     #include <time.h>
@@ -36,26 +37,8 @@
 
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);
-    //game_elements_t init_game_elements(void);
 
     /* init_player.c */
     entity_t *init_entity(char *);
-
-    /*draw_npc.c*/
-    void draw_mobs(entity_t **, sfRenderWindow *);
-    void free_mobs(entity_t **);
-
-    /*init_npc.c*/
-    entity_t **init_mobs(int nb_mob, layer_t layer);
-    sfVector2f spawn_mob(layer_t layer);
-    entity_t *init_entity_npc(layer_t layer);
-
-    sfVector2f random_position(float maxX, float maxY);
-    int random_direction(void);
-    void attack_player(entity_t *mob, entity_t *player, float deltaTime);
-    float distance_npc(sfVector2f abs, sfVector2f ord);
-    void npc_move(entity_t *player, entity_t **mobs, int num_mobs);
-    float distance_npc(sfVector2f abs, sfVector2f ord);
-    void attack_player(entity_t *mob, entity_t *player, float deltaTime);
 
 #endif /* !PLAYER_H_ */

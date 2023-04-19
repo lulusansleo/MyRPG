@@ -6,6 +6,7 @@
 */
 
 #include "player.h"
+#include "npc.h"
 
 entity_t **init_mobs(int nb_mob, layer_t layer)
 {

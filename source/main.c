@@ -12,6 +12,7 @@
 #include "event.h"
 #include "entity.h"
 #include "graphical.h"
+#include "npc.h"
 
 int main(void)
 {

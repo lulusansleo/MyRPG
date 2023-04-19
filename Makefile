@@ -7,23 +7,23 @@
 
 CC ?=	gcc
 SRC = 	source/display/window.c \
+		source/sprites/initialise.c \
 		source/map/initalise.c \
 		source/map/draw.c \
-		source/sprites/initialise.c \
 		source/map/free_map.c \
-		source/movements/check_move.c\
+		source/map/get_level_path.c\
+		source/map/load_level.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
 		source/npc/position_npc.c	\
 		source/npc/draw_npc.c	\
 		source/npc/attack_npc.c	\
 		source/npc/initiate_npc.c	\
-		source/map/get_level_path.c\
-		source/movements/collision.c\
 		source/entity/free_entity.c\
+		source/movements/collision.c\
+		source/movements/check_move.c\
 		source/event/manage_event.c\
 		source/event/interact.c\
-		source/map/load_level.c\
 
 OBJ = $(SRC:.c=.o)
 
