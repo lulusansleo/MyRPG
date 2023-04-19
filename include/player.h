@@ -15,7 +15,6 @@
     #define MAX_X 200
     #define ATTACK_RADIUS 100
 
-    #include "window.h"
     #include "map.h"
     #include "my.h"
     #include <stdlib.h>
