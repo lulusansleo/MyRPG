@@ -16,6 +16,8 @@ SRC = 	source/display/window.c \
 		source/player/init_player.c\
 		source/map/get_level_path.c\
 		source/movements/collision.c\
+		source/entity/free_entity.c\
+		source/event/manage_event.c\
 
 OBJ = $(SRC:.c=.o)
 
