@@ -13,27 +13,8 @@
 #include "entity.h"
 #include "graphical.h"
 #include "npc.h"
+#include "view.h"
 
-sfView *init_view(entity_t *player)
-{
-    sfFloatRect viewrect = (sfFloatRect){player->pos.x, player->pos.y, 5.0, 5.0};
-    sfView *view = sfView_create();
-    sfView_setSize(view, (sfVector2f){8 * 16, 8 * 16});z//    sfView_zoom(view, 3);
-    sfView_setCenter(view, player->pos);
-    return view;
-}
-
-sfVector2f refresh_view(entity_t *player, sfView *view)
-{
-    sfView_setCenter(view, player->pos);
-    sfVector2f pos = sfView_getCenter(view);
-    sfVector2f size =  sfView_getSize(view);
-    if (pos.x - (size.x / 2) <= 0)
-        pos.x = (size.x / 2);
-    if (pos.y - (size.y / 2) <= 0)
-        pos.y = (size.y / 2);
-    return pos;
-} 
 
 int main(void)
 {
@@ -47,7 +28,7 @@ int main(void)
         collision(player, layers);
         do_move(player);
         npc_move(player, mobs, NUM_MOBS);
-        sfView_setCenter(view, refresh_view(player, view));
+        sfView_setCenter(view, refresh_view(player, view, layers[0]));
         sfRenderWindow_clear(gamestate->window, sfBlack);
         draw_map(layers, gamestate->window);
         draw_player(player, gamestate->window);
