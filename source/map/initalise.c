@@ -89,6 +89,7 @@ layer_t *initialise_layer(int level, int floor)
     layer_t *layer = malloc(sizeof(layer_t) * 4);
     layer[0].tiles = initialise_map(get_level_path(lv, fl, 0));
     layer[0].sprite_sheet = initialise_tileset("ressources/sprites/walls.png");
+    layer[0].size = get_size_map(layer[0]);
     layer[1].tiles = initialise_map(get_level_path(lv, fl, 1));
     layer[1].sprite_sheet = initialise_tileset("ressources/sprites/floor.png");
     layer[2].tiles = initialise_map(get_level_path(lv, fl, 3));
