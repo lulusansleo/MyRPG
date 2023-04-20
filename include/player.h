@@ -10,10 +10,13 @@
 
     #define TXT_PLYR "./ressources/sprites/hero.png"
     #define TXT_NPC "./ressources/sprites/mob.png"
-    #define NUM_MOBS 3
-    #define MAX_Y 30
-    #define MAX_X 30
     #define ATTACK_RADIUS 140
+    #define HAND 0
+    #define SWORD 1
+    #define BOW 2
+    #define RECT_HAND 0, 0, 16, 16
+    #define RECT_SWORD 32, 0, 16, 16
+    #define RECT_BOW 64, 32, 16, 16
 
     #include "map.h"
     #include "my.h"
@@ -43,6 +46,7 @@
 
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);
+    void animate_player(entity_t *player);
 
     /* init_player.c */
     entity_t *init_entity(char *);
