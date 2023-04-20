@@ -7,12 +7,14 @@
 
 CC ?=	gcc
 SRC = 	source/display/window.c \
+		source/display/view.c\
 		source/sprites/initialise.c \
 		source/map/initalise.c \
 		source/map/draw.c \
 		source/map/free_map.c \
 		source/map/get_level_path.c\
 		source/map/load_level.c\
+		source/map/get_size.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
 		source/npc/position_npc.c	\

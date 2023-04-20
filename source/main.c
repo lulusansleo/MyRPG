@@ -13,6 +13,8 @@
 #include "entity.h"
 #include "graphical.h"
 #include "npc.h"
+#include "view.h"
+
 
 int main(void)
 {
@@ -21,14 +23,19 @@ int main(void)
     entity_t *player = init_entity(TXT_PLYR);
     npc_t *mobs = NULL;
     mobs = add_node(mobs, 30, 30, 1);
+    sfView *view = init_view(player);
     while (sfRenderWindow_isOpen(gamestate->window)) {
         sfRenderWindow_clear(gamestate->window, sfBlack);
         layers = manage_event(gamestate, player, layers, &mobs);
         collision(player, layers);
         do_move(player);
+        npc_management(gamestate, &mobs, layers, player);
+        sfView_setCenter(view, refresh_view(player, view, layers[0]));
+        sfRenderWindow_clear(gamestate->window, sfBlack);
         draw_map(layers, gamestate->window);
         draw_player(player, gamestate->window);
-        npc_management(gamestate, &mobs, layers, player);
+        draw_mobs(mobs, gamestate->window);
+        sfRenderWindow_setView(gamestate->window, view);
         sfRenderWindow_display(gamestate->window);
     }
     sfRenderWindow_destroy(gamestate->window);
