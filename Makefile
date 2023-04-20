@@ -19,12 +19,13 @@ SRC = 	source/display/window.c \
 		source/npc/draw_npc.c	\
 		source/npc/attack_npc.c	\
 		source/npc/initiate_npc.c	\
+		source/npc/mobs_list.c	\
+		source/npc/npc_management.c	\
 		source/entity/free_entity.c\
 		source/movements/collision.c\
 		source/movements/check_move.c\
 		source/event/manage_event.c\
 		source/event/interact.c\
-		source/map/load_level.c\
 		source/event/door.c\
 
 OBJ = $(SRC:.c=.o)

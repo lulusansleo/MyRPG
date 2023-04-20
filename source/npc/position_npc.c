@@ -7,6 +7,12 @@
 
 #include "player.h"
 
+float timer_rand_direct(float min , float max)
+{
+    float mob_range = max - min;
+    return min + ((float)rand() / RAND_MAX) * mob_range;
+}
+
 int random_direction(void)
 {
     int direction = rand() % 4;
@@ -15,12 +21,18 @@ int random_direction(void)
 
 sfVector2f random_position(float maxX, float maxY)
 {
+    int direction = rand() % 2;
     float x = (float)(rand() % (int)maxX);
     float y = (float)(rand() % (int)maxY);
+    if (direction)
+        x = -x;
+    direction = rand() % 2;
+    if (direction)
+        y = -y;
     return (sfVector2f){x, y};
 }
 
-void update_npc_position(entity_t *entity, int direction, float time)
+void update_npc_position(entity_t *entity, int direction, float mov_deltaTime)
 {
 
     switch (direction) {
@@ -36,10 +48,8 @@ void update_npc_position(entity_t *entity, int direction, float time)
         case 3:
             entity->pos.x += entity->speed;
     }
-    if (time >= 1) {
-        sfSprite_setPosition(entity->sprite, entity->pos);
-        sfClock_restart(entity->clock);
-    }
-
+    entity->pos.x += entity->move.x;
+    entity->pos.y += entity->move.y;
+    sfSprite_setPosition(entity->sprite, entity->pos);
 }
 

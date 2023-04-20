@@ -8,6 +8,7 @@
 #include "player.h"
 #include "gamestate.h"
 #include "map.h"
+#include "npc.h"
 #include <math.h>
 
 static sfVector2i get_closest_tile(entity_t *player)

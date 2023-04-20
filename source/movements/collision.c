@@ -54,6 +54,8 @@ static void collision_second_half(PLAYER, int a)
 
 void collision(PLAYER, LAYER)
 {
+    if (player == NULL)
+        return;
     int a = push_back(player, layer);
     if (a == 0)
         return;

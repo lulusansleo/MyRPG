@@ -8,6 +8,7 @@
 #include "map.h"
 #include "my.h"
 #include "player.h"
+#include "npc.h"
 
 
 float distance_npc(sfVector2f abs, sfVector2f ord)
@@ -28,20 +29,26 @@ void attack_player(entity_t *mob, entity_t *player, float deltaTime)
     sfSprite_setPosition(mob->sprite, mob->pos);
 }
 
-void npc_move(entity_t *player, entity_t **mobs, int num_mobs)
+void npc_move(entity_t *player, npc_t *head)
 {
-
-    for (int i = 0; i < num_mobs; i++) {
-        float deltaTime = sfTime_asSeconds(sfClock_getElapsedTime(mobs[i]->clock));
-        float mob_distance = distance_npc(player->pos, mobs[i]->pos);
+    if (head == NULL)
+        return;
+    npc_t *tmp = head; 
+    while (tmp != NULL) {
+        float deltaTime = sfTime_asSeconds(sfClock_getElapsedTime(tmp->mob->clock));
+        float mob_distance = distance_npc(player->pos, tmp->mob->pos);
 
         if (mob_distance < ATTACK_RADIUS) {
-            attack_player(mobs[i], player, deltaTime);
+            attack_player(tmp->mob, player, deltaTime);
         } else {
-            int direction = random_direction();
-            update_npc_position(mobs[i], direction, deltaTime);
+            float direction_elapsed = sfTime_asSeconds(sfClock_getElapsedTime(tmp->mob->mob_direction_clock));
+            if (direction_elapsed >= tmp->mob->mob_direction_timer) {
+                tmp->mob->move = random_position(2.0, 2.0);
+                sfClock_restart(tmp->mob->mob_direction_clock);
+            }
+            update_npc_position(tmp->mob, deltaTime);
         }
-        sfClock_restart(mobs[i]->clock);
+        sfClock_restart(tmp->mob->clock);
+        tmp = tmp->next;
     }
-
 }

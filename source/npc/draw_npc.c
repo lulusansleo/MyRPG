@@ -6,21 +6,31 @@
 */
 
 #include "player.h"
+#include "npc.h"
 
-void draw_mobs(entity_t **mobs, sfRenderWindow *window)
+void draw_mobs(npc_t *npc, sfRenderWindow *window)
 {
-    for (int i = 0; i < NUM_MOBS; i++) {
-        sfRenderWindow_drawSprite(window, mobs[i]->sprite, NULL);
+    npc_t *tmp = npc;
+
+    if (npc == NULL)
+        return;
+    while (tmp != NULL) {
+        sfRenderWindow_drawSprite(window, tmp->mob->sprite, sfFalse);
+        tmp = tmp->next;
     }
 }
 
-void free_mobs(entity_t **mobs)
+void free_mobs(npc_t *head)
 {
-    for (int i = 0; i < NUM_MOBS; i++) {
-        sfTexture_destroy(mobs[i]->texture);
-        sfSprite_destroy(mobs[i]->sprite);
-        sfClock_destroy(mobs[i]->clock);
-        free(mobs[i]);
+    npc_t *tmp = head;
+
+    while (tmp != NULL) {
+        head = tmp;
+        tmp = tmp->next;
+        sfTexture_destroy(head->mob->texture);
+        sfSprite_destroy(head->mob->sprite);
+        sfClock_destroy(head->mob->clock);
+        free(head->mob);
+        free(head);
     }
-    free (mobs);
 }

@@ -7,8 +7,9 @@
 
 #include "gamestate.h"
 #include "event.h"
+#include "npc.h"
 
-layer_t *manage_event(gamestate_t *gamestate, PLAYER, layer_t *layers)
+layer_t *manage_event(gamestate_t *gamestate, PLAYER, layer_t *layers, npc_t **mobs)
 {
     while (sfRenderWindow_pollEvent(gamestate->window, gamestate->event)) {
         if (gamestate->event->type == sfEvtClosed ||
@@ -21,6 +22,12 @@ layer_t *manage_event(gamestate_t *gamestate, PLAYER, layer_t *layers)
             get_move(player, layers);
         if (gamestate->event->type == sfEvtKeyReleased)
             get_release(player, gamestate->event);
+        if (gamestate->event->type == sfEvtKeyPressed &&
+        gamestate->event->key.code == sfKeyF)
+            *mobs = kill_mob(*mobs, *mobs);
+        if (gamestate->event->type == sfEvtKeyPressed &&
+        gamestate->event->key.code == sfKeyC)
+            *mobs = add_node(*mobs, 30, 30, 1);
     }
     return (layers);
 }

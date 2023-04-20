@@ -14,10 +14,11 @@
 
     #include "graphical.h"
     #include "player.h"
+    #include "npc.h"
     #include "map.h"
     #include "gamestate.h"
 
     /* manage_event.c */
-    layer_t *manage_event(gamestate_t *gamestate, entity_t *player, layer_t *);
+    layer_t *manage_event(gamestate_t *gamestate, entity_t *player, layer_t *, npc_t **);
 
 #endif /* !EVENT_H_ */

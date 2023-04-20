@@ -19,17 +19,16 @@ int main(void)
     gamestate_t *gamestate = initalise_gamestate();
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
     entity_t *player = init_entity(TXT_PLYR);
-    entity_t **mobs = init_mobs(NUM_MOBS, layers[0]);
+    npc_t *mobs = NULL;
+    mobs = add_node(mobs, 30, 30, 1);
     while (sfRenderWindow_isOpen(gamestate->window)) {
-        layers = manage_event(gamestate, player, layers);
+        sfRenderWindow_clear(gamestate->window, sfBlack);
+        layers = manage_event(gamestate, player, layers, &mobs);
         collision(player, layers);
         do_move(player);
-        npc_move(player, mobs, NUM_MOBS);
-        sfRenderWindow_clear(gamestate->window, sfBlack);
         draw_map(layers, gamestate->window);
         draw_player(player, gamestate->window);
-        draw_mobs(mobs, gamestate->window);
-        sfRenderWindow_display(gamestate->window);
+        npc_management(gamestate, &mobs, layers, player);
         sfRenderWindow_display(gamestate->window);
     }
     sfRenderWindow_destroy(gamestate->window);

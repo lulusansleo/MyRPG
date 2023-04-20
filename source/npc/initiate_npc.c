@@ -8,14 +8,6 @@
 #include "player.h"
 #include "npc.h"
 
-entity_t **init_mobs(int nb_mob, layer_t layer)
-{
-    entity_t **mobs = malloc(sizeof(entity_t *) * nb_mob);
-    for (int i = 0; i < nb_mob; i++) 
-        mobs[i] = init_entity_npc(layer);
-    return mobs;
-}
-
 sfVector2f spawn_mob(layer_t layer)
 {
     sfVector2f pos = random_position(MAX_X, MAX_Y);
@@ -34,17 +26,12 @@ sfVector2f spawn_mob(layer_t layer)
     return pos;
 }
 
-entity_t *init_entity_npc(layer_t layer)
+entity_t *init_entity_npc(int x, int y, int type)
 {
-
-    sfVector2f pos = spawn_mob(layer);
-    pos.x = (pos.x <= 0 ? 1 : pos.x);
-    pos.y = (pos.y <= 0 ? 1 : pos.y);
-    srand(time(NULL));
-
+    sfVector2f pos = {(float) x, (float) y};
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = pos;
-    entity->speed = 20;
+    entity->speed = 15;
     entity->clock = sfClock_create();
     entity->rect = (sfIntRect){0, 0, 16, 16};
     entity->texture = sfTexture_createFromFile(TXT_NPC, NULL);
@@ -53,8 +40,9 @@ entity_t *init_entity_npc(layer_t layer)
     sfSprite_setTextureRect(entity->sprite, entity->rect);
     sfSprite_setPosition(entity->sprite, entity->pos);
 
-    int direction = random_direction();
-    update_npc_position(entity, direction);
+    entity->direction = random_direction();
+    entity->mob_direction_timer = 1.0f;
+    entity->mob_direction_clock = sfClock_create();
 
-    return (entity);
+    return entity;
 }
