@@ -35,4 +35,9 @@
     /* collision.c */
     int push_back(PLAYER, LAYER);
     void collision(PLAYER, LAYER);
+    float get_left_limit(sfFloatRect player_rect, LAYER, PLAYER);
+    float get_right_limit(sfFloatRect player_rect, LAYER, PLAYER);
+    float get_top_limit(sfFloatRect player_rect, LAYER, PLAYER);
+    float get_bottom_limit(sfFloatRect player_rect, LAYER, PLAYER);
+
 #endif /* !MOVES_H_ */

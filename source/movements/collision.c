@@ -11,65 +11,58 @@
 #include "moves.h"
 #include <math.h>
 
-int push_back(PLAYER, LAYER)
+float get_horizontal_limit(sfFloatRect player_rect, layer_t *layers,
+entity_t *player)
 {
-    int a = 0;
-    int top_x = (int)floor((player->pos.x) / 16.0);
-    int top_y = (int)floor((player->pos.y) / 16.0);
-    int bot_x = (int)floor((player->pos.x + 16.0) / 16.0);
-    int bot_y = (int)floor((player->pos.y + 16.0) / 16.0);
-    if (layer[0].tiles[top_y][top_x].type != 0) {
-        a += 1;
-    }
-    if (layer[0].tiles[top_y][bot_x].type != 0) {
-        a += 2;
-    }
-    if (layer[0].tiles[bot_y][top_x].type != 0) {
-        a += 4;
-    }
-    if (layer[0].tiles[bot_y][bot_x].type != 0) {
-        a += 8;
-    }
-    if ((a == 8 || a == 2) && player->pos.x == top_x * 16)
-        return (0);
-    return (a);
+    if (player->move.x > 0)
+        return get_right_limit(player_rect, layers, player);
+    if (player->move.x < 0)
+        return get_left_limit(player_rect, layers, player);
+    return 0.0;
 }
 
-static void collision_second_half(PLAYER, int a)
+float get_vertical_limit(sfFloatRect player_rect, layer_t *layers,
+entity_t *player)
 {
-    if (a == 9 || a == 13 || a == 4) {
-        player->pos.x += PUSH_BACK;
-        player->pos.y -= PUSH_BACK;
-    }
-    if (a == 3)
-        player->pos.y += PUSH_BACK;
-    if (a == 5)
-        player->pos.x += PUSH_BACK;
-    if (a == 10)
-        player->pos.x -= PUSH_BACK;
-    if (a == 12)
-        player->pos.y -= PUSH_BACK;
-
+    if (player->move.y > 0)
+        return get_bottom_limit(player_rect, layers, player);
+    if (player->move.y < 0)
+        return get_top_limit(player_rect, layers, player);
+    return 0.0;
 }
 
-void collision(PLAYER, LAYER)
+static void collision_part_two(entity_t *player, layer_t *layers,
+sfFloatRect player_rect)
 {
-    if (player == NULL)
-        return;
-    int a = push_back(player, layer);
-    if (a == 0)
-        return;
-    if (a == 1 || a == 6 || a == 7) {
-        player->pos.y += PUSH_BACK;
-        player->pos.x += PUSH_BACK;
+    float y_limit = get_vertical_limit(player_rect, layers, player);
+    if (y_limit != 0.0) {
+        if (player->move.y > 0 && player->pos.y +
+        player->move.y + 16.0 > y_limit) {
+            player->pos.y = y_limit - 16;
+            player->move.y = 0;
+        }
+        if (player->move.y < 0 && player->pos.y + player->move.y < y_limit) {
+            player->pos.y = y_limit;
+            player->move.y = 0;
+        }
     }
-    if (a == 2 || a == 11 || a == 9) {
-        player->pos.x -= PUSH_BACK;
-        player->pos.y += PUSH_BACK;
+}
+
+void collision(entity_t *player, layer_t *layers)
+{
+    sfFloatRect player_rect = {player->pos.x, player->pos.y, 16, 16};
+
+    float x_limit = get_horizontal_limit(player_rect, layers, player);
+    if (x_limit != 0.0) {
+        if (player->move.x > 0 && player->pos.x +
+        player->move.x + 16.0 > x_limit) {
+            player->pos.x = x_limit - 16;
+            player->move.x = 0;
+        }
+        if (player->move.x < 0 && player->pos.x + player->move.x < x_limit) {
+            player->pos.x = x_limit;
+            player->move.x = 0;
+        }
     }
-    if (a == 6 || a == 8 || a == 14) {
-        player->pos.x -= PUSH_BACK;
-        player->pos.y -= PUSH_BACK;
-    }
-    collision_second_half(player, a);
+    collision_part_two(player, layers, player_rect);
 }

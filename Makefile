@@ -25,6 +25,7 @@ SRC = 	source/display/window.c \
 		source/npc/npc_management.c	\
 		source/entity/free_entity.c\
 		source/movements/collision.c\
+		source/movements/collision_separate_file.c\
 		source/movements/check_move.c\
 		source/event/manage_event.c\
 		source/event/interact.c\
