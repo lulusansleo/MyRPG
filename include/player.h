@@ -49,14 +49,12 @@
         int type;
     } entity_t;
 
-
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);
     void rotate_sprite(entity_t *player, sfEvent *event);
     void animate_player(entity_t *player);
 
     /* init_player.c */
-    
     entity_t *init_entity(void);
 
 #endif /* !PLAYER_H_ */

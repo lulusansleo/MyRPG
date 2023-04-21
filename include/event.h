@@ -27,7 +27,8 @@
     void open_close_door(layer_t *layers, sfVector2i pos);
 
     /* interact.c */
-    layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate);
+    layer_t *interact(
+entity_t *player,layer_t *layers, gamestate_t *gamestate);
 
     /* manage_event.c */
     layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS);

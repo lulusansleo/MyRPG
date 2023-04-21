@@ -24,6 +24,7 @@ SRC = 	source/display/window.c \
 		source/npc/initiate_npc.c	\
 		source/npc/mobs_list.c	\
 		source/npc/npc_management.c	\
+		source/npc/animation_npc.c\
 		source/entity/free_entity.c\
 		source/movements/collision.c\
 		source/movements/collision_separate_file.c\
