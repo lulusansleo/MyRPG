@@ -48,7 +48,7 @@ npc_t *kill_mob(npc_t *head, npc_t *to_kill)
     }
     while (tmp->next != to_kill)
         tmp = tmp->next;
-    if (to_kill->next = NULL) {
+    if (!to_kill->next) {
         kill_free_mob(to_kill);
         tmp->next = NULL;
         return head;

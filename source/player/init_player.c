@@ -21,7 +21,7 @@ static sfIntRect get_plyr_rect(int type)
     }
 }
 
-int get_dmg(int type)
+static int get_dmg(int type)
 {
     if (type == HAND)
         return 2;
@@ -32,7 +32,7 @@ int get_dmg(int type)
     return 2;
 }
 
-entity_t *init_entity(char *path)
+entity_t *init_entity(void)
 {
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = (sfVector2f){48, 48};

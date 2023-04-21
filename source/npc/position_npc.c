@@ -32,9 +32,8 @@ sfVector2f random_position(float maxX, float maxY)
     return (sfVector2f){x, y};
 }
 
-void update_npc_position(entity_t *entity, int direction, float mov_deltaTime)
+void update_npc_position(entity_t *entity, int direction)
 {
-
     switch (direction) {
         case 0:
             entity->pos.y -= entity->speed;

@@ -15,31 +15,32 @@
         entity_t *mob;
     } npc_t;
 
-
-    /*management_npc*/
-    void npc_management(gamestate_t *gamestate, 
-    npc_t **mobs, layer_t *layers, entity_t *player);
-
-    /*draw_npc.c*/
-    void draw_mobs(npc_t *, sfRenderWindow *);
-    void free_mobs(npc_t *);
-
-    /*init_npc.c*/
-    sfVector2f spawn_mob(layer_t layer);
-    entity_t *init_entity_npc(int x, int y, int type);
-    npc_t *add_node(npc_t *head, int x, int y, int type);
+    /* animation_npc.c */
 
     /* attack_npc.c */
     float distance_npc(sfVector2f abs, sfVector2f ord);
     void attack_player(entity_t *mob, entity_t *player, float deltaTime);
     void npc_move(entity_t *player, npc_t *head);
+
+    /*draw_npc.c*/
+    void draw_mobs(npc_t *, sfRenderWindow *);
+    void free_mobs(npc_t *);
+
+    /*initiate_npc.c*/
+    entity_t *init_entity_npc(int x, int y, int type);
+
+    /* mob_list.c */
+    npc_t *add_node(npc_t *head, int x, int y, int type);
     npc_t *kill_mob(npc_t *head, npc_t *to_kill);
+
+    /*management_npc*/
+    void npc_management(gamestate_t *gamestate, 
+    npc_t **mobs, layer_t *layers, entity_t *player);
 
     /* position_npc.c */
     float timer_rand_direct(float min , float max);
     int random_direction(void);
     sfVector2f random_position(float, float);
-    void attack_player(entity_t *mob, entity_t *player, float deltaTime);
-    sfVector2f random_position(float maxX, float maxY);
+    void update_npc_position(entity_t *entity, int direction);
 
 #endif /* !NPC_H_ */

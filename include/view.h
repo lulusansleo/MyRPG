@@ -11,8 +11,8 @@
     #include "player.h"
     #include "graphical.h"
 
-/*view.c */
-sfView *init_view(entity_t *player);
-sfVector2f refresh_view(entity_t *player, sfView *view, layer_t layer);
+    /*view.c */
+    sfView *init_view(entity_t *player);
+    sfVector2f refresh_view(entity_t *player, sfView *view, layer_t layer);
 
 #endif /* !VIEW_H_ */

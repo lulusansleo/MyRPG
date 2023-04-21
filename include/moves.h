@@ -28,20 +28,11 @@
     #include "player.h"
 
     /* check_move.c */
+    void get_release(PLAYER, sfEvent *event);
     void get_move(PLAYER);
+    void do_move(PLAYER);
 
     /* collision.c */
-    float coll_right(layer_t *, entity_t *);
-    float coll_left(layer_t *, entity_t *);
-    float coll_up(layer_t *, entity_t *);
-    float coll_down(layer_t *, entity_t *);
-
-    /* horizontal_move.c */
-    void move_left(PLAYER, LAYER);
-    void move_right(PLAYER, LAYER);
-
-    /*vertical_move.c */
-    void move_up(PLAYER, LAYER);
-    void move_down(PLAYER, LAYER);
-
+    int push_back(PLAYER, LAYER);
+    void collision(PLAYER, LAYER);
 #endif /* !MOVES_H_ */

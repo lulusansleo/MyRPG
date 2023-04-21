@@ -9,6 +9,7 @@
 #include "map.h"
 #include "my.h"
 #include "player.h"
+#include "moves.h"
 #include "event.h"
 #include "entity.h"
 #include "graphical.h"
@@ -20,7 +21,7 @@ int main(void)
 {
     gamestate_t *gamestate = initalise_gamestate();
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
-    entity_t *player = init_entity(TXT_PLYR);
+    entity_t *player = init_entity();
     npc_t *mobs = NULL;
     mobs = add_node(mobs, 30, 30, 1);
     sfView *view = init_view(player);

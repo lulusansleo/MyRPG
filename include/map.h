@@ -31,13 +31,20 @@ typedef struct layer_s {
     sfVector2i size;
 } layer_t;
 
-tilesheet_t *initialise_tileset(char *path);
-layer_t *initialise_layer(int level, int floor);
-char *get_level_path(char *level, char *floor, int type);
+/* draw.c */
+void draw_map(layer_t *layers, sfRenderWindow *window);
+
+/* free_map.c */
+void free_layer(layer_t *layer);
+
+/* get_level_path.c */
 char *get_level_path(char *level, char *floor, int type);
 
 /* get_size .c */
 sfVector2i get_size_map(layer_t layer);
+
+/* initialise.c */
+layer_t *initialise_layer(int level, int floor);
 
 /* reload level */
 layer_t *reload_level(layer_t *layer, int level, int floor);
