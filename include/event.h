@@ -11,6 +11,8 @@
     #define EVENT sfEvent *event
     #define WINDOW sfWindow *window
     #define PLAYER entity_t *player
+    #define MOBS npc_t **mobs
+    #define GAMESTATE gamestate_t *gamestate
 
     #include "graphical.h"
     #include "player.h"

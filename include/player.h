@@ -14,6 +14,10 @@
     #define HAND 0
     #define SWORD 1
     #define BOW 2
+    #define NORTH 1
+    #define EAST 2
+    #define SOUTH 3
+    #define WEST 4
     #define RECT_HAND 0, 0, 16, 16
     #define RECT_SWORD 32, 0, 16, 16
     #define RECT_BOW 64, 32, 16, 16
@@ -28,11 +32,13 @@
 
     typedef struct entity_s {
         int hp;
+        int dmg;
         int alive;
         sfVector2f acceleration;
         sfVector2f move;
         sfVector2f pos;
         sfIntRect rect;
+        int dir;
         float speed;
         float mob_direction_timer;
         sfClock *mob_direction_clock;
@@ -46,6 +52,7 @@
 
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);
+    void rotate_sprite(entity_t *player, sfEvent *event);
     void animate_player(entity_t *player);
 
     /* init_player.c */
