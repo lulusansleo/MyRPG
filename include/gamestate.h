@@ -8,6 +8,7 @@
 #ifndef WINDOW_H
     #define WINDOW_H
 
+    #include "map.h"
     #include "graphical.h"
     #include <fcntl.h>
     #include <unistd.h>
@@ -15,6 +16,7 @@
     #include <stdlib.h>
 
     typedef struct gamestate_s {
+        sfClock *trap_clock;
         sfRenderWindow *window;
         sfVideoMode video_mode;
         sfEvent *event;
@@ -29,5 +31,8 @@
     } gamestate_t;
 
     gamestate_t *initalise_gamestate(void);
+
+    /* traps */
+    void animate_traps(layer_t *layers, gamestate_t *gamestate);
 
 #endif /* !WINDOW_H */

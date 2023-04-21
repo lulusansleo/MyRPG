@@ -14,6 +14,7 @@ gamestate_t *initalise_gamestate(void)
     gamestate->video_mode = (sfVideoMode){1000, 1000, 120};
     gamestate->window = sfRenderWindow_create(gamestate->video_mode,
     "MyRPG", sfClose | sfResize, NULL);
+    gamestate->trap_clock = sfClock_create();
     sfRenderWindow_setFramerateLimit(gamestate->window, 60);
     gamestate->level = 1;
     gamestate->floor = 1;

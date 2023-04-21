@@ -15,6 +15,7 @@ SRC = 	source/display/window.c \
 		source/map/get_level_path.c\
 		source/map/load_level.c\
 		source/map/get_size.c\
+		source/map/traps.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
 		source/npc/position_npc.c	\

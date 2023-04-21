@@ -31,6 +31,7 @@ int main(void)
         collision(player, layers);
         do_move(player);
         animate_player(player);
+        animate_traps(layers, gamestate);
         npc_management(gamestate, &mobs, layers, player);
         sfView_setCenter(view, refresh_view(player, view, layers[0]));
         sfRenderWindow_clear(gamestate->window, sfBlack);
