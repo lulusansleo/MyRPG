@@ -17,14 +17,22 @@ void get_release(PLAYER, sfEvent *event)
 
 void get_move(PLAYER)
 {
-    if (sfKeyboard_isKeyPressed(LEFT))
+    if (sfKeyboard_isKeyPressed(LEFT)) {
         player->move.x = -MAX_SPEED;
-    if (sfKeyboard_isKeyPressed(RIGHT))
+        player->dir = WEST;
+    }
+    if (sfKeyboard_isKeyPressed(RIGHT)) {
         player->move.x = MAX_SPEED;
-    if (sfKeyboard_isKeyPressed(UP))
+        player->dir = EAST;
+    }
+    if (sfKeyboard_isKeyPressed(UP)) {
         player->move.y = -MAX_SPEED;
-    if (sfKeyboard_isKeyPressed(DOWN))
+        player->dir = NORTH;
+    }
+    if (sfKeyboard_isKeyPressed(DOWN)) {
         player->move.y = MAX_SPEED;
+        player->dir = NORTH;
+    }
 }
 
 void do_move(PLAYER)

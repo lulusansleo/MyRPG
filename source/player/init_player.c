@@ -36,6 +36,7 @@ entity_t *init_entity(char *path)
 {
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = (sfVector2f){48, 48};
+    entity->dir = NORTH;
     entity->type = BOW;
     entity->hp = 100;
     entity->dmg = get_dmg(entity->type);

@@ -14,6 +14,7 @@ sfFloatRect *get_hitbox(entity_t *entity)
     rect->left = entity->pos.x;
     rect->height = 16;
     rect->width = 16;
+    return rect;
 }
 
 sfVector2f get_wpn_pos(entity_t *player)
