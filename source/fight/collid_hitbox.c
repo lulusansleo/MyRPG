@@ -35,12 +35,12 @@ static void is_hit(entity_t* a, entity_t *b)
     free(rect_b);
 }
 
-
 void attack(entity_t *player, npc_t *mobs)
 {
     entity_t *weapon = init_weapon(player);
-    for (int i = 0; mobs; i++) {
+    while (mobs) {
         is_hit(weapon, mobs->mob);
+        mobs = mobs->next;
     }
     if (weapon->type != BOW)
         free(weapon);
