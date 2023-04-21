@@ -8,8 +8,9 @@
 #include "gamestate.h"
 #include "event.h"
 #include "npc.h"
+#include "fight.h"
 
-layer_t *manage_event(gamestate_t *gamestate, PLAYER, layer_t *layers, npc_t **mobs)
+layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS)
 {
     while (sfRenderWindow_pollEvent(gamestate->window, gamestate->event)) {
         if (gamestate->event->type == sfEvtClosed ||
@@ -18,8 +19,11 @@ layer_t *manage_event(gamestate_t *gamestate, PLAYER, layer_t *layers, npc_t **m
         if (gamestate->event->type == sfEvtKeyPressed &&
         gamestate->event->key.code == sfKeyE)
             layers = interact(player, layers, gamestate);
+        if (gamestate->event->key.type == sfEvtKeyPressed &&
+        gamestate->event->key.code == sfKeySpace)
+            attack(player, *mobs);
         if (gamestate->event->type == sfEvtKeyPressed)
-            get_move(player, layers);
+            get_move(player);
         if (gamestate->event->type == sfEvtKeyReleased)
             get_release(player, gamestate->event);
         if (gamestate->event->type == sfEvtKeyPressed &&
