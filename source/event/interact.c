@@ -37,12 +37,12 @@ layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate)
         return (layers);
     }
     if (type == 29) {
-        layers[3].tiles[pos.y][pos.x].type = 30;
-        open_door(layers, pos);
+        layers[3].tiles[pos.y][pos.x].type = 31;
+        open_close_door(layers, pos);
     }
-    if (type == 30) {
+    if (type == 31) {
         layers[3].tiles[pos.y][pos.x].type = 29;
-        close_door(layers, pos);
+        open_close_door(layers, pos);
     }
     return (layers);
 }

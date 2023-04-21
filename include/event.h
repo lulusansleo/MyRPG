@@ -21,13 +21,16 @@
     #include "gamestate.h"
 
     /* door.c */
-    void open_door(layer_t *layers, sfVector2i pos);
-    void close_door(layer_t *layers, sfVector2i pos);
+    int is_locked_door(int type);
+    int is_open_door(int type);
+    int is_unlocked_door(int type);
+    void open_close_door(layer_t *layers, sfVector2i pos);
 
     /* interact.c */
     layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate);
 
     /* manage_event.c */
     layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS);
+
 
 #endif /* !EVENT_H_ */
