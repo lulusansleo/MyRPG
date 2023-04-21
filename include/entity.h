@@ -12,6 +12,5 @@
 
     /* free_entity.c */
     void destroy_player(entity_t *);
-    void dsetroy_mob(entity_t *);
 
 #endif /* !ENTITY_H_ */

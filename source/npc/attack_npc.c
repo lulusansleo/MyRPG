@@ -33,6 +33,7 @@ void npc_move(entity_t *player, npc_t *head)
 {
     if (head == NULL)
         return;
+    int direction;
     npc_t *tmp = head; 
     while (tmp != NULL) {
         float deltaTime = sfTime_asSeconds(sfClock_getElapsedTime(tmp->mob->clock));
@@ -43,10 +44,10 @@ void npc_move(entity_t *player, npc_t *head)
         } else {
             float direction_elapsed = sfTime_asSeconds(sfClock_getElapsedTime(tmp->mob->mob_direction_clock));
             if (direction_elapsed >= tmp->mob->mob_direction_timer) {
-                tmp->mob->move = random_position(2.0, 2.0);
+                direction = random_direction();
                 sfClock_restart(tmp->mob->mob_direction_clock);
             }
-            update_npc_position(tmp->mob, deltaTime);
+            update_npc_position(tmp->mob, direction);
         }
         sfClock_restart(tmp->mob->clock);
         tmp = tmp->next;

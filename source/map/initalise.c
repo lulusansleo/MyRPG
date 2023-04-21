@@ -7,6 +7,7 @@
 
 #include "map.h"
 #include "my.h"
+#include "sprites.h"
 
 static char **get_array_from_source(char *source)
 {
@@ -24,7 +25,6 @@ static char **get_array_from_source(char *source)
 
 static int my_getnbr_pimp(char **str)
 {
-    int i = 0;
     int nb = 0;
     int neg = 1;
 
