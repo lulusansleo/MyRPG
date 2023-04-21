@@ -17,6 +17,8 @@
     typedef struct gamestate_s {
         sfRenderWindow *window;
         sfVideoMode video_mode;
+        sfClock *anim;
+        sfTime time;
         sfEvent *event;
         sfVector2f mouse_pos;
         sfVector2f mouse_pos_view;
