@@ -9,7 +9,7 @@
 
 sfFloatRect *get_hitbox(entity_t *entity)
 {
-    sfFloatRect *rect;
+    sfFloatRect *rect = malloc(sizeof(sfFloatRect));
     rect->top = entity->pos.y;
     rect->left = entity->pos.x;
     rect->height = 16;

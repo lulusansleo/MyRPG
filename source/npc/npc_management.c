@@ -7,6 +7,7 @@
 
 #include "player.h"
 #include "npc.h"
+#include "moves.h"
 
 void npc_management(gamestate_t *gamestate,
 npc_t **mobs, layer_t *layers, entity_t *player)

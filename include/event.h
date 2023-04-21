@@ -20,7 +20,14 @@
     #include "map.h"
     #include "gamestate.h"
 
+    /* door.c */
+    void open_door(layer_t *layers, sfVector2i pos);
+    void close_door(layer_t *layers, sfVector2i pos);
+
+    /* interact.c */
+    layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate);
+
     /* manage_event.c */
-    layer_t *manage_event(gamestate_t *gamestate, entity_t *player, layer_t *, npc_t **);
+    layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS);
 
 #endif /* !EVENT_H_ */

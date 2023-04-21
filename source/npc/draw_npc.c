@@ -14,7 +14,7 @@ void draw_mobs(npc_t *npc, sfRenderWindow *window)
 
     if (npc == NULL)
         return;
-    while (tmp != NULL) {
+    while (tmp) {
         sfRenderWindow_drawSprite(window, tmp->mob->sprite, sfFalse);
         tmp = tmp->next;
     }

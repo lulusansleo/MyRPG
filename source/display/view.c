@@ -10,8 +10,6 @@
 
 sfView *init_view(entity_t *player)
 {
-    sfFloatRect viewrect =
-(sfFloatRect){player->pos.x, player->pos.y, 5.0, 5.0};
     sfView *view = sfView_create();
     sfView_setSize(view, (sfVector2f){8 * 16, 8 * 16});
     sfView_setCenter(view, player->pos);

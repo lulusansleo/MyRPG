@@ -56,6 +56,7 @@
     void animate_player(entity_t *player);
 
     /* init_player.c */
-    entity_t *init_entity(char *);
+    
+    entity_t *init_entity(void);
 
 #endif /* !PLAYER_H_ */
