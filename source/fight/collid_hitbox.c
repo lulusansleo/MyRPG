@@ -8,11 +8,24 @@
 #include "fight.h"
 #include "npc.h"
 
+void stance_sprite(entity_t *weapon)
+{
+    
+}
+
 static entity_t *init_weapon(entity_t *player)
 {
     entity_t *weapon = malloc(sizeof(entity_t));
     weapon->type = player->type;
     weapon->pos = get_wpn_pos(player);
+    weapon->clock = sfClock_create();
+    weapon->alive = 1;
+    weapon->texture = sfTexture_createFromFile(TXT_PLYR, NULL);
+    weapon->rect = (sfIntRect) {((player->dir - 1) * 16), 0, 16, 16};
+    weapon->sprite = sfSprite_create();
+    sfSprite_setPosition(weapon->sprite, weapon->pos);
+    sfSprite_setTexture(weapon->sprite, weapon->texture, sfTrue);
+    sfSprite_setTextureRect(weapon->sprite, weapon->rect);
     return weapon;
 }
 
@@ -35,13 +48,36 @@ static void is_hit(entity_t* a, entity_t *b)
     free(rect_b);
 }
 
+int anim_weapon(entity_t *weapon)
+{
+    sfTime time = sfClock_getElapsedTime(weapon->clock);
+    if (sfTime_asSeconds(time) > 0.5) {
+        weapon->rect.left += 16;
+        if (weapon->rect.left >= 32) {
+            weapon->alive = 0;
+            return 0;
+        }
+        sfSprite_setTextureRect(weapon->sprite, weapon->rect);
+        sfClock_restart(weapon->clock);
+    }
+    return 0;
+}
+
 void attack(entity_t *player, npc_t *mobs)
 {
-    entity_t *weapon = init_weapon(player);
+    player->weapon = init_weapon(player);
     while (mobs) {
-        is_hit(weapon, mobs->mob);
+        is_hit(player->weapon, mobs->mob);
         mobs = mobs->next;
     }
-    if (weapon->type != BOW)
-        free(weapon);
+    if (player->weapon->type == SWORD) {
+        if (player->weapon->alive == 1) {
+            anim_weapon(player->weapon);
+        } else { 
+            sfClock_destroy(player->weapon->clock);
+            sfTexture_destroy(player->weapon->texture);
+            sfSprite_destroy(player->weapon->sprite);
+            free(player->weapon);
+        }
+    }
 }

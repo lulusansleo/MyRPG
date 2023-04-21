@@ -50,4 +50,7 @@ void animate_player(entity_t *player)
 void draw_player(entity_t *player, sfRenderWindow *window)
 {
     sfRenderWindow_drawSprite(window, player->sprite, NULL);
+    if (player->weapon) {
+        sfRenderWindow_drawSprite(window, player->weapon->sprite, NULL);
+    }
 }
