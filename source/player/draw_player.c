@@ -36,23 +36,15 @@ void rotate_sprite(entity_t *player, sfEvent *event)
 void animate_player(entity_t *player)
 {
     sfIntRect rect;
-    sfTime time;
-    time = sfClock_getElapsedTime(player->mob_direction_clock);
-    if (sfTime_asSeconds(time) > 0.5) {
-        rect = player->rect;
-        if (player->type == HAND) {
-            rect = animation(rect, (sfIntRect){RECT_HAND});
-    }
-    if (player->type == SWORD) {
+    rect = player->rect;
+    if (player->type == HAND)
+        rect = animation(rect, (sfIntRect){RECT_HAND});
+    if (player->type == SWORD)
         rect = animation(rect, (sfIntRect){RECT_SWORD});
-    }
-    if (player->type == BOW) {
+    if (player->type == BOW)
         rect = animation(rect, (sfIntRect){RECT_BOW});
-    }
-        player->rect = rect;
-        sfSprite_setTextureRect(player->sprite, player->rect);
-        sfClock_restart(player->mob_direction_clock);
-    }
+    player->rect = rect;
+    sfSprite_setTextureRect(player->sprite, player->rect);
 }
 
 void draw_player(entity_t *player, sfRenderWindow *window)

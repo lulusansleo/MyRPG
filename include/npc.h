@@ -16,6 +16,7 @@
     } npc_t;
 
     /* animation_npc.c */
+    void animate_entities(entity_t *player, npc_t *mob, gamestate_t *gamestate);
 
     /* attack_npc.c */
     float distance_npc(sfVector2f abs, sfVector2f ord);
