@@ -23,7 +23,7 @@ int main(void)
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
     entity_t *player = init_entity();
     npc_t *mobs = NULL;
-    mobs = add_node(mobs, 30, 30, 1);
+    mobs = add_node(mobs, 50.0, 50.0, 1);
     sfView *view = init_view(player);
     while (sfRenderWindow_isOpen(gamestate->window)) {
         sfRenderWindow_clear(gamestate->window, sfBlack);

@@ -35,7 +35,7 @@ static int get_dmg(int type)
 entity_t *init_entity(void)
 {
     entity_t *entity = malloc(sizeof(entity_t));
-    entity->pos = (sfVector2f){48, 48};
+    entity->pos = (sfVector2f){100, 48};
     entity->dir = NORTH;
     entity->type = BOW;
     entity->hp = 100;

@@ -17,6 +17,7 @@
 
     typedef struct gamestate_s {
         sfClock *trap_clock;
+        sfClock *torch_clock;
         sfRenderWindow *window;
         sfVideoMode video_mode;
         sfClock *anim;

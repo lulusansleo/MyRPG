@@ -14,8 +14,7 @@ entity_t *init_entity_npc(int x, int y, int type)
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = pos;
     entity->type = type;
-    entity->speed = 15;
-    entity->clock = sfClock_create();
+    entity->speed = 0.5f;
     entity->rect = (sfIntRect){0, 0, 16, 16};
     entity->texture = sfTexture_createFromFile(TXT_NPC, NULL);
     entity->sprite = sfSprite_create();

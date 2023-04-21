@@ -10,7 +10,7 @@
 
     #define TXT_PLYR "./ressources/sprites/hero.png"
     #define TXT_NPC "./ressources/sprites/mob.png"
-    #define ATTACK_RADIUS 140
+    #define ATTACK_RADIUS 45
     #define HAND 0
     #define SWORD 1
     #define BOW 2

@@ -10,7 +10,7 @@
 #include "npc.h"
 #include "fight.h"
 
-static void key_pressed(GAMESTATE, PLAYER, layer_t *layers, MOBS)
+layer_t *key_pressed(GAMESTATE, PLAYER, layer_t *layers, MOBS)
 {
     if (gamestate->event->key.code == sfKeyE)
         layers = interact(player, layers, gamestate);
@@ -19,8 +19,9 @@ static void key_pressed(GAMESTATE, PLAYER, layer_t *layers, MOBS)
     if (gamestate->event->key.code == sfKeyF)
         *mobs = kill_mob(*mobs, *mobs);
     if (gamestate->event->key.code == sfKeyC)
-        *mobs = add_node(*mobs, 30, 30, 1);
+        *mobs = add_node(*mobs, 50.0, 50.0, 1);
     get_move(player);
+    return (layers);
 }
 
 layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS)
@@ -32,7 +33,7 @@ layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS)
         if (gamestate->event->type == sfEvtKeyReleased)
             get_release(player, gamestate->event);  
         if (gamestate->event->type == sfEvtKeyPressed)
-            key_pressed(gamestate, player, layers, mobs);          
+            layers = key_pressed(gamestate, player, layers, mobs);          
     }
     return (layers);
 }

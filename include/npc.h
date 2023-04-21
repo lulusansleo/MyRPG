@@ -20,7 +20,7 @@
 
     /* attack_npc.c */
     float distance_npc(sfVector2f abs, sfVector2f ord);
-    void attack_player(entity_t *mob, entity_t *player, float deltaTime);
+    void attack_player(entity_t *mob, entity_t *player);
     void npc_move(entity_t *player, npc_t *head);
 
     /*draw_npc.c*/
