@@ -8,6 +8,7 @@
 #ifndef FIGHT_H_
     #define FIGHT_H_
 
+    #define SWORD_TXT "./ressources/sprites/swoosh-animation.png"
     #include "player.h"
     #include "map.h"
     #include "moves.h"
