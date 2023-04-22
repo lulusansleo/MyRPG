@@ -17,6 +17,15 @@
 #include "npc.h"
 #include "view.h"
 
+void display_game(gamestate_t *gamestate, layer_t *layers,
+                    npc_t *mobs, entity_t *player)
+{
+    sfRenderWindow_clear(gamestate->window, sfBlack);
+    draw_map(layers, gamestate->window);
+    draw_mobs(mobs, gamestate->window);
+    draw_player(player, gamestate->window);
+    sfRenderWindow_display(gamestate->window);
+}
 
 int main(void)
 {
@@ -28,7 +37,6 @@ int main(void)
     //mobs = add_node(mobs, 50.0, 50.0, 1);
     sfView *view = init_view(player);
     while (sfRenderWindow_isOpen(gamestate->window)) {
-        sfRenderWindow_clear(gamestate->window, sfBlack);
         layers = manage_event(gamestate, player, layers, &mobs);
         collision(player, layers);
         do_move(player);
@@ -37,12 +45,8 @@ int main(void)
         animate_entities(player, mobs, gamestate);
         npc_management(gamestate, &mobs, layers, player);
         sfView_setCenter(view, refresh_view(player, view, layers[0]));
-        sfRenderWindow_clear(gamestate->window, sfBlack);
-        draw_map(layers, gamestate->window);
-        draw_mobs(mobs, gamestate->window);
-        draw_player(player, gamestate->window);
         sfRenderWindow_setView(gamestate->window, view);
-        sfRenderWindow_display(gamestate->window);
+        display_game(gamestate, layers, mobs, player);
     }
     sfRenderWindow_destroy(gamestate->window);
     free(gamestate->event);
