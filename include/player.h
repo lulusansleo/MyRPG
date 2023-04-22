@@ -24,7 +24,6 @@
 
     #include "map.h"
     #include "my.h"
-    #include "gamestate.h"
     #include <stdlib.h>
     #include <stdlib.h>
     #include <time.h>
@@ -55,6 +54,8 @@
         sfSprite *sprite;
         struct entity_s *weapon;
     } entity_t;
+
+    #include "gamestate.h"
 
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);

@@ -51,7 +51,7 @@ SRC = 	source/display/window.c \
 		source/fight/bow.c\
 		source/fight/initialisation.c\
 		source/fight/anim_weapon.c\
-#		source/ig_menu/ig_menu.c	\
+		source/ig_menu/ig_menu.c	\
 
 OBJ = $(SRC:.c=.o)
 
