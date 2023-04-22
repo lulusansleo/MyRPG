@@ -64,4 +64,15 @@
     /* init_player.c */
     entity_t *init_entity(void);
 
+    float get_left_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    float get_right_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    float get_top_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    float get_bottom_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    void collision_traps(entity_t *player, layer_t *layers);
+    void hit_player(entity_t *player, int dmg);
+
 #endif /* !PLAYER_H_ */
