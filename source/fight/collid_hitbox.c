@@ -8,13 +8,6 @@
 #include "fight.h"
 #include "npc.h"
 
-static entity_t *init_weapon(entity_t *player)
-{
-    entity_t *weapon = malloc(sizeof(entity_t));
-    weapon->type = player->type;
-    weapon->pos = get_wpn_pos(player);
-    return weapon;
-}
 
 static void hit(entity_t *a, entity_t *b)
 {
@@ -29,19 +22,29 @@ static void is_hit(entity_t* a, entity_t *b)
     sfFloatRect *rect_a = get_hitbox(a);
     sfFloatRect *rect_b = get_hitbox(b);
     if (sfFloatRect_intersects(rect_a, rect_b, NULL) == sfTrue) {
+        printf("hit\n");
         hit(a, b);
     }
     free(rect_a);
     free(rect_b);
 }
 
+void free_mob(entity_t *mob)
+{
+    sfClock_destroy(mob->mob_direction_clock);
+    sfTexture_destroy(mob->texture);
+    sfSprite_destroy(mob->sprite);
+}
+
 void attack(entity_t *player, npc_t *mobs)
 {
-    entity_t *weapon = init_weapon(player);
-    while (mobs) {
-        is_hit(weapon, mobs->mob);
-        mobs = mobs->next;
+    if (!player->weapon)
+        player->weapon = init_weapon(player);
+    if (player->weapon) {
+        while (mobs) {
+            is_hit(player->weapon, mobs->mob);
+            mobs = mobs->next;
+        }
     }
-    if (weapon->type != BOW)
-        free(weapon);
+    anim_weapon(player);
 }

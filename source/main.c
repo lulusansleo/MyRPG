@@ -11,6 +11,7 @@
 #include "player.h"
 #include "moves.h"
 #include "event.h"
+#include "fight.h"
 #include "entity.h"
 #include "graphical.h"
 #include "npc.h"
@@ -31,6 +32,7 @@ int main(void)
         collision(player, layers);
         do_move(player);
         animate_traps(layers, gamestate);
+        anim_weapon(player);
         animate_entities(player, mobs, gamestate);
         npc_management(gamestate, &mobs, layers, player);
         sfView_setCenter(view, refresh_view(player, view, layers[0]));

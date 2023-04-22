@@ -28,6 +28,6 @@ sfVector2f get_wpn_pos(entity_t *player)
     if (player->dir == SOUTH)
         pos = (sfVector2f) {player->pos.x, player->pos.y + 16};
     if (player->dir == WEST)
-        pos = (sfVector2f) {player->pos.x - 16, player->pos.y + 16};
+        pos = (sfVector2f) {player->pos.x - 16, player->pos.y};
     return pos;
 }

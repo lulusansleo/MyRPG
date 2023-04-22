@@ -26,7 +26,7 @@ static int get_dmg(int type)
     if (type == HAND)
         return 2;
     if (type == SWORD)
-        return 10;
+        return 50;
     if (type == BOW)
         return 5;
     return 2;
@@ -37,11 +37,12 @@ entity_t *init_entity(void)
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = (sfVector2f){100, 48};
     entity->dir = NORTH;
-    entity->type = BOW;
+    entity->type = SWORD;
     entity->hp = 100;
     entity->dmg = get_dmg(entity->type);
     entity->speed = 2;
     entity->clock = sfClock_create();
+    entity->weapon = NULL;
     entity->mob_direction_clock = sfClock_create();
     entity->rect = get_plyr_rect(entity->type);
     entity->texture = sfTexture_createFromFile(TXT_PLYR, NULL);

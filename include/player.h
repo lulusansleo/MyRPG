@@ -31,22 +31,23 @@
     #include <math.h>
 
     typedef struct entity_s {
-        int hp;
-        int dmg;
-        int alive;
         sfVector2f acceleration;
         sfVector2f move;
         sfVector2f pos;
         sfIntRect rect;
+        int hp;
+        int dmg;
+        int alive;
         int dir;
+        int type;
         float speed;
         float mob_direction_timer;
-        sfClock *mob_direction_clock;
         int direction;
+        sfClock *mob_direction_clock;
         sfClock *clock;
         sfTexture *texture;
         sfSprite *sprite;
-        int type;
+        struct entity_s *weapon;
     } entity_t;
 
     /* draw_player.c */
