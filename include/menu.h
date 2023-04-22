@@ -9,6 +9,7 @@
     #define MENU_H_
     #include "graphical.h"
     #include "gamestate.h"
+    #include "npc.h"
 
 typedef enum button_state {
     HOVER,
@@ -53,7 +54,14 @@ typedef struct menu {
     options_t *options;
 } menu_t;
 
-void menu(gamestate_t *gamestate, menu_button_t *buttons, menu_t *menu);
+typedef struct ig_menu {
+    sfTexture *back_text;
+    sfSprite *background;
+    menu_button_t *buttons;
+} ig_menu_t;
+
+void run_menu(gamestate_t *gamestate, menu_t *menu,
+    ig_menu_t *ig_menu, npc_t *mobs);
 menu_button_t *init_buttons(void);
 void update_bounds(menu_button_t *buttons, sfRenderWindow* window, int nb);
 void update_states(menu_button_t *buttons, sfRenderWindow *window, int nb);

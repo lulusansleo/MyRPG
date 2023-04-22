@@ -18,12 +18,6 @@ typedef enum ig_buttons {
     MENU
 } ig_buttons_t;
 
-typedef struct ig_menu {
-    sfTexture *back_text;
-    sfSprite *background;
-    menu_button_t *buttons;
-} ig_menu_t;
-
 ig_menu_t *init_ig_menu(sfRenderWindow* window);
 void start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu);
 void run_game(menu_t *menu, ig_menu_t *ig_menu, gamestate_t *gamestate,

@@ -65,7 +65,7 @@ int main(void)
 
     gamestate->player = init_entity();
     gamestate->view = init_view(gamestate->player);
-    run_game(menu, ig_menu, gamestate, mobs);
+    run_menu(gamestate, menu, ig_menu, mobs);
     sfRenderWindow_destroy(gamestate->window);
     free(gamestate->event);
     destroy_player(gamestate->player);

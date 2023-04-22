@@ -74,6 +74,5 @@ menu_t *init_menu(gamestate_t *gamestate)
     sfSprite_setTexture(menu_info->background, menu_info->back_text, sfTrue);
     sfSprite_setPosition(menu_info->background, (sfVector2f){0, 0});
     init_options(menu_info, gamestate->window);
-    menu(gamestate, buttons, menu_info);
     return menu_info;
 }
