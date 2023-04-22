@@ -39,6 +39,7 @@ void init_values(entity_t *entity)
     entity->type = SWORD;
     entity->hp = 100;
     entity->invicible = 0;
+    entity->bouncing = 0;
     entity->dmg = get_dmg(entity->type);
 }
 

@@ -21,24 +21,34 @@ float distance_npc(sfVector2f abs, sfVector2f ord)
     return sqrt(dx * dx + dy * dy);
 }
 
-static void is_attacking(entity_t *player, entity_t *mob)
+void if_invincible(entity_t *player)
 {
-    sfFloatRect *box_player = get_hitbox(player);
-    sfFloatRect *box_mob = get_hitbox(mob);
     sfTime time;
-    if (player->invicible == 0 &&
-    sfFloatRect_intersects(box_player, box_mob, NULL) == sfTrue) {
-        player->invicibility = sfClock_create();
-        hit(mob, player);
-        player->invicible = 1;
-    }
     if (player->invicible == 1) {
         time = sfClock_getElapsedTime(player->invicibility);
-        if (sfTime_asSeconds(time) > 5.0 && player->invicible == 1) {
+        if (sfTime_asSeconds(time) > 2.0 && player->invicible == 1) {
             sfClock_destroy(player->invicibility);
             player->invicible = 0;
         }
     }
+}
+
+static void is_attacking(entity_t *player, entity_t *mob)
+{
+    sfFloatRect *box_player = get_hitbox(player);
+    sfFloatRect *box_mob = get_hitbox(mob);
+    if (sfFloatRect_intersects(box_player, box_mob, NULL) == sfTrue) {
+        if (player->bouncing == 0) {
+            player->bounce = sfClock_create();
+            player->bouncing = 1;
+        }
+        if (player->invicible == 0) {
+            player->invicibility = sfClock_create();
+            hit(mob, player);
+            player->invicible = 1;
+        }
+    }
+    if_invincible(player);
 }
 
 void attack_player(entity_t *mob, entity_t *player)
@@ -48,7 +58,7 @@ void attack_player(entity_t *mob, entity_t *player)
 
     mob->move.x = mob->speed * cos(angle);
     mob->move.y = mob->speed * sin(angle);
-
+    bounce_event(player, mob);
 }
 
 void npc_move(entity_t *player, npc_t *head)

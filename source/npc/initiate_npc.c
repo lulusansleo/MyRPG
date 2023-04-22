@@ -17,6 +17,7 @@ entity_t *init_entity_npc(int x, int y, int type)
     entity->type = type;
     entity->move = (sfVector2f){0, 0};
     entity->speed = 0.5f;
+    entity->bouncing = 0;
     entity->rect = (sfIntRect){0, 0, 16, 16};
     entity->texture = sfTexture_createFromFile(TXT_NPC, NULL);
     entity->sprite = sfSprite_create();
