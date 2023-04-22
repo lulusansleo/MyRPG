@@ -52,6 +52,7 @@ entity_t *init_entity(void)
     entity->weapon = NULL;
     init_values(entity);
     entity->silver_key = 0;
+    entity->gold_key = 0;
     entity->mob_direction_clock = sfClock_create();
     entity->rect = get_plyr_rect(entity->type);
     entity->texture = sfTexture_createFromFile(TXT_PLYR, NULL);
