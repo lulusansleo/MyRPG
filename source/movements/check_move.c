@@ -31,7 +31,7 @@ void get_move(PLAYER)
     }
     if (sfKeyboard_isKeyPressed(DOWN)) {
         player->move.y = MAX_SPEED;
-        player->dir = NORTH;
+        player->dir = SOUTH;
     }
 }
 

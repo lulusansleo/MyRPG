@@ -26,7 +26,7 @@ static int get_dmg(int type)
     if (type == HAND)
         return 2;
     if (type == SWORD)
-        return 10;
+        return 50;
     if (type == BOW)
         return 5;
     return 2;

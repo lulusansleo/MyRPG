@@ -13,6 +13,7 @@ entity_t *init_entity_npc(int x, int y, int type)
     sfVector2f pos = {(float) x, (float) y};
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = pos;
+    entity->hp = 100;
     entity->type = type;
     entity->speed = 15;
     entity->clock = sfClock_create();
