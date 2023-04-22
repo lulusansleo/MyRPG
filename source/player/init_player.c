@@ -32,18 +32,25 @@ static int get_dmg(int type)
     return 2;
 }
 
+void init_values(entity_t *entity)
+{
+    entity->speed = 2;
+    entity->dir = NORTH;
+    entity->type = SWORD;
+    entity->hp = 100;
+    entity->invicible = 0;
+    entity->dmg = get_dmg(entity->type);
+}
+
 entity_t *init_entity(void)
 {
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = (sfVector2f){100, 48};
     entity->move = (sfVector2f){0, 0};
-    entity->dir = NORTH;
-    entity->type = SWORD;
-    entity->hp = 100;
-    entity->dmg = get_dmg(entity->type);
-    entity->speed = 2;
+    entity->pos = (sfVector2f){48, 48};
     entity->clock = sfClock_create();
     entity->weapon = NULL;
+    init_values(entity);
     entity->mob_direction_clock = sfClock_create();
     entity->rect = get_plyr_rect(entity->type);
     entity->texture = sfTexture_createFromFile(TXT_PLYR, NULL);

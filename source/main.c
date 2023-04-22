@@ -38,8 +38,8 @@ int main(void)
         sfView_setCenter(view, refresh_view(player, view, layers[0]));
         sfRenderWindow_clear(gamestate->window, sfBlack);
         draw_map(layers, gamestate->window);
-        draw_player(player, gamestate->window);
         draw_mobs(mobs, gamestate->window);
+        draw_player(player, gamestate->window);
         sfRenderWindow_setView(gamestate->window, view);
         sfRenderWindow_display(gamestate->window);
     }

@@ -22,6 +22,18 @@ int move_sword(entity_t *weapon)
     return 0;
 }
 
+static void change_stance(entity_t *player)
+{
+    if (player->weapon) {
+        player->type = HAND;
+        player->rect = (sfIntRect) {RECT_HAND};
+    } else {
+        player->type = SWORD;
+        player->rect = (sfIntRect) {RECT_SWORD};
+    }
+    sfSprite_setTextureRect(player->sprite, player->rect);
+}
+
 void anim_sword(entity_t *player)
 {
     if (player->weapon->alive == 1) {
@@ -33,6 +45,7 @@ void anim_sword(entity_t *player)
         free(player->weapon);
         player->weapon = NULL;
     }
+    change_stance(player);
 }
 
 void anim_weapon(entity_t *player)

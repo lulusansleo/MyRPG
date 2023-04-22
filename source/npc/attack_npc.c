@@ -8,6 +8,8 @@
 #include "map.h"
 #include "my.h"
 #include "player.h"
+#include "fight.h"
+#include "graphical.h"
 #include "npc.h"
 
 
@@ -19,8 +21,29 @@ float distance_npc(sfVector2f abs, sfVector2f ord)
     return sqrt(dx * dx + dy * dy);
 }
 
-void attack_player(entity_t *mob, entity_t *player)
+static void is_attacking(entity_t *player, entity_t *mob)
 {
+    sfFloatRect *box_player = get_hitbox(player);
+    sfFloatRect *box_mob = get_hitbox(mob);
+    sfTime time;
+    if (player->invicible == 0 &&
+    sfFloatRect_intersects(box_player, box_mob, NULL) == sfTrue) {
+        player->invicibility = sfClock_create();
+        hit(mob, player);
+        player->invicible = 1;
+    }
+    if (player->invicible == 1) {
+        time = sfClock_getElapsedTime(player->invicibility);
+        if (sfTime_asSeconds(time) > 5.0 && player->invicible == 1) {
+            sfClock_destroy(player->invicibility);
+            player->invicible = 0;
+        }
+    }
+}
+
+void attack_player(entity_t *mob, entity_t *player, float deltaTime)
+{
+    is_attacking(player, mob);
     float angle = atan2(player->pos.y - mob->pos.y, player->pos.x - mob->pos.x);
 
     mob->move.x = mob->speed * cos(angle);

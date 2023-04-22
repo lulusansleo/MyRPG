@@ -9,7 +9,7 @@
 #include "npc.h"
 
 
-static void hit(entity_t *a, entity_t *b)
+void hit(entity_t *a, entity_t *b)
 {
     b->hp -= a->dmg;
     if (b->hp <= 0) {
