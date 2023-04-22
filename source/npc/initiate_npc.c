@@ -13,6 +13,7 @@ entity_t *init_entity_npc(int x, int y, int type)
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = (sfVector2f){(float) x, (float) y};
     entity->hp = 100;
+    entity->dmg = 10;
     entity->type = type;
     entity->move = (sfVector2f){0, 0};
     entity->speed = 0.5f;

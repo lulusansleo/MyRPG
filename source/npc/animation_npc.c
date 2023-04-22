@@ -21,7 +21,7 @@ static void move_rect(entity_t *mob)
 
 static void animate_mobs(npc_t *mob)
 {
-    while (mob) { 
+    while (mob) {
         if (!mob)
             break;
         move_rect(mob->mob);
@@ -38,4 +38,3 @@ void animate_entities(entity_t *player, npc_t *mob, gamestate_t *gamestate)
         sfClock_restart(gamestate->anim);
     }
 }
-

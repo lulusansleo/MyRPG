@@ -38,7 +38,11 @@ static void kill_free_mob(npc_t *to_kill)
 npc_t *kill_mob(npc_t *head, npc_t *to_kill)
 {
     npc_t *tmp = head;
+<<<<<<< HEAD
     npc_t *to_next = head;
+=======
+    npc_t *to_next;
+>>>>>>> ea29a878482553ab800b69905452ab1b241c50c1
     if (head == NULL)
         return NULL;
     if (head == to_kill) {
