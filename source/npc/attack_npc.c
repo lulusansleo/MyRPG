@@ -34,15 +34,16 @@ void npc_move(entity_t *player, npc_t *head)
     if (head == NULL)
         return;
     int direction;
-    npc_t *tmp = head; 
+    npc_t *tmp = head;
     while (tmp != NULL) {
-        float deltaTime = sfTime_asSeconds(sfClock_getElapsedTime(tmp->mob->clock));
+        float deltaTime = sfTime_asSeconds(sfClock_getElapsedTime
+        (tmp->mob->clock));
         float mob_distance = distance_npc(player->pos, tmp->mob->pos);
-
         if (mob_distance < ATTACK_RADIUS) {
             attack_player(tmp->mob, player, deltaTime);
         } else {
-            float direction_elapsed = sfTime_asSeconds(sfClock_getElapsedTime(tmp->mob->mob_direction_clock));
+            float direction_elapsed = sfTime_asSeconds(sfClock_getElapsedTime
+            (tmp->mob->mob_direction_clock));
             if (direction_elapsed >= tmp->mob->mob_direction_timer) {
                 direction = random_direction();
                 sfClock_restart(tmp->mob->mob_direction_clock);

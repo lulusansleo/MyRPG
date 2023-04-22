@@ -10,10 +10,12 @@
 
     #include "player.h"
 
+
     typedef struct npc {
         struct npc *next;
         entity_t *mob;
     } npc_t;
+
 
     /* animation_npc.c */
 
@@ -21,7 +23,6 @@
     float distance_npc(sfVector2f abs, sfVector2f ord);
     void attack_player(entity_t *mob, entity_t *player, float deltaTime);
     void npc_move(entity_t *player, npc_t *head);
-
     /*draw_npc.c*/
     void draw_mobs(npc_t *, sfRenderWindow *);
     void free_mobs(npc_t *);
