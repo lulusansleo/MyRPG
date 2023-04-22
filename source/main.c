@@ -17,6 +17,9 @@
 #include "npc.h"
 #include "view.h"
 
+#include "menu.h"
+#include "ig_menu.h"
+
 void display_game(gamestate_t *gamestate, layer_t *layers,
                     npc_t *mobs, entity_t *player)
 {
@@ -36,7 +39,12 @@ int main(void)
     npc_t *mobs = load_mobs_from_file("mobs.txt");
     //mobs = add_node(mobs, 50.0, 50.0, 1);
     sfView *view = init_view(player);
+    menu_t *menu = init_menu(gamestate);
+    ig_menu_t *ig_menu = init_ig_menu(gamestate->window);
+
     while (sfRenderWindow_isOpen(gamestate->window)) {
+        if (sfKeyboard_isKeyPressed(sfKeyEscape))
+            start_ig_menu(gamestate, ig_menu, menu);
         layers = manage_event(gamestate, player, layers, &mobs);
         collision(player, layers);
         do_move(player);

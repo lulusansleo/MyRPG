@@ -62,7 +62,7 @@ void init_options(menu_t *menu, sfRenderWindow *window)
     menu->options = options;
 }
 
-void init_menu(gamestate_t *gamestate)
+menu_t *init_menu(gamestate_t *gamestate)
 {
     menu_button_t *buttons = init_buttons();
     menu_t *menu_info = malloc(sizeof(menu_t));
@@ -75,4 +75,5 @@ void init_menu(gamestate_t *gamestate)
     sfSprite_setPosition(menu_info->background, (sfVector2f){0, 0});
     init_options(menu_info, gamestate->window);
     menu(gamestate, buttons, menu_info);
+    return menu_info;
 }

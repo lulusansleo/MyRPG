@@ -9,6 +9,7 @@
 #include "event.h"
 #include "npc.h"
 #include "fight.h"
+#include "ig_menu.h"
 
 layer_t *key_pressed(GAMESTATE, PLAYER, layer_t *layers, MOBS)
 {
@@ -27,8 +28,7 @@ layer_t *key_pressed(GAMESTATE, PLAYER, layer_t *layers, MOBS)
 layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS)
 {
     while (sfRenderWindow_pollEvent(gamestate->window, gamestate->event)) {
-        if (gamestate->event->type == sfEvtClosed ||
-        sfKeyboard_isKeyPressed(sfKeyEscape))
+        if (gamestate->event->type == sfEvtClosed)
             sfRenderWindow_close(gamestate->window);
         if (gamestate->event->type == sfEvtKeyReleased)
             get_release(player, gamestate->event);
