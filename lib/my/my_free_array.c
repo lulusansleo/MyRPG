@@ -5,6 +5,8 @@
 ** my_free_array
 */
 
+#include <stdlib.h>
+
 void free_my_array(char **array)
 {
     for (int i = 0; array[i]; i++)
