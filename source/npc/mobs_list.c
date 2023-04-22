@@ -38,7 +38,6 @@ npc_t *kill_mob(npc_t *head, npc_t *to_kill)
 {
     npc_t *tmp = head;
     npc_t *to_next;
-
     if (head == NULL)
         return NULL;
     if (head == to_kill) {
