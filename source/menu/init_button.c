@@ -9,7 +9,8 @@
 #include "menu.h"
 #include <stdlib.h>
 
-void init_new_button(menu_button_t *button, sfFont *font, char *str, sfVector2f button_pos)
+void init_new_button(menu_button_t *button, sfFont *font,
+                    char *str, sfVector2f button_pos)
 {
     sfVector2f button_size = {180, 60};
     sfColor button_color = sfColor_fromRGB(255, 255, 255);
@@ -34,9 +35,13 @@ menu_button_t *init_buttons(void)
     menu_button_t *buttons = (menu_button_t*)malloc(sizeof(menu_button_t) * 4);
     sfFont *font = sfFont_createFromFile("ressources/font/Roboto.ttf");
 
-    init_new_button(&buttons[NEW], font, "NEW", (sfVector2f){410, 500});
-    init_new_button(&buttons[LOAD], font, "LOAD", (sfVector2f){410, 600});
-    init_new_button(&buttons[OPTIONS], font, "OPTIONS", (sfVector2f){410, 700});
-    init_new_button(&buttons[QUIT], font, "QUIT", (sfVector2f){410, 800});
+    init_new_button(&buttons[NEW], font,
+    "NEW", (sfVector2f){410, 500});
+    init_new_button(&buttons[LOAD], font,
+    "LOAD", (sfVector2f){410, 600});
+    init_new_button(&buttons[OPTIONS], font,
+    "OPTIONS", (sfVector2f){410, 700});
+    init_new_button(&buttons[QUIT], font,
+    "QUIT", (sfVector2f){410, 800});
     return buttons;
 }
