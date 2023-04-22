@@ -30,9 +30,9 @@ layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS)
         sfKeyboard_isKeyPressed(sfKeyEscape))
             sfRenderWindow_close(gamestate->window);
         if (gamestate->event->type == sfEvtKeyReleased)
-            get_release(player, gamestate->event);  
+            get_release(player, gamestate->event);
         if (gamestate->event->type == sfEvtKeyPressed)
-            key_pressed(gamestate, player, layers, mobs);          
+            key_pressed(gamestate, player, layers, mobs);      
     }
     return (layers);
 }
