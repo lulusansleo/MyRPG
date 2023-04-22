@@ -27,7 +27,7 @@ static sfIntRect get_item_rect(int type)
     return (rect);
 }
 
-static void draw_layer(tile_t **layer, tilesheet_t *tileset,
+void draw_layer(tile_t **layer, tilesheet_t *tileset,
 sfRenderWindow *window)
 {
     for (int i = 0; layer[i]; i++) {
@@ -58,7 +58,6 @@ sfRenderWindow *window)
 void draw_map(layer_t *layers, sfRenderWindow *window)
 {
     draw_layer(layers[1].tiles, layers[1].sprite_sheet, window);
-    draw_layer(layers[0].tiles, layers[0].sprite_sheet, window);
     draw_layer(layers[2].tiles, layers[2].sprite_sheet, window);
     draw_layer(layers[3].tiles, layers[3].sprite_sheet, window);
     draw_items(layers[4].tiles, layers[4].sprite_sheet, window);

@@ -31,7 +31,8 @@
 
     /* interact.c */
     layer_t *interact(
-    entity_t *player,layer_t *layers, gamestate_t *gamestate);
+    entity_t *player,layer_t *layers, gamestate_t *gamestate,
+    npc_t **mobs);
 
     /* manage_event.c */
     layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS);

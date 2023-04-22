@@ -11,6 +11,13 @@
 #include "moves.h"
 #include <math.h>
 
+static int does_it_collide(int type)
+{
+    if (type == 0 || (type >= 31 && type <= 31 + 16))
+        return (0);
+    return (1);
+}
+
 float get_left_limit(sfFloatRect player_rect, layer_t *layers,
 entity_t *player)
 {
@@ -21,9 +28,9 @@ entity_t *player)
     x -= 1;
     if (player->pos.y == y * 16)
         y2 -= 1;
-    if (layers[0].tiles[y][x].type != 0)
+    if (does_it_collide(layers[0].tiles[y][x].type))
         return ((x + 1) * 16);
-    if (layers[0].tiles[y2][x].type != 0)
+    if (does_it_collide(layers[0].tiles[y2][x].type))
         return ((x + 1) * 16);
     return (0.0);
 }
@@ -37,9 +44,9 @@ entity_t *player)
 
     if (player->pos.y == y * 16)
         y2 -= 1;
-    if (layers[0].tiles[y][x].type != 0)
+    if (does_it_collide(layers[0].tiles[y][x].type))
         return (x * 16);
-    if (layers[0].tiles[y2][x].type != 0)
+    if (does_it_collide(layers[0].tiles[y2][x].type))
         return (x * 16);
     return (0.0);
 }
@@ -54,9 +61,9 @@ entity_t *player)
     y -= 1;
     if (player->pos.x == x * 16 + 2)
         x2 -= 1;
-    if (layers[0].tiles[y][x].type != 0)
+    if (does_it_collide(layers[0].tiles[y][x].type))
         return ((y + 1) * 16);
-    if (layers[0].tiles[y][x2].type != 0)
+    if (does_it_collide(layers[0].tiles[y][x2].type))
         return ((y + 1) * 16);
     return (0.0);
 }
@@ -70,9 +77,9 @@ entity_t *player)
 
     if (player->pos.x == x * 16 + 2)
         x2 -= 1;
-    if (layers[0].tiles[y][x].type != 0)
+    if (does_it_collide(layers[0].tiles[y][x].type))
         return (y * 16);
-    if (layers[0].tiles[y][x2].type != 0)
+    if (does_it_collide(layers[0].tiles[y][x2].type))
         return (y * 16);
     return (0.0);
 }
