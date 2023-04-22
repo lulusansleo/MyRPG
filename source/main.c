@@ -23,8 +23,9 @@ int main(void)
     gamestate_t *gamestate = initalise_gamestate();
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
     entity_t *player = init_entity();
-    npc_t *mobs = NULL;
-    mobs = add_node(mobs, 50.0, 50.0, 1);
+    //npc_t *mobs = NULL;
+    npc_t *mobs = load_mobs_from_file("mobs.txt");
+    //mobs = add_node(mobs, 50.0, 50.0, 1);
     sfView *view = init_view(player);
     while (sfRenderWindow_isOpen(gamestate->window)) {
         sfRenderWindow_clear(gamestate->window, sfBlack);
