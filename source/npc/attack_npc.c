@@ -38,7 +38,7 @@ static void is_attacking(entity_t *player, entity_t *mob)
     sfFloatRect *box_player = get_hitbox(player);
     sfFloatRect *box_mob = get_hitbox(mob);
     if (sfFloatRect_intersects(box_player, box_mob, NULL) == sfTrue) {
-        if (player->bouncing == 0) {
+        if (player->bouncing == 0 && player->invicible == 0) {
             player->bounce = sfClock_create();
             player->bouncing = 1;
         }

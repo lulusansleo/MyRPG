@@ -20,8 +20,7 @@ layer_t *key_pressed(GAMESTATE, PLAYER, layer_t *layers, MOBS)
         *mobs = kill_mob(*mobs, *mobs);
     if (gamestate->event->key.code == sfKeyC)
         *mobs = add_node(*mobs, 50.0, 50.0, 1);
-    if (player->bouncing == 0)
-        get_move(player);
+    get_move(player);
     return (layers);
 }
 
