@@ -52,7 +52,7 @@ entity_t *player)
     int y = (int)floor((player_rect.top) / 16.0);
 
     y -= 1;
-    if (player->pos.x == x * 16)
+    if (player->pos.x == x * 16 + 2)
         x2 -= 1;
     if (layers[0].tiles[y][x].type != 0)
         return ((y + 1) * 16);
@@ -68,7 +68,7 @@ entity_t *player)
     int x2 = (int)floor((player_rect.left + player_rect.width) / 16.0);
     int y = (int)floor((player_rect.top + player_rect.height) / 16.0);
 
-    if (player->pos.x == x * 16)
+    if (player->pos.x == x * 16 + 2)
         x2 -= 1;
     if (layers[0].tiles[y][x].type != 0)
         return (y * 16);
