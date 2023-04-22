@@ -52,4 +52,3 @@ void update_npc_position(entity_t *entity, int direction)
             entity->move.x = entity->speed;
     }
 }
-

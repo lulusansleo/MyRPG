@@ -36,7 +36,7 @@
     npc_t *kill_mob(npc_t *head, npc_t *to_kill);
 
     /*management_npc*/
-    void npc_management(gamestate_t *gamestate, 
+    void npc_management(gamestate_t *gamestate,
     npc_t **mobs, layer_t *layers, entity_t *player);
 
     /* position_npc.c */
