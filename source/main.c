@@ -27,6 +27,7 @@ void display_game(gamestate_t *gamestate, layer_t *layers,
     draw_map(layers, gamestate->window);
     draw_mobs(mobs, gamestate->window);
     draw_player(player, gamestate->window);
+    draw_layer(layers[0].tiles, layers[0].sprite_sheet, gamestate->window);
     sfRenderWindow_display(gamestate->window);
 }
 
