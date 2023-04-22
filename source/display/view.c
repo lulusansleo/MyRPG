@@ -11,14 +11,14 @@
 sfView *init_view(entity_t *player)
 {
     sfView *view = sfView_create();
-    sfView_setSize(view, (sfVector2f){8 * 16, 8 * 16});
+    sfView_setSize(view, (sfVector2f){15 * 16, 8 * 16});
     sfView_setCenter(view, player->pos);
     return view;
 }
 
 sfVector2f refresh_view(entity_t *player, sfView *view, layer_t layer)
 {
-    sfView_setCenter(view, player->pos);
+    sfView_setCenter(view, (sfVector2f) {player->pos.x + 8, player->pos.y + 8});
     sfVector2f pos = sfView_getCenter(view);
     sfVector2f size = sfView_getSize(view);
     sfVector2f m_size = {layer.size.x * 16, layer.size.y * 16};

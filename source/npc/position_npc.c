@@ -36,19 +36,20 @@ void update_npc_position(entity_t *entity, int direction)
 {
     switch (direction) {
         case 0:
-            entity->pos.y -= entity->speed;
+            entity->move.y = -entity->speed;
+            entity->move.x = -entity->speed;
             break;
         case 1:
-            entity->pos.y += entity->speed;
+            entity->move.y = entity->speed;
+            entity->move.x = entity->speed;
             break;
         case 2:
-            entity->pos.x -= entity->speed;
+            entity->move.x = -entity->speed;
+            entity->move.y = entity->speed;
             break;
         case 3:
-            entity->pos.x += entity->speed;
+            entity->move.y = -entity->speed;
+            entity->move.x = entity->speed;
     }
-    entity->pos.x += entity->move.x;
-    entity->pos.y += entity->move.y;
-    sfSprite_setPosition(entity->sprite, entity->pos);
 }
 

@@ -23,14 +23,15 @@ int main(void)
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
     entity_t *player = init_entity();
     npc_t *mobs = NULL;
-    mobs = add_node(mobs, 30, 30, 1);
+    mobs = add_node(mobs, 50.0, 50.0, 1);
     sfView *view = init_view(player);
     while (sfRenderWindow_isOpen(gamestate->window)) {
         sfRenderWindow_clear(gamestate->window, sfBlack);
         layers = manage_event(gamestate, player, layers, &mobs);
         collision(player, layers);
         do_move(player);
-        animate_player(player);
+        animate_traps(layers, gamestate);
+        animate_entities(player, mobs, gamestate);
         npc_management(gamestate, &mobs, layers, player);
         sfView_setCenter(view, refresh_view(player, view, layers[0]));
         sfRenderWindow_clear(gamestate->window, sfBlack);

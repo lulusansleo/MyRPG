@@ -15,6 +15,7 @@ SRC = 	source/display/window.c \
 		source/map/get_level_path.c\
 		source/map/load_level.c\
 		source/map/get_size.c\
+		source/map/traps.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
 		source/npc/position_npc.c	\
@@ -23,6 +24,7 @@ SRC = 	source/display/window.c \
 		source/npc/initiate_npc.c	\
 		source/npc/mobs_list.c	\
 		source/npc/npc_management.c	\
+		source/npc/animation_npc.c\
 		source/entity/free_entity.c\
 		source/movements/collision.c\
 		source/movements/collision_separate_file.c\
@@ -30,8 +32,17 @@ SRC = 	source/display/window.c \
 		source/event/manage_event.c\
 		source/event/interact.c\
 		source/event/door.c\
+		source/event/is_door.c\
 		source/fight/collid_hitbox.c\
 		source/fight/get_utils.c\
+		source/menu/menu.c	\
+		source/menu/init_button.c	\
+		source/menu/update_buttons.c	\
+		source/menu/options.c	\
+		source/menu/init_menu.c	\
+		source/menu/init_opt_buttons.c	\
+		source/menu/update_options.c	\
+		source/hud/hud.c	\
 
 OBJ = $(SRC:.c=.o)
 

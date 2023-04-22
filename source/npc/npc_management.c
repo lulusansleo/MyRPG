@@ -15,9 +15,12 @@ npc_t **mobs, layer_t *layers, entity_t *player)
     npc_t *tmp = *mobs;
 
     while (tmp != NULL) {
+        npc_move(player, tmp);
         collision(tmp->mob, layers);
+        tmp->mob->pos.x += tmp->mob->move.x;
+        tmp->mob->pos.y += tmp->mob->move.y;
+        sfSprite_setPosition(tmp->mob->sprite, tmp->mob->pos);
         tmp = tmp->next;
     }
-    npc_move(player, *mobs);
     draw_mobs(*mobs, gamestate->window);
 }

@@ -20,5 +20,5 @@
     sfVector2f get_wpn_pos(entity_t *player);
     sfFloatRect *get_hitbox(entity_t *entity);
 
-    
+
 #endif /* !FIGHT_H_ */

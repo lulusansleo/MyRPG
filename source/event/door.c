@@ -7,6 +7,7 @@
 
 #include "map.h"
 #include "gamestate.h"
+#include "event.h"
 
 static int is_a_door(int type)
 {
@@ -41,16 +42,18 @@ static sfVector2i find_closest_door(layer_t *layers, sfVector2i pos)
     return (pos);
 }
 
-void open_door(layer_t *layers, sfVector2i pos)
+void open_close_door(layer_t *layers, sfVector2i pos)
 {
     sfVector2i closest_door = find_closest_door(layers, pos);
-    layers[3].tiles[closest_door.y][closest_door.x].type += 1;
-    layers[0].tiles[closest_door.y][closest_door.x].type = 0;
-}
 
-void close_door(layer_t *layers, sfVector2i pos)
-{
-    sfVector2i closest_door = find_closest_door(layers, pos);
-    layers[3].tiles[closest_door.y][closest_door.x].type -= 1;
-    layers[0].tiles[closest_door.y][closest_door.x].type = 108;
+    if (is_unlocked_door(layers[3].tiles[closest_door.y]
+    [closest_door.x].type)) {
+        layers[3].tiles[closest_door.y][closest_door.x].type += 1;
+        layers[0].tiles[closest_door.y][closest_door.x].type = 0;
+    }
+    else if (is_open_door(layers[3].tiles[closest_door.y]
+    [closest_door.x].type)) {
+        layers[3].tiles[closest_door.y][closest_door.x].type -= 1;
+        layers[0].tiles[closest_door.y][closest_door.x].type = 108;
+    }
 }

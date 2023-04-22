@@ -10,7 +10,7 @@
 
     #define TXT_PLYR "./ressources/sprites/hero.png"
     #define TXT_NPC "./ressources/sprites/mob.png"
-    #define ATTACK_RADIUS 140
+    #define ATTACK_RADIUS 45
     #define HAND 0
     #define SWORD 1
     #define BOW 2
@@ -49,14 +49,12 @@
         int type;
     } entity_t;
 
-
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);
     void rotate_sprite(entity_t *player, sfEvent *event);
     void animate_player(entity_t *player);
 
     /* init_player.c */
-    
     entity_t *init_entity(void);
 
 #endif /* !PLAYER_H_ */

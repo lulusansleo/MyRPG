@@ -19,38 +19,29 @@ float distance_npc(sfVector2f abs, sfVector2f ord)
     return sqrt(dx * dx + dy * dy);
 }
 
-void attack_player(entity_t *mob, entity_t *player, float deltaTime)
+void attack_player(entity_t *mob, entity_t *player)
 {
     float angle = atan2(player->pos.y - mob->pos.y, player->pos.x - mob->pos.x);
 
-    mob->pos.x += mob->speed * deltaTime * cos(angle);
-    mob->pos.y += mob->speed * deltaTime * sin(angle);
+    mob->move.x = mob->speed * cos(angle);
+    mob->move.y = mob->speed * sin(angle);
 
-    sfSprite_setPosition(mob->sprite, mob->pos);
 }
 
 void npc_move(entity_t *player, npc_t *head)
 {
-    if (head == NULL)
-        return;
-    int direction;
-    npc_t *tmp = head;
-    while (tmp != NULL) {
-        float deltaTime = sfTime_asSeconds(sfClock_getElapsedTime
-        (tmp->mob->clock));
-        float mob_distance = distance_npc(player->pos, tmp->mob->pos);
-        if (mob_distance < ATTACK_RADIUS) {
-            attack_player(tmp->mob, player, deltaTime);
-        } else {
-            float direction_elapsed = sfTime_asSeconds(sfClock_getElapsedTime
-            (tmp->mob->mob_direction_clock));
-            if (direction_elapsed >= tmp->mob->mob_direction_timer) {
-                direction = random_direction();
-                sfClock_restart(tmp->mob->mob_direction_clock);
-            }
-            update_npc_position(tmp->mob, direction);
+    float mob_distance = distance_npc(player->pos, head->mob->pos);
+
+    if (mob_distance < ATTACK_RADIUS) {
+        attack_player(head->mob, player);
+    } else {
+        float direction_elapsed =
+        sfTime_asSeconds(sfClock_getElapsedTime(
+        head->mob->mob_direction_clock));
+        if (direction_elapsed >= head->mob->mob_direction_timer) {
+            head->mob->direction = random_direction();
+            sfClock_restart(head->mob->mob_direction_clock);
         }
-        sfClock_restart(tmp->mob->clock);
-        tmp = tmp->next;
+        update_npc_position(head->mob, head->mob->direction);
     }
 }
