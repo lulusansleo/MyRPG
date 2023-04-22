@@ -51,5 +51,8 @@ void run_menu(gamestate_t *gamestate, menu_t *menu,
             run_options(menu, gamestate);
             update_bounds(buttons, window, 4);
         }
+        if (buttons[3].state == CLICK) {
+            sfRenderWindow_close(window);
+        }
     }
 }
