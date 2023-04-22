@@ -35,6 +35,14 @@ SRC = 	source/display/window.c \
 		source/event/is_door.c\
 		source/fight/collid_hitbox.c\
 		source/fight/get_utils.c\
+		source/menu/menu.c	\
+		source/menu/init_button.c	\
+		source/menu/update_buttons.c	\
+		source/menu/options.c	\
+		source/menu/init_menu.c	\
+		source/menu/init_opt_buttons.c	\
+		source/menu/update_options.c	\
+		source/hud/hud.c	\
 
 OBJ = $(SRC:.c=.o)
 
