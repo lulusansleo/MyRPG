@@ -10,11 +10,11 @@
 
 entity_t *init_entity_npc(int x, int y, int type)
 {
-    sfVector2f pos = {(float) x, (float) y};
     entity_t *entity = malloc(sizeof(entity_t));
-    entity->pos = pos;
+    entity->pos = (sfVector2f){(float) x, (float) y};
     entity->hp = 100;
     entity->type = type;
+    entity->move = (sfVector2f){0, 0};
     entity->speed = 0.5f;
     entity->rect = (sfIntRect){0, 0, 16, 16};
     entity->texture = sfTexture_createFromFile(TXT_NPC, NULL);

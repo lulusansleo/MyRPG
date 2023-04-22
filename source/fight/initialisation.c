@@ -12,6 +12,7 @@ static entity_t *init_sword(entity_t *player)
     entity_t *weapon = malloc(sizeof(entity_t));
     weapon->type = player->type;
     weapon->pos = get_wpn_pos(player);
+    weapon->dmg = player->dmg;
     weapon->clock = sfClock_create();
     weapon->alive = 1;
     weapon->texture = sfTexture_createFromFile(SWORD_TXT, NULL);

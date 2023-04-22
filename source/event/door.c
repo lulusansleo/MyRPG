@@ -50,8 +50,7 @@ void open_close_door(layer_t *layers, sfVector2i pos)
     [closest_door.x].type)) {
         layers[3].tiles[closest_door.y][closest_door.x].type += 1;
         layers[0].tiles[closest_door.y][closest_door.x].type = 0;
-    }
-    else if (is_open_door(layers[3].tiles[closest_door.y]
+    } else if (is_open_door(layers[3].tiles[closest_door.y]
     [closest_door.x].type)) {
         layers[3].tiles[closest_door.y][closest_door.x].type -= 1;
         layers[0].tiles[closest_door.y][closest_door.x].type = 108;

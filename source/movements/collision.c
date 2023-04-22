@@ -50,7 +50,7 @@ sfFloatRect player_rect)
 
 void collision(entity_t *player, layer_t *layers)
 {
-    sfFloatRect player_rect = {player->pos.x, player->pos.y, 16, 16};
+    sfFloatRect player_rect = {player->pos.x, player->pos.y, 16.0, 16.0};
 
     float x_limit = get_horizontal_limit(player_rect, layers, player);
     if (x_limit != 0.0) {

@@ -22,7 +22,6 @@ static void is_hit(entity_t* a, entity_t *b)
     sfFloatRect *rect_a = get_hitbox(a);
     sfFloatRect *rect_b = get_hitbox(b);
     if (sfFloatRect_intersects(rect_a, rect_b, NULL) == sfTrue) {
-        printf("hit\n");
         hit(a, b);
     }
     free(rect_a);
@@ -40,11 +39,13 @@ void attack(entity_t *player, npc_t *mobs)
 {
     if (!player->weapon)
         player->weapon = init_weapon(player);
+    anim_weapon(player);
+    if (mobs == NULL)
+        return;
     if (player->weapon) {
         while (mobs) {
             is_hit(player->weapon, mobs->mob);
             mobs = mobs->next;
         }
     }
-    anim_weapon(player);
 }

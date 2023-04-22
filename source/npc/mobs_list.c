@@ -32,13 +32,13 @@ static void kill_free_mob(npc_t *to_kill)
     sfTexture_destroy(to_kill->mob->texture);
     free(to_kill->mob);
     free(to_kill);
+    to_kill = NULL;
 }
 
 npc_t *kill_mob(npc_t *head, npc_t *to_kill)
 {
     npc_t *tmp = head;
-    npc_t *to_next;
-
+    npc_t *to_next = head;
     if (head == NULL)
         return NULL;
     if (head == to_kill) {

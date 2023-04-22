@@ -36,6 +36,7 @@ entity_t *init_entity(void)
 {
     entity_t *entity = malloc(sizeof(entity_t));
     entity->pos = (sfVector2f){100, 48};
+    entity->move = (sfVector2f){0, 0};
     entity->dir = NORTH;
     entity->type = SWORD;
     entity->hp = 100;
@@ -47,11 +48,8 @@ entity_t *init_entity(void)
     entity->rect = get_plyr_rect(entity->type);
     entity->texture = sfTexture_createFromFile(TXT_PLYR, NULL);
     entity->sprite = sfSprite_create();
-    sfSprite_setTexture
-(entity->sprite, entity->texture, sfTrue);
-    sfSprite_setTextureRect
-(entity->sprite, entity->rect);
-    sfSprite_setPosition
-(entity->sprite, entity->pos);
+    sfSprite_setTexture(entity->sprite, entity->texture, sfTrue);
+    sfSprite_setTextureRect(entity->sprite, entity->rect);
+    sfSprite_setPosition(entity->sprite, entity->pos);
     return (entity);
 }
