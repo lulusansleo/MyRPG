@@ -43,8 +43,10 @@ void run_menu(gamestate_t *gamestate, menu_t *menu,
         update_states(buttons, window, 4);
         update_colors(buttons, 4);
         display_menu(buttons, window, menu);
-        if (buttons[0].state == CLICK)
+        if (buttons[0].state == CLICK) {
             run_game(menu, ig_menu, gamestate, mobs);
+            update_bounds(buttons, window, 4);
+        }
         if (buttons[2].state == CLICK) {
             run_options(menu, gamestate);
             update_bounds(buttons, window, 4);

@@ -37,10 +37,13 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
     entity_t *player = gamestate->player;
     sfView *view = gamestate->view;
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
+    int status = 0;
 
     while (sfRenderWindow_isOpen(gamestate->window)) {
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
-            start_ig_menu(gamestate, ig_menu, menu);
+            status = start_ig_menu(gamestate, ig_menu, menu);
+        if (status == 1)
+            return;
         layers = manage_event(gamestate, player, layers, &mobs);
         collision(player, layers);
         do_move(player);

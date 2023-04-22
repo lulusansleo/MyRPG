@@ -50,7 +50,7 @@ void handle_options_button(menu_t *menu, ig_menu_t *ig_menu,
     }
 }
 
-void start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
+int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
 {
     sfEvent event;
     sfRenderWindow *window = gamestate->window;
@@ -64,12 +64,16 @@ void start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
         }
         if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
             sfSleep(sfSeconds(0.3));
-            return;
+            return 0;
         }
+        
         handle_options_button(menu, ig_menu, gamestate);
         update_states(ig_menu->buttons, window, 4);
         update_colors(ig_menu->buttons, 4);
         display_ig_menu(window, ig_menu);
         sfRenderWindow_display(window);
+        if (ig_menu->buttons[MENU].state == CLICK)
+            return 1;
     }
+    return 0;
 }
