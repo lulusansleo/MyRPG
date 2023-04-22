@@ -36,8 +36,7 @@
     } gamestate_t;
 
     gamestate_t *initalise_gamestate(void);
-    //void run_game(menu_t *menu, ig_menu_t *ig_menu, gamestate_t *gamestate,
-    //npc_t *mobs);
+
     /* traps */
     void animate_traps(layer_t *layers, gamestate_t *gamestate);
 
