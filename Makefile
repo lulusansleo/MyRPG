@@ -22,6 +22,7 @@ SRC = 	source/display/window.c \
 		source/npc/draw_npc.c	\
 		source/npc/attack_npc.c	\
 		source/npc/initiate_npc.c	\
+		source/npc/type.c	\
 		source/npc/mobs_list.c	\
 		source/npc/npc_management.c	\
 		source/npc/animation_npc.c\

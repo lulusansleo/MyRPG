@@ -29,6 +29,7 @@
     void free_mobs(npc_t *);
 
     /*initiate_npc.c*/
+    npc_t *read_from_file(char const *filename);
     entity_t *init_entity_npc(int x, int y, int type);
 
     /* mob_list.c */
