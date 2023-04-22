@@ -9,7 +9,7 @@
 #include "my.h"
 #include "sprites.h"
 
-static char **get_array_from_source(char *source)
+char **get_array_from_source(char *source)
 {
     int fd = open(source, O_RDONLY);
     struct stat st;
@@ -23,7 +23,7 @@ static char **get_array_from_source(char *source)
     return (double_array);
 }
 
-static int my_getnbr_pimp(char **str)
+int my_getnbr_pimp(char **str)
 {
     int nb = 0;
     int neg = 1;
@@ -83,10 +83,9 @@ layer_t *initialise_layer(int level, int floor)
 {
     char lv[2] = "0";
     char fl[2] = "0";
-
     lv[0] += level;
     fl[0] += floor;
-    layer_t *layer = malloc(sizeof(layer_t) * 4);
+    layer_t *layer = malloc(sizeof(layer_t) * 5);
     layer[0].tiles = initialise_map(get_level_path(lv, fl, 0));
     layer[0].sprite_sheet = initialise_tileset("ressources/sprites/walls.png");
     layer[0].size = get_size_map(layer[0]);
@@ -97,5 +96,8 @@ layer_t *initialise_layer(int level, int floor)
     layer[3].tiles = initialise_map(get_level_path(lv, fl, 2));
     layer[3].sprite_sheet =
     initialise_tileset("ressources/sprites/interactible.png");
+    layer[4].tiles = initialise_map(get_level_path(lv, fl, 4));
+    layer[4].sprite_sheet =
+    initialise_tileset("ressources/sprites/rpg-items.png");
     return (layer);
 }

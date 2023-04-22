@@ -9,7 +9,7 @@
 
 char *get_level_path(char *level, char *floor, int type)
 {
-    char walls[4][100] = {"walls", "floor", "interactible", "deco"};
+    char walls[5][100] = {"walls", "floor", "interactible", "deco", "keys"};
     char *path = my_strdup("ressources/level");
     path = my_strcat(path, level);
     path = my_strcat(path, "/");

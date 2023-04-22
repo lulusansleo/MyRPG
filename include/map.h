@@ -49,4 +49,7 @@ layer_t *initialise_layer(int level, int floor);
 /* reload level */
 layer_t *reload_level(layer_t *layer, int level, int floor);
 
+int my_getnbr_pimp(char **str);
+char **get_array_from_source(char *source);
+
 #endif /* !MAP_H */

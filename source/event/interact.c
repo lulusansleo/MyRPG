@@ -21,22 +21,8 @@ static sfVector2i get_closest_tile(entity_t *player)
     return (pos);
 }
 
-static void manage_door_events(entity_t *player, layer_t *layers)
-{
-    sfVector2i pos = get_closest_tile(player);
-    int type = layers[3].tiles[pos.y][pos.x].type;
-
-    if (type == 29) {
-        layers[3].tiles[pos.y][pos.x].type = 31;
-        open_close_door(layers, pos);
-    }
-    if (type == 31) {
-        layers[3].tiles[pos.y][pos.x].type = 29;
-        open_close_door(layers, pos);
-    }
-}
-
-layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate)
+static layer_t *manage_floor_events(entity_t *player,
+layer_t *layers, gamestate_t *gamestate)
 {
     sfVector2i pos = get_closest_tile(player);
     int type = layers[3].tiles[pos.y][pos.x].type;
@@ -51,6 +37,51 @@ layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate)
         layers = reload_level(layers, gamestate->level, gamestate->floor);
         return (layers);
     }
+    return (layers);
+}
+
+static void manage_door_events(entity_t *player, layer_t *layers)
+{
+    sfVector2i pos = get_closest_tile(player);
+    int type = layers[3].tiles[pos.y][pos.x].type;
+    sfVector2i closest_door = find_adjacent_door(layers, pos);
+
+    if (type == 29) {
+        layers[3].tiles[pos.y][pos.x].type = 31;
+        open_close_door(layers, pos);
+    }
+    if (type == 31) {
+        layers[3].tiles[pos.y][pos.x].type = 29;
+        open_close_door(layers, pos);
+    }
+    if ((closest_door.x != pos.x || closest_door.y != pos.y)) {
+        if (is_locked_door(layers[3].tiles[closest_door.y]
+        [closest_door.x].type) && player->silver_key > 0) {
+            unlock_door(layers, closest_door);
+            player->silver_key -= 1;
+        }
+    }
+}
+
+static void manage_item_events(entity_t *player, layer_t *layers)
+{
+    sfVector2i pos = get_closest_tile(player);
+    int type = layers[4].tiles[pos.y][pos.x].type;
+
+    if (type == 15) {
+        player->silver_key += 1;
+        layers[4].tiles[pos.y][pos.x].type = 0;
+    }
+    if (type == 16) {
+        player->gold_key += 1;
+        layers[4].tiles[pos.y][pos.x].type = 0;
+    }
+}
+
+layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate)
+{
+    layers = manage_floor_events(player, layers, gamestate);
     manage_door_events(player, layers);
+    manage_item_events(player, layers);
     return (layers);
 }

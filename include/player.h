@@ -44,6 +44,8 @@
         float mob_direction_timer;
         int direction;
         int invicible;
+        int silver_key;
+        int gold_key;
         sfClock *invicibility;
         sfClock *mob_direction_clock;
         sfClock *clock;

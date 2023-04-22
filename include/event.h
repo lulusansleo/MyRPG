@@ -25,6 +25,8 @@
     int is_open_door(int type);
     int is_unlocked_door(int type);
     void open_close_door(layer_t *layers, sfVector2i pos);
+    sfVector2i find_closest_door(layer_t *layers, sfVector2i pos);
+    sfVector2i find_adjacent_door(layer_t *layers, sfVector2i pos);
 
     /* interact.c */
     layer_t *interact(
