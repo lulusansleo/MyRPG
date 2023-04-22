@@ -41,7 +41,7 @@ static void is_attacking(entity_t *player, entity_t *mob)
     }
 }
 
-void attack_player(entity_t *mob, entity_t *player, float deltaTime)
+void attack_player(entity_t *mob, entity_t *player)
 {
     is_attacking(player, mob);
     float angle = atan2(player->pos.y - mob->pos.y, player->pos.x - mob->pos.x);
