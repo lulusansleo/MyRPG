@@ -24,9 +24,13 @@
     float distance_npc(sfVector2f abs, sfVector2f ord);
     void attack_player(entity_t *mob, entity_t *player);
     void npc_move(entity_t *player, npc_t *head);
+
     /*draw_npc.c*/
     void draw_mobs(npc_t *, sfRenderWindow *);
     void free_mobs(npc_t *);
+
+    /* bouncing.c */
+    void bounce_event(entity_t *player, entity_t *mob);
 
     /*initiate_npc.c*/
     entity_t *init_entity_npc(int x, int y, int type);
