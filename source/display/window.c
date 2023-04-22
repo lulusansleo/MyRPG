@@ -11,7 +11,7 @@ gamestate_t *initalise_gamestate(void)
 {
     gamestate_t *gamestate = malloc(sizeof(gamestate_t));
     gamestate->event = malloc(sizeof(sfEvent));
-    gamestate->video_mode = (sfVideoMode){15 * 16, 8 * 16, 120};
+    gamestate->video_mode = (sfVideoMode){15 * 16 * 10, 8 * 16* 10, 120};
     gamestate->window = sfRenderWindow_create(gamestate->video_mode,
     "MyRPG", sfClose | sfResize, NULL);
     gamestate->torch_clock = sfClock_create();

@@ -42,10 +42,12 @@
         int type;
         float speed;
         float mob_direction_timer;
-        int direction;
         int invicible;
         int silver_key;
         int gold_key;
+        int direction;
+        int bouncing;
+        sfClock *bounce;
         sfClock *invicibility;
         sfClock *mob_direction_clock;
         sfClock *clock;
