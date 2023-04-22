@@ -35,6 +35,10 @@ SRC = 	source/display/window.c \
 		source/event/is_door.c\
 		source/fight/collid_hitbox.c\
 		source/fight/get_utils.c\
+		source/fight/sword.c\
+		source/fight/bow.c\
+		source/fight/initialisation.c\
+		source/fight/anim_weapon.c\
 
 OBJ = $(SRC:.c=.o)
 
