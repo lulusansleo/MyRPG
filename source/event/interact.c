@@ -21,6 +21,21 @@ static sfVector2i get_closest_tile(entity_t *player)
     return (pos);
 }
 
+static void manage_door_events(entity_t *player, layer_t *layers, gamestate_t *gamestate)
+{
+    sfVector2i pos = get_closest_tile(player);
+    int type = layers[3].tiles[pos.y][pos.x].type;
+
+    if (type == 29) {
+        layers[3].tiles[pos.y][pos.x].type = 31;
+        open_close_door(layers, pos);
+    }
+    if (type == 31) {
+        layers[3].tiles[pos.y][pos.x].type = 29;
+        open_close_door(layers, pos);
+    }
+}
+
 layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate)
 {
     sfVector2i pos = get_closest_tile(player);
@@ -36,13 +51,6 @@ layer_t *interact(entity_t *player, layer_t *layers, gamestate_t *gamestate)
         layers = reload_level(layers, gamestate->level, gamestate->floor);
         return (layers);
     }
-    if (type == 29) {
-        layers[3].tiles[pos.y][pos.x].type = 31;
-        open_close_door(layers, pos);
-    }
-    if (type == 31) {
-        layers[3].tiles[pos.y][pos.x].type = 29;
-        open_close_door(layers, pos);
-    }
+    manage_door_events(player, layers, gamestate);
     return (layers);
 }

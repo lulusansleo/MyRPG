@@ -24,7 +24,8 @@ static int assign_trap_type(int type)
 static int assign_torch_type(int type)
 {
     if ((type >= 1 && type <= 3) || (type >= 5 && type <= 7) ||
-        (type >= 9 && type <= 11) || (type >= 13 && type <= 15) || (type >= 17 && type <= 19))
+        (type >= 9 && type <= 11) || (type >= 13 && type <= 15)
+        || (type >= 17 && type <= 19))
         return (type + 1);
     if (type == 4 || type == 8 || type == 12 || type == 16 || type == 20)
         return (type - 3);
