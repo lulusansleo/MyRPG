@@ -14,7 +14,7 @@
     #include "map.h"
     #include "moves.h"
     #include "npc.h"
-    
+
     typedef struct arrow_s arrow_t;
     struct arrow_s {
         sfVector2f position;
@@ -31,6 +31,7 @@
     /* bow.c */
 
     /* collid_hitbox.c */
+    void hit(entity_t *a, entity_t *b);
     void attack(entity_t *player, npc_t *mobs);
 
     /*get_utils.c */

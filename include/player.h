@@ -43,6 +43,8 @@
         float speed;
         float mob_direction_timer;
         int direction;
+        int invicible;
+        sfClock *invicibility;
         sfClock *mob_direction_clock;
         sfClock *clock;
         sfTexture *texture;
