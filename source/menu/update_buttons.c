@@ -15,7 +15,8 @@ void update_bounds(menu_button_t *buttons, sfRenderWindow *window, int nb)
     double ratio_y = window_size.y / 1080.f;
 
     for (int i = 0; i < nb; ++i) {
-        buttons[i].button_bounds = sfRectangleShape_getGlobalBounds(buttons[i].button);
+        buttons[i].button_bounds =
+        sfRectangleShape_getGlobalBounds(buttons[i].button);
         buttons[i].button_bounds.left *= ratio_x;
         buttons[i].button_bounds.top *= ratio_y;
         buttons[i].button_bounds.width *= ratio_x;
@@ -30,12 +31,13 @@ void update_states(menu_button_t *buttons, sfRenderWindow *window, int nb)
 
     for (int i = 0; i < nb; ++i) {
         button = &(buttons[i]);
-        if (sfFloatRect_contains(&(button->button_bounds), mouse_pos.x, mouse_pos.y)) {
+        if (sfFloatRect_contains(&(button->button_bounds),
+            mouse_pos.x, mouse_pos.y)) {
             button->state = HOVER;
-        }
-        else
+        } else
             button->state = BASIC;
-        if (button->state == HOVER && sfMouse_isButtonPressed(sfMouseLeft))
+        if (button->state == HOVER &&
+            sfMouse_isButtonPressed(sfMouseLeft))
             button->state = CLICK;
     }
 }

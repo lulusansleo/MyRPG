@@ -28,7 +28,7 @@ void display_menu(menu_button_t *buttons, sfRenderWindow *window, menu_t *menu)
 void menu(gamestate_t *gamestate, menu_button_t *buttons, menu_t *menu)
 {
     sfEvent event;
-    sfRenderWindow *window = gamestate->window;    
+    sfRenderWindow *window = gamestate->window;
 
     sfRenderWindow_setView(window, sfRenderWindow_getDefaultView(window));
     update_bounds(buttons, window, 4);

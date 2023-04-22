@@ -32,21 +32,27 @@ sfText *init_options_text(sfFont *font, sfText *text, char *str, double y)
 void set_text(options_t *options)
 {
     options->font = sfFont_createFromFile("ressources/font/options.ttf");
-    options->options_text = init_options_text(options->font, options->options_text, "OPTIONS", 30);
-    options->fps_text = init_options_text(options->font, options->fps_text, "FPS", 150);
-    options->res_text = init_options_text(options->font, options->res_text, "RESOLUTION", 450);
-    options->vol_text = init_options_text(options->font, options->vol_text, "VOLUME", 750);
+    options->options_text =
+    init_options_text(options->font, options->options_text, "OPTIONS", 30);
+    options->fps_text =
+    init_options_text(options->font, options->fps_text, "FPS", 150);
+    options->res_text =
+    init_options_text(options->font, options->res_text, "RESOLUTION", 450);
+    options->vol_text =
+    init_options_text(options->font, options->vol_text, "VOLUME", 750);
 }
 
 void init_options(menu_t *menu, sfRenderWindow *window)
 {
     options_t *options = malloc(sizeof(options_t));
 
-    options->back_text = sfTexture_createFromFile("ressources/sprites/options_back.png", NULL);
+    options->back_text =
+    sfTexture_createFromFile("ressources/sprites/options_back.png", NULL);
     options->background = sfSprite_create();
     sfSprite_setTexture(options->background, options->back_text, sfTrue);
     sfSprite_setPosition(options->background, (sfVector2f){0, 0});
-    options->text_back_arrow = sfTexture_createFromFile("ressources/sprites/back_arrow.png", NULL);
+    options->text_back_arrow =
+    sfTexture_createFromFile("ressources/sprites/back_arrow.png", NULL);
     options->back_arrow = sfSprite_create();
     sfSprite_setTexture(options->back_arrow, options->text_back_arrow, sfTrue);
     sfSprite_setScale(options->back_arrow, (sfVector2f){0.33, 0.33});
@@ -59,10 +65,11 @@ void init_options(menu_t *menu, sfRenderWindow *window)
 void init_menu(gamestate_t *gamestate)
 {
     menu_button_t *buttons = init_buttons();
-    menu_t *menu_info = malloc(sizeof(menu_t));    
+    menu_t *menu_info = malloc(sizeof(menu_t));
 
     menu_info->buttons = buttons;
-    menu_info->back_text = sfTexture_createFromFile("ressources/sprites/background.png", NULL);
+    menu_info->back_text =
+    sfTexture_createFromFile("ressources/sprites/background.png", NULL);
     menu_info->background = sfSprite_create();
     sfSprite_setTexture(menu_info->background, menu_info->back_text, sfTrue);
     sfSprite_setPosition(menu_info->background, (sfVector2f){0, 0});

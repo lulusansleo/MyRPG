@@ -43,6 +43,10 @@ SRC = 	source/display/window.c \
 		source/menu/init_opt_buttons.c	\
 		source/menu/update_options.c	\
 		source/hud/hud.c	\
+		source/fight/sword.c\
+		source/fight/bow.c\
+		source/fight/initialisation.c\
+		source/fight/anim_weapon.c\
 
 OBJ = $(SRC:.c=.o)
 
