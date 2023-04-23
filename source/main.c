@@ -81,6 +81,7 @@ int main(void)
 
     gamestate->player = init_entity();
     gamestate->view = init_view(gamestate->player);
+    start_how_to_play(gamestate->window, ig_menu->font);
     run_menu(gamestate, menu, ig_menu, gamestate->mobs);
     destroy_player(gamestate->player);
     destroy_gamestate(gamestate);
