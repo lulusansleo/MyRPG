@@ -36,7 +36,7 @@
     npc_t **mobs);
 
     /* manage_event.c */
-    layer_t *manage_event(gamestate_t **gamestate, PLAYER, layer_t *layers, MOBS);
-
+    layer_t *manage_event(gamestate_t **gamestate,
+    PLAYER, layer_t *layers, MOBS);
 
 #endif /* !EVENT_H_ */

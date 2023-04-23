@@ -51,7 +51,6 @@ gamestate_t *gamestate)
     sfVector2i pos = get_closest_tile(player);
     int type = layers[3].tiles[pos.y][pos.x].type;
     sfVector2i closest_door = find_adjacent_door(layers, pos);
-
     if (type == 29) {
         sfSound_play(gamestate->sounds[0]);
         layers[3].tiles[pos.y][pos.x].type = 31;
@@ -84,13 +83,17 @@ static void manage_item_events(entity_t *player, layer_t *layers)
         player->gold_key += 1;
         layers[4].tiles[pos.y][pos.x].type = 0;
     }
+    if (type == 19) {
+        player->hp += 50;
+        layers[4].tiles[pos.y][pos.x].type = 0;
+    }
 }
 
 layer_t *interact(entity_t *player, layer_t *layers,
 gamestate_t **gamestate, npc_t **npc)
 {
-    layers = manage_floor_events(player, layers, gamestate, npc);
     manage_door_events(player, layers, *gamestate);
     manage_item_events(player, layers);
+    layers = manage_floor_events(player, layers, gamestate, npc);
     return (layers);
 }

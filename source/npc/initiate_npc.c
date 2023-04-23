@@ -47,10 +47,8 @@ entity_t *init_entity_npc(int x, int y, int type)
     sfSprite_setTexture(entity->sprite, entity->texture, sfTrue);
     sfSprite_setTextureRect(entity->sprite, entity->rect);
     sfSprite_setPosition(entity->sprite, entity->pos);
-
     entity->direction = random_direction();
     entity->mob_direction_timer = 1.0f;
     entity->mob_direction_clock = sfClock_create();
-
     return entity;
 }

@@ -39,6 +39,7 @@ void do_move(PLAYER)
 {
     sfTime time;
 
+    is_invincible(player);
     time = sfClock_getElapsedTime(player->clock);
     if (sfTime_asSeconds(time) >= 0.01) {
         player->pos.x += player->move.x;

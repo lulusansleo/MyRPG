@@ -20,6 +20,14 @@ static npc_t *check_for_depop(npc_t *npc, npc_t **mobs)
     return npc->next;
 }
 
+static void update_mob_pos(entity_t *mob)
+{
+    mob->pos.x += mob->move.x;
+    mob->pos.y += mob->move.y;
+    sfSprite_setPosition(mob->sprite, mob->pos);
+    sfClock_restart(mob->clock);
+}
+
 void npc_management(gamestate_t *gamestate,
 npc_t **mobs, layer_t *layers, entity_t *player)
 {
@@ -36,10 +44,7 @@ npc_t **mobs, layer_t *layers, entity_t *player)
         npc_move(player, tmp);
         collision(tmp->mob, layers);
         if (time > 0.01) {
-            tmp->mob->pos.x += tmp->mob->move.x;
-            tmp->mob->pos.y += tmp->mob->move.y;
-            sfClock_restart(tmp->mob->clock);
-            sfSprite_setPosition(tmp->mob->sprite, tmp->mob->pos);
+            update_mob_pos(tmp->mob);
         }
         tmp = tmp->next;
     }

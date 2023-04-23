@@ -20,7 +20,7 @@ void is_invincible(entity_t *player)
     sfTime time;
     if (player->invicible == 1) {
         time = sfClock_getElapsedTime(player->invicibility);
-        if (sfTime_asSeconds(time) >= 2) {
+        if (sfTime_asSeconds(time) >= 2.0) {
             player->invicible = 0;
             sfClock_destroy(player->invicibility);
         }
@@ -35,4 +35,3 @@ void hit_player(entity_t *player, int dmg)
         player->invicible = 1;
     }
 }
-
