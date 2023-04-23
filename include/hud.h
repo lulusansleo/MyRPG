@@ -12,9 +12,14 @@
 typedef struct hud {
     sfRectangleShape* health_back;
     sfRectangleShape* health_bar;
+    sfRectangleShape* xp_back;
+    sfRectangleShape* xp_bar;
 } hud_t;
 
 hud_t *init_hud(void);
-void update_health_bar(int health, sfRectangleShape *health_bar);
+void update_health_bar(int health, int hp_max,
+        hud_t *hud, sfView *view);
+void display_hud(sfRenderWindow *window, hud_t *hud);
+void update_xp_bar(int xp, hud_t *hud, sfView *view);
 
 #endif /* INCLUDE_HUD_H_ */

@@ -51,6 +51,8 @@ entity_t *init_entity(void)
     entity->pos = (sfVector2f){60, 48};
     entity->clock = sfClock_create();
     entity->weapon = NULL;
+    entity->xp = 0;
+    entity->hp_max = 100;
     init_values(entity);
     entity->silver_key = 0;
     entity->gold_key = 0;
