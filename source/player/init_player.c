@@ -46,9 +46,8 @@ void init_values(entity_t *entity)
 entity_t *init_entity(void)
 {
     entity_t *entity = malloc(sizeof(entity_t));
-    entity->pos = (sfVector2f){100, 48};
+    entity->pos = (sfVector2f){500, 500};
     entity->move = (sfVector2f){0, 0};
-    entity->pos = (sfVector2f){48, 48};
     entity->clock = sfClock_create();
     entity->weapon = NULL;
     init_values(entity);
