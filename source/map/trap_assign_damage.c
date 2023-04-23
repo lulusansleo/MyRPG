@@ -13,7 +13,7 @@
 
 static void collision_traps_part_two(entity_t *player, layer_t *layers)
 {
-    sfFloatRect player_rect = {player->pos.x, player->pos.y + 10, 14.0, 6.0};
+    sfFloatRect player_rect = {player->pos.x, player->pos.y + 0, 14.0, 6.0};
 
     sfVector2i top_right_tile =
     {(int) floor((player_rect.left + player_rect.width) / 16),
@@ -31,7 +31,7 @@ static void collision_traps_part_two(entity_t *player, layer_t *layers)
 
 void collision_traps(entity_t *player, layer_t *layers)
 {
-    sfFloatRect player_rect = {player->pos.x, player->pos.y + 10, 14.0, 6.0};
+    sfFloatRect player_rect = {player->pos.x, player->pos.y + 9, 14.0, 6.0};
 
     sfVector2i top_left_tile =
     {(int) floor(player_rect.left / 16),
