@@ -9,6 +9,27 @@
 #include "ig_menu.h"
 #include "menu.h"
 
+static const sfIntRect text_rect[] = {{32, 64, 16, 16},
+                                    {0, 0, 16, 16},
+                                    {32, 48, 16, 16},
+                                    {16, 48, 16, 16}};
+
+void init_ig_menu_sprites(ig_menu_t *ig_menu)
+{
+    ig_menu->stats_text =
+    sfTexture_createFromFile("ressources/sprites/rpg-items.png", NULL);
+    ig_menu->stats_sprite = malloc(sizeof(sfSprite*) * 4);
+    for (int i = 0; i < 4; ++i) {
+        ig_menu->stats_sprite[i] = sfSprite_create();
+        sfSprite_setTexture(ig_menu->stats_sprite[i],
+                        ig_menu->stats_text, sfTrue);
+        sfSprite_setTextureRect(ig_menu->stats_sprite[i], text_rect[i]);
+        sfSprite_setPosition(ig_menu->stats_sprite[i],
+                        (sfVector2f){550, 150 + (i * 100)});
+        sfSprite_setScale(ig_menu->stats_sprite[i], (sfVector2f){6, 6});
+    }
+}
+
 ig_menu_t *init_ig_menu(sfRenderWindow *window)
 {
     ig_menu_t *ig_menu = malloc(sizeof(ig_menu_t));
@@ -29,6 +50,7 @@ ig_menu_t *init_ig_menu(sfRenderWindow *window)
     ig_menu->buttons = buttons;
     update_bounds(ig_menu->buttons, window, 4);
     update_text_pos(ig_menu->buttons, 4);
+    init_ig_menu_sprites(ig_menu);
     return ig_menu;
 }
 
@@ -36,6 +58,9 @@ void display_ig_menu(sfRenderWindow *window, ig_menu_t *ig_menu)
 {
     sfRenderWindow_drawSprite(window, ig_menu->background, NULL);
     display_buttons(window, ig_menu->buttons, 4);
+    for (int i = 0; i < 4; ++i) {
+        sfRenderWindow_drawSprite(window, ig_menu->stats_sprite[i], NULL);
+    }
 }
 
 void handle_options_button(menu_t *menu, ig_menu_t *ig_menu,
