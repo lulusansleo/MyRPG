@@ -10,6 +10,32 @@
 #include "npc.h"
 #include "fight.h"
 #include "ig_menu.h"
+#include "view.h"
+
+void zoom_view(gamestate_t *gamestate, entity_t *player, layer_t *layers)
+{
+    sfView_zoom(gamestate->view, gamestate->zoom);
+    sfView_setCenter(gamestate->view, refresh_view(player, gamestate->view,
+        layers[0]));
+    sfRenderWindow_setView(gamestate->window, gamestate->view);
+}
+
+static void manage_zoom(gamestate_t **gamestate, entity_t *player,
+    layer_t *layers) 
+{
+    if ((*gamestate)->event->key.code == sfKeyA &&
+    (*gamestate)->is_zoomed) {
+        (*gamestate)->zoom = 1.0 / 1.25 ;
+        (*gamestate)->is_zoomed = 0;
+        zoom_view(*gamestate, player, layers);
+    }
+    if ((*gamestate)->event->key.code == sfKeyR &&
+    !(*gamestate)->is_zoomed) {
+        (*gamestate)->zoom = 1.25;
+        (*gamestate)->is_zoomed = 1;
+        zoom_view(*gamestate, player, layers);
+    }
+}
 
 layer_t *key_pressed(gamestate_t **gamestate, PLAYER, layer_t *layers, MOBS)
 {
@@ -23,6 +49,7 @@ layer_t *key_pressed(gamestate_t **gamestate, PLAYER, layer_t *layers, MOBS)
         *mobs = kill_mob(*mobs, *mobs);
     if ((*gamestate)->event->key.code == sfKeyC)
         *mobs = add_node(*mobs, 50.0, 50.0, rand() % 12);
+    manage_zoom(gamestate, player, layers);
     get_move(player);
     return (layers);
 }

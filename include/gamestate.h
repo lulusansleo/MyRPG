@@ -32,6 +32,8 @@
         sfVector2f mouse_pos;
         sfVector2f mouse_pos_view;
         sfView *view;
+        int is_zoomed;
+        float zoom;
         sfVector2f view_pos;
         sfVector2f view_size;
         sfVector2f view_center;
