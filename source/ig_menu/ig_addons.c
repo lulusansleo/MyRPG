@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2023
+** ig addons
+** File description:
+** rpg
+*/
+
 #include <stdlib.h>
 #include "my.h"
 
@@ -24,7 +31,7 @@ char *my_revstr(char *str)
     char temp;
 
     while (index < length / 2) {
-	temp = str[index];
+        temp = str[index];
         str[index] = str[length - index - 1];
         str[length - index - 1] = temp;
         index++;
@@ -38,7 +45,7 @@ char *int_to_str(int nb)
     char *res = malloc(sizeof(char) * (my_nblen(nb) + 3));
 
     if (res == NULL)
-	    return NULL;
+        return NULL;
     if (nb == 0) {
         res[0] = '0';
         res[1] = '\0';

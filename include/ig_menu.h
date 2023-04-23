@@ -31,5 +31,6 @@ int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu,
 void run_game(menu_t *menu, ig_menu_t *ig_menu, gamestate_t *gamestate,
 npc_t *mobs);
 char *int_to_str(int nb);
+ig_menu_t *init_ig_menu(sfRenderWindow *window);
 
 #endif /* IG_MENU_H_ */
