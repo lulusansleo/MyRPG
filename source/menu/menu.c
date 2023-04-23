@@ -9,6 +9,7 @@
 #include "menu.h"
 #include "ig_menu.h"
 #include <stdlib.h>
+#include "player.h"
 
 void display_buttons(sfRenderWindow *window, menu_button_t *buttons, int nb)
 {
@@ -26,6 +27,18 @@ void display_menu(menu_button_t *buttons, sfRenderWindow *window, menu_t *menu)
     sfRenderWindow_display(window);
 }
 
+void reset_player(entity_t *player, gamestate_t *gamestate)
+{
+    player->hp = 100;
+    player->max_hp = 100;
+    player->alive = 1;
+    player->xp = 0;
+    player->dmg = 50;
+    player->pos = (sfVector2f){60, 48};
+    gamestate->level = 1;
+    gamestate->floor = 1;
+}
+
 void handle_menu_buttons(gamestate_t *gamestate, menu_t *menu,
     ig_menu_t *ig_menu, npc_t *mobs)
 {
@@ -33,6 +46,7 @@ void handle_menu_buttons(gamestate_t *gamestate, menu_t *menu,
     sfRenderWindow *window = gamestate->window;
 
     if (buttons[0].state == CLICK) {
+        reset_player(gamestate->player, gamestate);
         run_game(menu, ig_menu, gamestate, mobs);
         update_bounds(buttons, window, 4);
     }
