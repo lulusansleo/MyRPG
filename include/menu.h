@@ -91,5 +91,6 @@ void change_fps(sfRenderWindow *window, options_t *options);
 void handle_close_event(sfRenderWindow *window, sfEvent event);
 void display_game_over(sfRenderWindow *window, game_over_t *game_over);
 game_over_t *init_game_over(void);
+void start_how_to_play(sfRenderWindow *window, sfFont *font);
 
 #endif /* MENU_H_ */

@@ -8,6 +8,30 @@
 #include "gamestate.h"
 #include "menu.h"
 
+
+void start_how_to_play(sfRenderWindow *window, sfFont *font)
+{
+    sfText* text = sfText_create();
+    sfEvent event;
+
+    sfText_setFont(text, font);
+    sfText_setCharacterSize(text , 50);
+    sfText_setString(text, "Z: up\nQ: left\nS: down\n\
+D: right\nSpace_bar: attack\nEscape: quit/menu\nR: dezoom\n\
+A: zoom\nE: interact\n\n[ADMIN]\nC: spawn mob\nF: kill mob\n");
+    sfText_setPosition(text, (sfVector2f){1,100});
+    while (sfRenderWindow_isOpen(window)) {
+        while (sfRenderWindow_pollEvent(window, &event)) {
+            handle_close_event(window, event);
+        }
+        if (sfKeyboard_isKeyPressed(sfKeyEscape))
+            break;
+        sfRenderWindow_clear(window, sfBlack);
+        sfRenderWindow_drawText(window, text, NULL);
+        sfRenderWindow_display(window);
+    }
+}
+
 void handle_close_event(sfRenderWindow *window, sfEvent event)
 {
     if (event.type == sfEvtClosed)

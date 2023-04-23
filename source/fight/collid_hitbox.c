@@ -57,5 +57,5 @@ void attack(entity_t *player, npc_t *mobs)
             mobs = mobs->next;
         }
     }
-    player->xp += gain_xp * 25;
+    player->xp += gain_xp * 50;
 }
