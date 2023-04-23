@@ -52,7 +52,7 @@
     int my_compute_power_rec(long int nb , int p);
     int my_compute_square_root(int nb);
     int my_find_prime_sup(int nb);
-    int my_getnbr(char const *str);
+    int my_getnbr(char **str);
     int my_is_prime(int nb);
     int my_isneg(int nb);
     long long int my_put_nbr(long long int nb);

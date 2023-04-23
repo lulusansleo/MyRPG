@@ -55,4 +55,7 @@
     npc_t **mobs, layer_t *layers, entity_t *player);
     npc_t *reload_mobs(gamestate_t **gamestate);
 
+    /* save */
+    void write_save(gamestate_t *gamestate);
+    gamestate_t *read_save(char *filepath, gamestate_t *gamestate);
 #endif /* !WINDOW_H */

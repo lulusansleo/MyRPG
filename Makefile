@@ -55,6 +55,7 @@ SRC = 	source/display/window.c \
 		source/ig_menu/ig_menu.c	\
 		source/ig_menu/ig_addons.c	\
 		source/ig_menu/init_ig_menu.c	\
+		source/save/save.c	\
 
 OBJ = $(SRC:.c=.o)
 
