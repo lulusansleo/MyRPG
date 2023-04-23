@@ -12,7 +12,7 @@
 #include "event.h"
 #include <math.h>
 
-static sfVector2i get_closest_tile(entity_t *player)
+sfVector2i get_closest_tile(entity_t *player)
 {
     sfVector2i pos = {0, 0};
 
@@ -88,5 +88,6 @@ gamestate_t **gamestate, npc_t **npc)
     manage_door_events(player, layers, *gamestate);
     manage_item_events(player, layers);
     layers = manage_floor_events(player, layers, gamestate, npc);
+    get_chest_event(player, layers, gamestate);
     return (layers);
 }
