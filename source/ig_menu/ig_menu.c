@@ -9,33 +9,14 @@
 #include "ig_menu.h"
 #include "menu.h"
 
-ig_menu_t *init_ig_menu(sfRenderWindow *window)
-{
-    ig_menu_t *ig_menu = malloc(sizeof(ig_menu_t));
-    menu_button_t *buttons = malloc(sizeof(menu_button_t) * 4);
-    sfFont *font = sfFont_createFromFile("ressources/font/Roboto.ttf");
-
-    ig_menu->back_text =
-    sfTexture_createFromFile("ressources/sprites/options_back.png", NULL);
-    ig_menu->background = sfSprite_create();
-    sfSprite_setTexture(ig_menu->background, ig_menu->back_text, sfTrue);
-    sfSprite_setPosition(ig_menu->background, (sfVector2f){500, 100});
-    sfSprite_setScale(ig_menu->background, (sfVector2f){0.5, 0.6});
-    init_new_button(&buttons[SAVE], font, "SAVE", (sfVector2f){550, 550});
-    init_new_button(&buttons[OPTIONS_IG], font,
-    "OPTIONS", (sfVector2f){550, 650});
-    init_new_button(&buttons[LOAD_IG], font, "LOAD", (sfVector2f){550, 750});
-    init_new_button(&buttons[MENU], font, "MENU", (sfVector2f){550, 850});
-    ig_menu->buttons = buttons;
-    update_bounds(ig_menu->buttons, window, 4);
-    update_text_pos(ig_menu->buttons, 4);
-    return ig_menu;
-}
-
 void display_ig_menu(sfRenderWindow *window, ig_menu_t *ig_menu)
 {
     sfRenderWindow_drawSprite(window, ig_menu->background, NULL);
     display_buttons(window, ig_menu->buttons, 4);
+    for (int i = 0; i < 4; ++i) {
+        sfRenderWindow_drawSprite(window, ig_menu->stats_sprite[i], NULL);
+        sfRenderWindow_drawText(window, ig_menu->stats_txt[i], NULL);
+    }
 }
 
 void handle_options_button(menu_t *menu, ig_menu_t *ig_menu,
@@ -60,7 +41,26 @@ void update_ig_menu(ig_menu_t *ig_menu, menu_t *menu,
     sfRenderWindow_display(window);
 }
 
-int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
+void update_txt(ig_menu_t *ig_menu, entity_t *player)
+{
+    char *text = NULL;
+
+    text = int_to_str(player->hp);
+    sfText_setString(ig_menu->stats_txt[0], text);
+    free(text);
+    text = int_to_str(player->dmg);
+    sfText_setString(ig_menu->stats_txt[1], text);
+    free(text);
+    text = int_to_str(player->silver_key);
+    sfText_setString(ig_menu->stats_txt[2], text);
+    free(text);
+    text = int_to_str(player->gold_key);
+    sfText_setString(ig_menu->stats_txt[3], text);
+    free(text);
+}
+
+int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu,
+                menu_t *menu, entity_t *player)
 {
     sfEvent event;
     sfRenderWindow *window = gamestate->window;
@@ -69,6 +69,7 @@ int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
     update_bounds(ig_menu->buttons, window, 4);
     sfSleep(sfSeconds(0.3));
     while (sfRenderWindow_isOpen(window)) {
+        update_txt(ig_menu, player);
         while (sfRenderWindow_pollEvent(window, &event)) {
             handle_close_event(window, event);
         }

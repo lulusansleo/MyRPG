@@ -49,7 +49,7 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
 
     while (sfRenderWindow_isOpen(gamestate->window)) {
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
-            status = start_ig_menu(gamestate, ig_menu, menu);
+            status = start_ig_menu(gamestate, ig_menu, menu, player);
         if (status == 1)
             return;
         layers = manage_event(&gamestate, player, layers, &gamestate->mobs);

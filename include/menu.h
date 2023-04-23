@@ -57,7 +57,11 @@ typedef struct menu {
 typedef struct ig_menu {
     sfTexture *back_text;
     sfSprite *background;
+    sfFont *font;
     menu_button_t *buttons;
+    sfTexture *stats_text;
+    sfSprite **stats_sprite;
+    sfText **stats_txt;
 } ig_menu_t;
 
 void run_menu(gamestate_t *gamestate, menu_t *menu,
