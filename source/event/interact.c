@@ -27,19 +27,14 @@ layer_t *layers, gamestate_t **gamestate, npc_t **npc)
     sfVector2i pos = get_closest_tile(player);
     int type = layers[3].tiles[pos.y][pos.x].type;
     int check = 0;
-    if (type == 20 || type == 33) {
-        (*gamestate)->floor += 1;
-        check = 1;
-    }
-    if (type == 19 || type == 32) {
-        (*gamestate)->floor -= 1;
-        check = 1;
-    }
+    check = return_check(type, gamestate);
     if (check) {
         layers =
         reload_level(layers, (*gamestate)->level, (*gamestate)->floor);
         (*gamestate)->mobs =
         reload_mobs(gamestate);
+        free_saws((*gamestate)->saws);
+        (*gamestate)->saws = init_saws(layers);
         return (layers);
     }
     return (layers);

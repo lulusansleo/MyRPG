@@ -51,5 +51,6 @@ layer_t *reload_level(layer_t *layer, int level, int floor);
 
 int my_getnbr_pimp(char **str);
 char **get_array_from_source(char *source);
+sfIntRect get_tile_rect(int type);
 
 #endif /* !MAP_H */
