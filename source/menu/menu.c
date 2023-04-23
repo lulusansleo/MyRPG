@@ -29,8 +29,8 @@ void display_menu(menu_button_t *buttons, sfRenderWindow *window, menu_t *menu)
 
 void reset_player(entity_t *player, gamestate_t *gamestate)
 {
-    player->hp = 100;
-    player->max_hp = 100;
+    player->hp = 300;
+    player->max_hp = 300;
     player->alive = 1;
     player->xp = 0;
     player->dmg = 50;
