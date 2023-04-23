@@ -31,6 +31,14 @@ void display_game(gamestate_t *gamestate, layer_t *layers,
     sfRenderWindow_display(gamestate->window);
 }
 
+void anim_game(entity_t *player, layer_t *layers,
+            npc_t *mobs, gamestate_t *gamestate)
+{
+    animate_traps(layers, gamestate);
+    anim_weapon(player);
+    animate_entities(player, mobs, gamestate);
+}
+
 void run_game(menu_t *menu, ig_menu_t *ig_menu,
             gamestate_t *gamestate, npc_t *mobs)
 {
@@ -47,9 +55,7 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
         layers = manage_event(gamestate, player, layers, &mobs);
         collision(player, layers);
         do_move(player);
-        animate_traps(layers, gamestate);
-        anim_weapon(player);
-        animate_entities(player, mobs, gamestate);
+        anim_game(player, layers, mobs, gamestate);
         npc_management(gamestate, &mobs, layers, player);
         sfView_setCenter(view, refresh_view(player, view, layers[0]));
         sfRenderWindow_setView(gamestate->window, view);
@@ -61,9 +67,7 @@ int main(void)
 {
     gamestate_t *gamestate = initalise_gamestate();
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
-    //npc_t *mobs = NULL;
     npc_t *mobs = load_mobs_from_file("mobs.txt");
-    //mobs = add_node(mobs, 50.0, 50.0, 1);
     menu_t *menu = init_menu(gamestate);
     ig_menu_t *ig_menu = init_ig_menu(gamestate->window);
 

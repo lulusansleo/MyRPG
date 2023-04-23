@@ -50,6 +50,16 @@ void handle_options_button(menu_t *menu, ig_menu_t *ig_menu,
     }
 }
 
+void update_ig_menu(ig_menu_t *ig_menu, menu_t *menu,
+            sfRenderWindow *window, gamestate_t *gamestate)
+{
+    handle_options_button(menu, ig_menu, gamestate);
+    update_states(ig_menu->buttons, window, 4);
+    update_colors(ig_menu->buttons, sfWhite, 4);
+    display_ig_menu(window, ig_menu);
+    sfRenderWindow_display(window);
+}
+
 int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
 {
     sfEvent event;
@@ -66,12 +76,7 @@ int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
             sfSleep(sfSeconds(0.3));
             return 0;
         }
-        
-        handle_options_button(menu, ig_menu, gamestate);
-        update_states(ig_menu->buttons, window, 4);
-        update_colors(ig_menu->buttons, sfWhite, 4);
-        display_ig_menu(window, ig_menu);
-        sfRenderWindow_display(window);
+        update_ig_menu(ig_menu, menu, window, gamestate);
         if (ig_menu->buttons[MENU].state == CLICK)
             return 1;
     }

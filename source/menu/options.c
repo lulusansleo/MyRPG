@@ -46,12 +46,13 @@ void run_options(menu_t *menu, gamestate_t *gamestate)
 
     update_all_bounds(window, options);
     while (sfRenderWindow_isOpen(window)) {
-        while (sfRenderWindow_pollEvent(window, event)) {
+        while (sfRenderWindow_pollEvent(window, event))
             handle_close_event(window, *event);
-        }
         if (go_back_to_menu(window, options) == 1 ||
-            sfKeyboard_isKeyPressed(sfKeyEscape))
+            sfKeyboard_isKeyPressed(sfKeyEscape)) {
+            sfSleep(sfSeconds(0.2));
             break;
+        }
         resize_window(window, options);
         change_fps(window, options);
         update_all_buttons(window, options);
