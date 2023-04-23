@@ -17,6 +17,9 @@ SRC = 	source/display/window.c \
 		source/map/load_level.c\
 		source/map/get_size.c\
 		source/map/traps.c\
+		source/map/saw.c\
+		source/map/draw_saw.c\
+		source/map/destroy_saws.c\
 		source/map/trap_assign_damage.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
@@ -37,6 +40,7 @@ SRC = 	source/display/window.c \
 		source/event/interact.c\
 		source/event/door.c\
 		source/event/is_door.c\
+		source/event/check.c\
 		source/fight/collid_hitbox.c\
 		source/fight/get_utils.c\
 		source/fight/hit_system.c\
