@@ -18,9 +18,18 @@ typedef enum ig_buttons {
     MENU
 } ig_buttons_t;
 
+typedef enum sprite_type {
+    HP,
+    DAMAGE,
+    SILVER_KEY,
+    GOLD_KEY
+} sprite_type_t;
+
 ig_menu_t *init_ig_menu(sfRenderWindow* window);
-int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu);
+int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu,
+                menu_t *menu, entity_t *player);
 void run_game(menu_t *menu, ig_menu_t *ig_menu, gamestate_t *gamestate,
 npc_t *mobs);
+char *int_to_str(int nb);
 
 #endif /* IG_MENU_H_ */
