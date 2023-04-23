@@ -38,6 +38,7 @@ SRC = 	source/display/window.c \
 		source/event/door.c\
 		source/event/is_door.c\
 		source/event/check.c\
+		source/event/chest_event.c\
 		source/fight/collid_hitbox.c\
 		source/fight/get_utils.c\
 		source/fight/hit_system.c\
