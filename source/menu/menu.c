@@ -35,6 +35,7 @@ void reset_player(entity_t *player, gamestate_t *gamestate)
     player->xp = 0;
     player->dmg = 50;
     player->pos = (sfVector2f){60, 48};
+    gamestate->is_end = 0;
     gamestate->level = 1;
     gamestate->floor = 1;
 }
