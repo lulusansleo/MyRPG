@@ -16,7 +16,6 @@
 #include "graphical.h"
 #include "npc.h"
 #include "view.h"
-
 #include "menu.h"
 #include "hud.h"
 #include "ig_menu.h"
@@ -39,6 +38,29 @@ void anim_game(entity_t *player, layer_t *layers,
     animate_entities(player, mobs, gamestate);
 }
 
+void update_game(gamestate_t *gamestate, layer_t *layers,
+            entity_t *player, sfView *view)
+{
+    collision(player, layers);
+    do_move(player);
+    anim_game(player, layers, gamestate->mobs, gamestate);
+    npc_management(gamestate, &gamestate->mobs, layers, player);
+    sfView_setCenter(view, refresh_view(player, view, layers[0]));
+    sfRenderWindow_setView(gamestate->window, view);
+}
+
+void game_event(gamestate_t *gamestate, ig_menu_t *ig_menu,
+            menu_t *menu, int *stat)
+{
+    update_stats(gamestate->player);
+    if (sfKeyboard_isKeyPressed(sfKeyEscape))
+        *stat = start_ig_menu(gamestate, ig_menu, menu, gamestate->player);
+    if (gamestate->player->alive == 0) {
+        display_game_over(gamestate->window, menu->game_over);
+        *stat = 1;
+    }
+}
+
 void run_game(menu_t *menu, ig_menu_t *ig_menu,
             gamestate_t *gamestate, npc_t *mobs)
 {
@@ -46,30 +68,18 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
     sfView *view = gamestate->view;
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
     hud_t *hud = init_hud();
-    sfRenderWindow *window = gamestate->window;
-    int status = 0;
+    int stat = 0;
 
     while (sfRenderWindow_isOpen(gamestate->window)) {
-        update_stats(player);
-        if (sfKeyboard_isKeyPressed(sfKeyEscape))
-            status = start_ig_menu(gamestate, ig_menu, menu, player);
-        if (player->alive == 0) {
-            display_game_over(window, menu->game_over);
-            status = 1;
-        }
-        if (status == 1)
+        game_event(gamestate, ig_menu, menu, &stat);
+        if (stat == 1)
             return;
         update_health_bar(player->hp, 100, hud, view);
         update_xp_bar(player->xp, hud, view);
         layers = manage_event(&gamestate, player, layers, &gamestate->mobs);
-        collision(player, layers);
-        do_move(player);
-        anim_game(player, layers, gamestate->mobs, gamestate);
-        npc_management(gamestate, &gamestate->mobs, layers, player);
-        sfView_setCenter(view, refresh_view(player, view, layers[0]));
-        sfRenderWindow_setView(gamestate->window, view);
+        update_game(gamestate, layers, player, view);
         display_game(gamestate, layers, mobs, player);
-        display_hud(window, hud);
+        display_hud(gamestate->window, hud);
         sfRenderWindow_display(gamestate->window);
     }
 }
