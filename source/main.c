@@ -49,18 +49,6 @@ void update_game(gamestate_t *gamestate, layer_t *layers,
     sfRenderWindow_setView(gamestate->window, view);
 }
 
-void game_event(gamestate_t *gamestate, ig_menu_t *ig_menu,
-            menu_t *menu, int *stat)
-{
-    update_stats(gamestate->player);
-    if (sfKeyboard_isKeyPressed(sfKeyEscape))
-        *stat = start_ig_menu(gamestate, ig_menu, menu, gamestate->player);
-    if (gamestate->player->alive == 0) {
-        display_game_over(gamestate->window, menu->game_over);
-        *stat = 1;
-    }
-}
-
 void run_game(menu_t *menu, ig_menu_t *ig_menu,
             gamestate_t *gamestate, npc_t *mobs)
 {
