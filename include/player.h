@@ -24,7 +24,6 @@
 
     #include "map.h"
     #include "my.h"
-    #include "gamestate.h"
     #include <stdlib.h>
     #include <stdlib.h>
     #include <time.h>
@@ -56,6 +55,8 @@
         struct entity_s *weapon;
     } entity_t;
 
+    #include "gamestate.h"
+
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);
     void rotate_sprite(entity_t *player, sfEvent *event);
@@ -63,5 +64,16 @@
 
     /* init_player.c */
     entity_t *init_entity(void);
+
+    float get_left_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    float get_right_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    float get_top_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    float get_bottom_limit_traps(sfFloatRect player_rect, layer_t *layers,
+entity_t *player);
+    void collision_traps(entity_t *player, layer_t *layers);
+    void hit_player(entity_t *player, int dmg);
 
 #endif /* !PLAYER_H_ */

@@ -23,7 +23,7 @@ void npc_management(gamestate_t *gamestate,
 npc_t **mobs, layer_t *layers, entity_t *player)
 {
     npc_t *tmp = *mobs;
-
+    float time = 0.0;
     while (tmp) {
         tmp = check_for_depop(tmp, mobs);
         if (*mobs == NULL)
@@ -31,11 +31,15 @@ npc_t **mobs, layer_t *layers, entity_t *player)
     }
     tmp = *mobs;
     while (tmp != NULL) {
+        time = sfTime_asSeconds(sfClock_getElapsedTime(tmp->mob->clock));
         npc_move(player, tmp);
         collision(tmp->mob, layers);
-        tmp->mob->pos.x += tmp->mob->move.x;
-        tmp->mob->pos.y += tmp->mob->move.y;
-        sfSprite_setPosition(tmp->mob->sprite, tmp->mob->pos);
+        if (time > 0.01) {
+            tmp->mob->pos.x += tmp->mob->move.x;
+            tmp->mob->pos.y += tmp->mob->move.y;
+            sfClock_restart(tmp->mob->clock);
+            sfSprite_setPosition(tmp->mob->sprite, tmp->mob->pos);
+        }
         tmp = tmp->next;
     }
     draw_mobs(*mobs, gamestate->window);

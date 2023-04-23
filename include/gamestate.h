@@ -14,6 +14,7 @@
     #include <unistd.h>
     #include <sys/stat.h>
     #include <stdlib.h>
+    #include "player.h"
 
     typedef struct gamestate_s {
         sfClock *trap_clock;
@@ -29,6 +30,7 @@
         sfVector2f view_pos;
         sfVector2f view_size;
         sfVector2f view_center;
+        entity_t *player;
         int level;
         int floor;
     } gamestate_t;

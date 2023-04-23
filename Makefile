@@ -16,6 +16,7 @@ SRC = 	source/display/window.c \
 		source/map/load_level.c\
 		source/map/get_size.c\
 		source/map/traps.c\
+		source/map/trap_assign_damage.c\
 		source/player/draw_player.c\
 		source/player/init_player.c\
 		source/npc/position_npc.c	\
@@ -37,6 +38,7 @@ SRC = 	source/display/window.c \
 		source/event/is_door.c\
 		source/fight/collid_hitbox.c\
 		source/fight/get_utils.c\
+		source/fight/hit_system.c\
 		source/menu/menu.c	\
 		source/menu/init_button.c	\
 		source/menu/update_buttons.c	\
@@ -49,6 +51,7 @@ SRC = 	source/display/window.c \
 		source/fight/bow.c\
 		source/fight/initialisation.c\
 		source/fight/anim_weapon.c\
+		source/ig_menu/ig_menu.c	\
 
 OBJ = $(SRC:.c=.o)
 

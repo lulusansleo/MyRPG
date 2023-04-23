@@ -42,6 +42,7 @@ entity_t *init_entity_npc(int x, int y, int type)
     entity->rect.top = (type - 1) * 16;
     entity->texture = sfTexture_createFromFile(TXT_NPC, NULL);
     entity->sprite = sfSprite_create();
+    entity->clock = sfClock_create();
     assign_stats(entity);
     sfSprite_setTexture(entity->sprite, entity->texture, sfTrue);
     sfSprite_setTextureRect(entity->sprite, entity->rect);

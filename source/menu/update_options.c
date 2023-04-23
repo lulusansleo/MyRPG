@@ -33,11 +33,11 @@ void update_all_bounds(sfRenderWindow* window, options_t *options)
 void update_all_buttons(sfRenderWindow *window, options_t *options)
 {
     update_states(options->res_buttons, window, 3);
-    update_colors(options->res_buttons, 3);
+    update_colors(options->res_buttons, sfWhite, 3);
     update_states(options->fps_buttons, window, 3);
-    update_colors(options->fps_buttons, 3);
+    update_colors(options->fps_buttons, sfWhite, 3);
     update_states(options->vol_buttons, window, 2);
-    update_colors(options->vol_buttons, 2);
+    update_colors(options->vol_buttons, sfWhite, 2);
 }
 
 void resize_window(sfRenderWindow *window, options_t *options)

@@ -24,13 +24,15 @@
     int is_locked_door(int type);
     int is_open_door(int type);
     int is_unlocked_door(int type);
+    void unlock_door(layer_t *layers, sfVector2i closest_door);
     void open_close_door(layer_t *layers, sfVector2i pos);
     sfVector2i find_closest_door(layer_t *layers, sfVector2i pos);
     sfVector2i find_adjacent_door(layer_t *layers, sfVector2i pos);
 
     /* interact.c */
     layer_t *interact(
-entity_t *player,layer_t *layers, gamestate_t *gamestate);
+    entity_t *player,layer_t *layers, gamestate_t *gamestate,
+    npc_t **mobs);
 
     /* manage_event.c */
     layer_t *manage_event(GAMESTATE, PLAYER, layer_t *layers, MOBS);

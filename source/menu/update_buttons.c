@@ -42,11 +42,11 @@ void update_states(menu_button_t *buttons, sfRenderWindow *window, int nb)
     }
 }
 
-void update_colors(menu_button_t *buttons, int nb)
+void update_colors(menu_button_t *buttons, sfColor color, int nb)
 {
     for (int i = 0; i < nb; ++i) {
         if (buttons[i].state == BASIC)
-            sfRectangleShape_setFillColor(buttons[i].button, sfWhite);
+            sfRectangleShape_setFillColor(buttons[i].button, color);
         if (buttons[i].state == HOVER)
             sfRectangleShape_setFillColor(buttons[i].button, sfGreen);
         if (buttons[i].state == CLICK)
