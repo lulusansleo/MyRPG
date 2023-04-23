@@ -15,8 +15,13 @@
     #include <sys/stat.h>
     #include <stdlib.h>
     #include "player.h"
+    #include "npc.h"
 
     typedef struct gamestate_s {
+        int count_down;
+        sfSound **sounds;
+        sfSoundBuffer **sound_buffer;
+        sfMusic *music;
         sfClock *trap_clock;
         sfClock *torch_clock;
         sfRenderWindow *window;
@@ -31,6 +36,7 @@
         sfVector2f view_size;
         sfVector2f view_center;
         entity_t *player;
+        npc_t *mobs;
         int level;
         int floor;
     } gamestate_t;
@@ -39,5 +45,14 @@
 
     /* traps */
     void animate_traps(layer_t *layers, gamestate_t *gamestate);
+    void destroy_gamestate(gamestate_t *gamestate);
+
+    /* animation_npc.c */
+    void animate_entities(entity_t *player, npc_t *mobs,
+    gamestate_t *gamestate);
+    /*management_npc*/
+    void npc_management(gamestate_t *gamestate,
+    npc_t **mobs, layer_t *layers, entity_t *player);
+    npc_t *reload_mobs(gamestate_t **gamestate);
 
 #endif /* !WINDOW_H */

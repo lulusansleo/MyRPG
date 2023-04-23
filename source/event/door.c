@@ -57,16 +57,18 @@ sfVector2i find_closest_door(layer_t *layers, sfVector2i pos)
     return (pos);
 }
 
-void open_close_door(layer_t *layers, sfVector2i pos)
+void open_close_door(layer_t *layers, sfVector2i pos, gamestate_t *gamestate)
 {
     sfVector2i closest_door = find_closest_door(layers, pos);
 
     if (is_unlocked_door(layers[3].tiles[closest_door.y]
     [closest_door.x].type)) {
+        sfSound_play(gamestate->sounds[1]);
         layers[3].tiles[closest_door.y][closest_door.x].type += 1;
         layers[0].tiles[closest_door.y][closest_door.x].type = 0;
     } else if (is_open_door(layers[3].tiles[closest_door.y]
     [closest_door.x].type)) {
+        sfSound_play(gamestate->sounds[2]);
         layers[3].tiles[closest_door.y][closest_door.x].type -= 1;
         layers[0].tiles[closest_door.y][closest_door.x].type = 108;
     }

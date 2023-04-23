@@ -55,8 +55,6 @@
         struct entity_s *weapon;
     } entity_t;
 
-    #include "gamestate.h"
-
     /* draw_player.c */
     void draw_player(entity_t *, sfRenderWindow *);
     void rotate_sprite(entity_t *player, sfEvent *event);

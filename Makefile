@@ -8,6 +8,7 @@
 CC ?=	gcc
 SRC = 	source/display/window.c \
 		source/display/view.c\
+		source/display/destroy_gamestate.c\
 		source/sprites/initialise.c \
 		source/map/initalise.c \
 		source/map/draw.c \
