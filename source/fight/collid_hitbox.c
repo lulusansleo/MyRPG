@@ -9,23 +9,30 @@
 #include "npc.h"
 
 
-void hit(entity_t *a, entity_t *b)
+int hit(entity_t *a, entity_t *b)
 {
+    int killed = 0;
+
     b->hp -= a->dmg;
     if (b->hp <= 0) {
         b->alive = 0;
+        killed = 1;
     }
+    return killed;
 }
 
-static void is_hit(entity_t* a, entity_t *b)
+static int is_hit(entity_t* a, entity_t *b)
 {
     sfFloatRect *rect_a = get_hitbox(a);
     sfFloatRect *rect_b = get_hitbox(b);
+    int killed = 0;
+
     if (sfFloatRect_intersects(rect_a, rect_b, NULL) == sfTrue) {
-        hit(a, b);
+        killed = hit(a, b);
     }
     free(rect_a);
     free(rect_b);
+    return killed;
 }
 
 void free_mob(entity_t *mob)
@@ -37,6 +44,8 @@ void free_mob(entity_t *mob)
 
 void attack(entity_t *player, npc_t *mobs)
 {
+    int gain_xp = 0;
+
     if (!player->weapon)
         player->weapon = init_weapon(player);
     anim_weapon(player);
@@ -44,8 +53,9 @@ void attack(entity_t *player, npc_t *mobs)
         return;
     if (player->weapon) {
         while (mobs) {
-            is_hit(player->weapon, mobs->mob);
+            gain_xp += is_hit(player->weapon, mobs->mob);
             mobs = mobs->next;
         }
     }
+    player->xp += gain_xp * 25;
 }
