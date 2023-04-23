@@ -27,6 +27,7 @@ void display_game(gamestate_t *gamestate, layer_t *layers,
     sfRenderWindow_clear(gamestate->window, sfBlack);
     draw_map(layers, gamestate->window);
     draw_mobs(gamestate->mobs, gamestate->window);
+    display_saws(gamestate->saws, gamestate->window, gamestate->saw_draw);
     draw_player(player, gamestate->window);
     draw_layer(layers[0].tiles, layers[0].sprite_sheet, gamestate->window);
 }
@@ -36,6 +37,7 @@ void anim_game(entity_t *player, layer_t *layers,
 {
     animate_traps(layers, gamestate);
     anim_weapon(player);
+    move_saws(gamestate->saws, gamestate->saw_draw, layers);
     animate_entities(player, mobs, gamestate);
 }
 
@@ -77,6 +79,8 @@ int main(void)
     menu_t *menu = init_menu(gamestate);
     ig_menu_t *ig_menu = init_ig_menu(gamestate->window);
 
+    gamestate->saws = init_saws(layers);
+    gamestate->saw_draw = init_saw_sprite();
     gamestate->player = init_entity();
     gamestate->view = init_view(gamestate->player);
     run_menu(gamestate, menu, ig_menu, gamestate->mobs);
