@@ -50,6 +50,7 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
     int status = 0;
 
     while (sfRenderWindow_isOpen(gamestate->window)) {
+        update_stats(player);
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
             status = start_ig_menu(gamestate, ig_menu, menu, player);
         if (status == 1)
