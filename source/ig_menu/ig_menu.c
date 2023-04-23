@@ -34,6 +34,9 @@ void handle_options_button(menu_t *menu, ig_menu_t *ig_menu,
     if (ig_menu->buttons[SAVE].state == CLICK) {
         write_save(gamestate);
     }
+    if (ig_menu->buttons[LOAD_IG].state == CLICK) {
+        read_save("save.txt", gamestate);
+    }
 }
 
 void update_ig_menu(ig_menu_t *ig_menu, menu_t *menu,

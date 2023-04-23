@@ -72,10 +72,8 @@ gamestate_t *read_save(char *filepath, gamestate_t *gamestate)
     size_t size = 0;
 
     getline(&buffer, &size, stream);
-    printf("%s\n", buffer);
     gamestate->player->pos.x = str_to_int(buffer);
     buffer = do_getline(&buffer, stream);
-    printf("%s\n", buffer);
     gamestate->player->pos.y = str_to_int(buffer);
     buffer = do_getline(&buffer, stream);
     gamestate->player->xp = str_to_int(buffer);
