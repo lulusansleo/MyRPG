@@ -66,4 +66,5 @@ void collision(entity_t *player, layer_t *layers)
         }
     }
     collision_part_two(player, layers, player_rect);
+    collision_traps(player, layers);
 }

@@ -21,7 +21,7 @@ void zoom_view(gamestate_t *gamestate, entity_t *player, layer_t *layers)
 }
 
 static void manage_zoom(gamestate_t **gamestate, entity_t *player,
-    layer_t *layers) 
+    layer_t *layers)
 {
     if ((*gamestate)->event->key.code == sfKeyA &&
     (*gamestate)->is_zoomed) {
@@ -56,7 +56,8 @@ layer_t *key_pressed(gamestate_t **gamestate, PLAYER, layer_t *layers, MOBS)
 
 layer_t *manage_event(gamestate_t **gamestate, PLAYER, layer_t *layers, MOBS)
 {
-    while (sfRenderWindow_pollEvent((*gamestate)->window, (*gamestate)->event)) {
+    while (sfRenderWindow_pollEvent((*gamestate)->window,
+    (*gamestate)->event)) {
         if ((*gamestate)->event->type == sfEvtClosed)
             sfRenderWindow_close((*gamestate)->window);
         if ((*gamestate)->event->type == sfEvtKeyReleased)

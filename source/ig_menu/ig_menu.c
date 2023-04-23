@@ -8,6 +8,7 @@
 #include "gamestate.h"
 #include "ig_menu.h"
 #include "menu.h"
+#include "my.h"
 
 void display_ig_menu(sfRenderWindow *window, ig_menu_t *ig_menu)
 {
@@ -46,6 +47,8 @@ void update_txt(ig_menu_t *ig_menu, entity_t *player)
     char *text = NULL;
 
     text = int_to_str(player->hp);
+    text = my_strcat(text, " / ");
+    text = my_strcat(text, int_to_str(player->max_hp));
     sfText_setString(ig_menu->stats_txt[0], text);
     free(text);
     text = int_to_str(player->dmg);
