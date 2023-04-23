@@ -56,7 +56,7 @@ void write_save(gamestate_t *gamestate)
     free(buffer);
 }
 
-char* do_getline(char **buffer, FILE *stream)
+char* do_getline(FILE *stream)
 {
     size_t size = 0;
     char *buffer2 = NULL;
@@ -73,18 +73,18 @@ gamestate_t *read_save(char *filepath, gamestate_t *gamestate)
 
     getline(&buffer, &size, stream);
     gamestate->player->pos.x = str_to_int(buffer);
-    buffer = do_getline(&buffer, stream);
+    buffer = do_getline(stream);
     gamestate->player->pos.y = str_to_int(buffer);
-    buffer = do_getline(&buffer, stream);
+    buffer = do_getline(stream);
     gamestate->player->xp = str_to_int(buffer);
-    buffer = do_getline(&buffer, stream);
+    buffer = do_getline(stream);
     gamestate->player->max_hp = str_to_int(buffer);
-    buffer = do_getline(&buffer, stream);
+    buffer = do_getline(stream);
     gamestate->player->hp = str_to_int(buffer);
-    buffer = do_getline(&buffer, stream);
+    buffer = do_getline(stream);
     gamestate->level = str_to_int(buffer);
-    buffer = do_getline(&buffer, stream);
+    buffer = do_getline(stream);
     gamestate->floor = str_to_int(buffer);
+    gamestate->player->alive = 1;
     return gamestate;
 }
-

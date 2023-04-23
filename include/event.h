@@ -19,6 +19,7 @@
     #include "npc.h"
     #include "map.h"
     #include "gamestate.h"
+    #include "menu.h"
 
     /* door.c */
     int is_locked_door(int type);
@@ -38,7 +39,8 @@
     /* manage_event.c */
     layer_t *manage_event(gamestate_t **gamestate,
     PLAYER, layer_t *layers, MOBS);
-
+    void game_event(gamestate_t *gamestate, ig_menu_t *ig_menu,
+            menu_t *menu, int *stat);
     sfVector2i get_closest_tile(entity_t *player);
     void get_chest_event(PLAYER, layer_t *layers, gamestate_t **gamestate);
 
