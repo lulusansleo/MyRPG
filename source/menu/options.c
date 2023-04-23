@@ -49,7 +49,8 @@ void run_options(menu_t *menu, gamestate_t *gamestate)
         while (sfRenderWindow_pollEvent(window, event)) {
             handle_close_event(window, *event);
         }
-        if (go_back_to_menu(window, options) == 1)
+        if (go_back_to_menu(window, options) == 1 ||
+            sfKeyboard_isKeyPressed(sfKeyEscape))
             break;
         resize_window(window, options);
         change_fps(window, options);

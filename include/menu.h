@@ -65,7 +65,7 @@ void run_menu(gamestate_t *gamestate, menu_t *menu,
 menu_button_t *init_buttons(void);
 void update_bounds(menu_button_t *buttons, sfRenderWindow* window, int nb);
 void update_states(menu_button_t *buttons, sfRenderWindow *window, int nb);
-void update_colors(menu_button_t *buttons, int nb);
+void update_colors(menu_button_t *buttons, sfColor color, int nb);
 void update_text_pos(menu_button_t *buttons, int nb);
 menu_t *init_menu(gamestate_t *gamestate);
 void run_options(menu_t *menu, gamestate_t *gamestate);

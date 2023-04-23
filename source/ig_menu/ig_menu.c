@@ -69,7 +69,7 @@ int start_ig_menu(gamestate_t *gamestate, ig_menu_t *ig_menu, menu_t *menu)
         
         handle_options_button(menu, ig_menu, gamestate);
         update_states(ig_menu->buttons, window, 4);
-        update_colors(ig_menu->buttons, 4);
+        update_colors(ig_menu->buttons, sfWhite, 4);
         display_ig_menu(window, ig_menu);
         sfRenderWindow_display(window);
         if (ig_menu->buttons[MENU].state == CLICK)
