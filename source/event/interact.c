@@ -33,8 +33,6 @@ layer_t *layers, gamestate_t **gamestate, npc_t **npc)
         reload_level(layers, (*gamestate)->level, (*gamestate)->floor);
         (*gamestate)->mobs =
         reload_mobs(gamestate);
-        free_saws((*gamestate)->saws);
-        (*gamestate)->saws = init_saws(layers);
         return (layers);
     }
     return (layers);

@@ -16,7 +16,6 @@
     #include <stdlib.h>
     #include "player.h"
     #include "npc.h"
-    #include "moving_saws.h"
 
     typedef struct gamestate_s {
         int count_down;
@@ -40,8 +39,6 @@
         sfVector2f view_center;
         entity_t *player;
         npc_t *mobs;
-        saws_t *saws;
-        saw_draw_t *saw_draw;
         int level;
         int floor;
     } gamestate_t;

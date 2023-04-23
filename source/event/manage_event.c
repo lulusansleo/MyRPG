@@ -11,7 +11,6 @@
 #include "fight.h"
 #include "ig_menu.h"
 #include "view.h"
-#include "moving_saws.h"
 
 void zoom_view(gamestate_t *gamestate, entity_t *player, layer_t *layers)
 {
