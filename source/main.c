@@ -18,6 +18,7 @@
 #include "view.h"
 
 #include "menu.h"
+#include "hud.h"
 #include "ig_menu.h"
 
 void display_game(gamestate_t *gamestate, layer_t *layers,
@@ -28,7 +29,6 @@ void display_game(gamestate_t *gamestate, layer_t *layers,
     draw_mobs(gamestate->mobs, gamestate->window);
     draw_player(player, gamestate->window);
     draw_layer(layers[0].tiles, layers[0].sprite_sheet, gamestate->window);
-    sfRenderWindow_display(gamestate->window);
 }
 
 void anim_game(entity_t *player, layer_t *layers,
@@ -45,6 +45,8 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
     entity_t *player = gamestate->player;
     sfView *view = gamestate->view;
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
+    hud_t *hud = init_hud();
+    sfRenderWindow *window = gamestate->window;
     int status = 0;
 
     while (sfRenderWindow_isOpen(gamestate->window)) {
@@ -52,6 +54,8 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
             status = start_ig_menu(gamestate, ig_menu, menu, player);
         if (status == 1)
             return;
+        update_health_bar(player->hp, 100, hud, view);
+        update_xp_bar(player->xp, hud, view);
         layers = manage_event(&gamestate, player, layers, &gamestate->mobs);
         collision(player, layers);
         do_move(player);
@@ -60,6 +64,8 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
         sfView_setCenter(view, refresh_view(player, view, layers[0]));
         sfRenderWindow_setView(gamestate->window, view);
         display_game(gamestate, layers, mobs, player);
+        display_hud(window, hud);
+        sfRenderWindow_display(gamestate->window);
     }
 }
 

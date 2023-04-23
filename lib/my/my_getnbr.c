@@ -7,13 +7,20 @@
 
 #include "../../include/my.h"
 
-int my_getnbr(char const *str)
+int my_getnbr(char **str)
 {
     long number = 0;
+    int sign = 1;
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        number *= 10;
-        number += str[i] - '0';
+    if (**str == '-') {
+        sign = -1;
+        (*str)++;
     }
-    return number;
+    while (**str >= '0' && **str <= '9') {
+        number *= 10;
+        number += **str - '0';
+        (*str)++;
+    }
+    (*str)++;
+    return number * sign;
 }
