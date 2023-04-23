@@ -54,6 +54,7 @@ gamestate_t *initalise_gamestate(void)
     gamestate->torch_clock = sfClock_create();
     gamestate->trap_clock = sfClock_create();
     gamestate->anim = sfClock_create();
+    gamestate->is_end = 0;
     sfRenderWindow_setFramerateLimit(gamestate->window, 60);
     gamestate->level = 1;
     gamestate->floor = 1;

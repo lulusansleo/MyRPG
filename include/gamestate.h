@@ -34,6 +34,7 @@
         sfView *view;
         int is_zoomed;
         float zoom;
+        int is_end;
         sfVector2f view_pos;
         sfVector2f view_size;
         sfVector2f view_center;
