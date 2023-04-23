@@ -9,6 +9,7 @@
 #include "ig_menu.h"
 #include "menu.h"
 #include "my.h"
+#include "save.h"
 
 void display_ig_menu(sfRenderWindow *window, ig_menu_t *ig_menu)
 {
@@ -29,6 +30,9 @@ void handle_options_button(menu_t *menu, ig_menu_t *ig_menu,
         run_options(menu, gamestate);
         update_bounds(ig_menu->buttons, window, 4);
         sfRenderWindow_clear(window, sfBlack);
+    }
+    if (ig_menu->buttons[SAVE].state == CLICK) {
+        write_save(gamestate);
     }
 }
 

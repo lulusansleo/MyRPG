@@ -6,6 +6,8 @@
 */
 
 #include "gamestate.h"
+#include "save.h"
+#include <stdio.h>
 
 char *my_itoa(int nb)
 {
@@ -43,12 +45,10 @@ void write_save(gamestate_t *gamestate)
     if (fd == -1)
         return;
     buffer[0] = '\0';
-    write_number_to_buffer((int) floor(gamestate->player->pos.x)
-    / 16.0, buffer);
-    write_number_to_buffer((int) floor(gamestate->player->pos.y)
-    / 16.0, buffer);
-    // write_number_to_buffer(gamestate->player->level, buffer);
-    // write_number_to_buffer(gamestate->player->xp, buffer);
+    write_number_to_buffer(gamestate->player->pos.x, buffer);
+    write_number_to_buffer(gamestate->player->pos.y, buffer);
+    write_number_to_buffer(gamestate->player->xp, buffer);
+    write_number_to_buffer(gamestate->player->max_hp, buffer);
     write_number_to_buffer(gamestate->player->hp, buffer);
     write_number_to_buffer(gamestate->level, buffer);
     write_number_to_buffer(gamestate->floor, buffer);
@@ -56,20 +56,37 @@ void write_save(gamestate_t *gamestate)
     free(buffer);
 }
 
+char* do_getline(char **buffer, FILE *stream)
+{
+    size_t size = 0;
+    char *buffer2 = NULL;
+
+    getline(&buffer2, &size, stream);
+    return buffer2;
+}
+
 gamestate_t *read_save(char *filepath, gamestate_t *gamestate)
 {
-    int fd = open(filepath, O_RDONLY);
-    char *buffer = malloc(sizeof(char) * 100);
-    char *ptr = buffer;
-    if (fd == -1)
-        return (NULL);
-    read(fd, buffer, 100);
-    printf("%f %f\n", gamestate->player->pos.x, gamestate->player->pos.y);
-    // gamestate->player->level = my_getnbr(&ptr);
-    // gamestate->player->xp = my_getnbr(&ptr);
-    gamestate->player->hp = my_getnbr(&ptr);
-    gamestate->level = my_getnbr(&ptr);
-    gamestate->floor = my_getnbr(&ptr);
-    free(buffer);
-    return (gamestate);
+    FILE *stream = fopen(filepath, "r");
+    char *buffer = NULL;
+    size_t size = 0;
+
+    getline(&buffer, &size, stream);
+    printf("%s\n", buffer);
+    gamestate->player->pos.x = str_to_int(buffer);
+    buffer = do_getline(&buffer, stream);
+    printf("%s\n", buffer);
+    gamestate->player->pos.y = str_to_int(buffer);
+    buffer = do_getline(&buffer, stream);
+    gamestate->player->xp = str_to_int(buffer);
+    buffer = do_getline(&buffer, stream);
+    gamestate->player->max_hp = str_to_int(buffer);
+    buffer = do_getline(&buffer, stream);
+    gamestate->player->hp = str_to_int(buffer);
+    buffer = do_getline(&buffer, stream);
+    gamestate->level = str_to_int(buffer);
+    buffer = do_getline(&buffer, stream);
+    gamestate->floor = str_to_int(buffer);
+    return gamestate;
 }
+

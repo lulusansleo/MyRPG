@@ -48,15 +48,18 @@ void handle_menu_buttons(gamestate_t *gamestate, menu_t *menu,
     if (buttons[0].state == CLICK) {
         reset_player(gamestate->player, gamestate);
         run_game(menu, ig_menu, gamestate, mobs);
-        update_bounds(buttons, window, 4);
+    }
+    if (buttons[1].state == CLICK) {
+        read_save("save.txt", gamestate);
+        run_game(menu, ig_menu, gamestate, mobs);
     }
     if (buttons[2].state == CLICK) {
         run_options(menu, gamestate);
-        update_bounds(buttons, window, 4);
     }
     if (buttons[3].state == CLICK) {
         sfRenderWindow_close(window);
     }
+    update_bounds(buttons, window, 4);
 }
 
 void run_menu(gamestate_t *gamestate, menu_t *menu,
