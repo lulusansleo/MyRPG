@@ -20,6 +20,7 @@ char **get_array_from_source(char *source)
     buffer[st.st_size] = '\0';
     char **double_array = my_str_to_word_array_sep(buffer, '\n');
     free(buffer);
+    close(fd);
     return (double_array);
 }
 
