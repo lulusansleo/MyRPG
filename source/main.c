@@ -62,7 +62,7 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
         game_event(gamestate, ig_menu, menu, &stat);
         if (stat == 1)
             return;
-        update_health_bar(player->hp, 100, hud, view);
+        update_health_bar(player->hp, player->max_hp, hud, view);
         update_xp_bar(player->xp, hud, view);
         layers = manage_event(&gamestate, player, layers, &gamestate->mobs);
         update_game(gamestate, layers, player, view);

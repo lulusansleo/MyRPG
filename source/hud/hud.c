@@ -40,7 +40,7 @@ void update_stats(entity_t *player)
     int lvl = player->xp / 100;
 
     player->dmg = 50 + (10 * lvl);
-    player->max_hp = 100 + (10 * lvl);
+    player->max_hp = 300 + (10 * lvl);
 }
 
 void update_xp_bar(int xp, hud_t *hud, sfView *view)
