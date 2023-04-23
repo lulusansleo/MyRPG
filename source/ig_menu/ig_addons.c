@@ -42,7 +42,7 @@ char *my_revstr(char *str)
 char *int_to_str(int nb)
 {
     int i = 0;
-    char *res = malloc(sizeof(char) * (my_nblen(nb) + 3));
+    char *res = malloc(sizeof(char) * (my_nblen(nb) + 10));
 
     if (res == NULL)
         return NULL;
