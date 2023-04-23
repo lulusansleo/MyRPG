@@ -21,5 +21,6 @@ void update_health_bar(int health, int hp_max,
         hud_t *hud, sfView *view);
 void display_hud(sfRenderWindow *window, hud_t *hud);
 void update_xp_bar(int xp, hud_t *hud, sfView *view);
+void update_stats(entity_t *player);
 
 #endif /* INCLUDE_HUD_H_ */
