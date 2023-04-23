@@ -31,7 +31,7 @@
     /* bow.c */
 
     /* collid_hitbox.c */
-    void hit(entity_t *a, entity_t *b);
+    int hit(entity_t *a, entity_t *b);
     void attack(entity_t *player, npc_t *mobs);
 
     /*get_utils.c */

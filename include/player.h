@@ -35,7 +35,7 @@
         sfVector2f pos;
         sfIntRect rect;
         int hp;
-        int hp_max;
+        int max_hp;
         int dmg;
         int xp;
         int alive;
