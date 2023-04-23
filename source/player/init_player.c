@@ -41,6 +41,8 @@ void init_values(entity_t *entity)
     entity->invicible = 0;
     entity->bouncing = 0;
     entity->dmg = get_dmg(entity->type);
+    entity->alive = 1;
+    entity->invicible = 0;
 }
 
 entity_t *init_entity(void)

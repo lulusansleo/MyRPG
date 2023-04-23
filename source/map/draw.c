@@ -7,7 +7,7 @@
 
 #include "map.h"
 
-static sfIntRect get_tile_rect(int type)
+sfIntRect get_tile_rect(int type)
 {
     sfIntRect rect = {0, 0, 16, 16};
 
