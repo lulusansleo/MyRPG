@@ -47,11 +47,18 @@ typedef struct options {
     sfFloatRect arrow_bounds;
 } options_t;
 
+typedef struct game_over {
+    menu_button_t *button;
+    sfFont *font;
+    sfText *text;
+} game_over_t;
+
 typedef struct menu {
     menu_button_t *buttons;
     sfTexture *back_text;
     sfSprite *background;
     options_t *options;
+    game_over_t *game_over;
 } menu_t;
 
 typedef struct ig_menu {
@@ -82,5 +89,7 @@ void update_all_buttons(sfRenderWindow *window, options_t *options);
 void resize_window(sfRenderWindow *window, options_t *options);
 void change_fps(sfRenderWindow *window, options_t *options);
 void handle_close_event(sfRenderWindow *window, sfEvent event);
+void display_game_over(sfRenderWindow *window, game_over_t *game_over);
+game_over_t *init_game_over(void);
 
 #endif /* MENU_H_ */

@@ -53,6 +53,10 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
         update_stats(player);
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
             status = start_ig_menu(gamestate, ig_menu, menu, player);
+        if (player->alive == 0) {
+            display_game_over(window, menu->game_over);
+            status = 1;
+        }
         if (status == 1)
             return;
         update_health_bar(player->hp, 100, hud, view);
