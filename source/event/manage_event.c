@@ -61,7 +61,11 @@ void game_event(gamestate_t *gamestate, ig_menu_t *ig_menu,
     if (sfKeyboard_isKeyPressed(sfKeyEscape))
         *stat = start_ig_menu(gamestate, ig_menu, menu, gamestate->player);
     if (gamestate->player->alive == 0) {
-        display_game_over(gamestate->window, menu->game_over);
+        display_game_over(gamestate->window, menu->game_over, 0);
+        *stat = 1;
+    }
+    if (gamestate->is_end == 1) {
+        display_game_over(gamestate->window, menu->game_over, 1);
         *stat = 1;
     }
 }

@@ -51,6 +51,7 @@ typedef struct game_over {
     menu_button_t *button;
     sfFont *font;
     sfText *text;
+    sfText *end_text;
 } game_over_t;
 
 typedef struct menu {
@@ -89,7 +90,8 @@ void update_all_buttons(sfRenderWindow *window, options_t *options);
 void resize_window(sfRenderWindow *window, options_t *options);
 void change_fps(sfRenderWindow *window, options_t *options);
 void handle_close_event(sfRenderWindow *window, sfEvent event);
-void display_game_over(sfRenderWindow *window, game_over_t *game_over);
+void display_game_over(sfRenderWindow *window,
+game_over_t *game_over, int end);
 game_over_t *init_game_over(void);
 void start_how_to_play(sfRenderWindow *window, sfFont *font);
 

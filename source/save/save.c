@@ -70,7 +70,7 @@ gamestate_t *read_save(char *filepath, gamestate_t *gamestate)
     FILE *stream = fopen(filepath, "r");
     char *buffer = NULL;
     size_t size = 0;
-
+    gamestate->is_end = 0;
     getline(&buffer, &size, stream);
     gamestate->player->pos.x = str_to_int(buffer);
     buffer = do_getline(stream);
