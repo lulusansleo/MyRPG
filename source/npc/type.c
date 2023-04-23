@@ -9,25 +9,7 @@
 #include <stdio.h>
 #include "player.h"
 #include "npc.h"
-
-//int my_getnbr_pimp(char **str)
-//{
-//    int nb = 0;
-//    int neg = 1;
-//
-//    while ((**str == '-' || **str == '+')) {
-//        if (**str == '-')
-//            neg *= -1;
-//        ++(*str);
-//    }
-//    while ((**str >= '0' && **str <= '9')) {
-//        nb = nb * 10 + **str - '0';
-//        (*str)++;
-//    }
-//    while ((**str == ',' || **str == ' '))
-//        ++(*str);
-//    return (nb * neg);
-//}
+#include "gamestate.h"
 
 npc_t *add_mob_from_line(npc_t *head, char *line)
 {
@@ -40,6 +22,17 @@ npc_t *add_mob_from_line(npc_t *head, char *line)
     y = my_getnbr_pimp(&line);
 
     return add_node(head, x, y, type);
+}
+
+npc_t *reload_mobs(gamestate_t **gamestate)
+{
+    char fl[2] = "0", lv[2] = "0";
+    fl[0] += (*gamestate)->floor;
+    lv[0] += (*gamestate)->level;
+    char *path = get_level_path(lv, fl, 5);
+    free_mobs((*gamestate)->mobs);
+    (*gamestate)->mobs = load_mobs_from_file(path);
+    return (*gamestate)->mobs;
 }
 
 npc_t *load_mobs_from_file(const char *filepath)

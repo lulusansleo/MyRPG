@@ -25,7 +25,7 @@ void display_game(gamestate_t *gamestate, layer_t *layers,
 {
     sfRenderWindow_clear(gamestate->window, sfBlack);
     draw_map(layers, gamestate->window);
-    draw_mobs(mobs, gamestate->window);
+    draw_mobs(gamestate->mobs, gamestate->window);
     draw_player(player, gamestate->window);
     draw_layer(layers[0].tiles, layers[0].sprite_sheet, gamestate->window);
     sfRenderWindow_display(gamestate->window);
@@ -49,14 +49,14 @@ void run_game(menu_t *menu, ig_menu_t *ig_menu,
 
     while (sfRenderWindow_isOpen(gamestate->window)) {
         if (sfKeyboard_isKeyPressed(sfKeyEscape))
-            status = start_ig_menu(gamestate, ig_menu, menu);
+            status = start_ig_menu(gamestate, ig_menu, menu, player);
         if (status == 1)
             return;
-        layers = manage_event(gamestate, player, layers, &mobs);
+        layers = manage_event(&gamestate, player, layers, &gamestate->mobs);
         collision(player, layers);
         do_move(player);
-        anim_game(player, layers, mobs, gamestate);
-        npc_management(gamestate, &mobs, layers, player);
+        anim_game(player, layers, gamestate->mobs, gamestate);
+        npc_management(gamestate, &gamestate->mobs, layers, player);
         sfView_setCenter(view, refresh_view(player, view, layers[0]));
         sfRenderWindow_setView(gamestate->window, view);
         display_game(gamestate, layers, mobs, player);
@@ -67,16 +67,14 @@ int main(void)
 {
     gamestate_t *gamestate = initalise_gamestate();
     layer_t *layers = initialise_layer(gamestate->level, gamestate->floor);
-    npc_t *mobs = load_mobs_from_file("mobs.txt");
     menu_t *menu = init_menu(gamestate);
     ig_menu_t *ig_menu = init_ig_menu(gamestate->window);
 
     gamestate->player = init_entity();
     gamestate->view = init_view(gamestate->player);
-    run_menu(gamestate, menu, ig_menu, mobs);
-    sfRenderWindow_destroy(gamestate->window);
-    free(gamestate->event);
+    run_menu(gamestate, menu, ig_menu, gamestate->mobs);
     destroy_player(gamestate->player);
+    destroy_gamestate(gamestate);
     free_layer(layers);
     return 0;
 }

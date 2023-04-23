@@ -60,6 +60,11 @@ void animate_traps(layer_t *layers, gamestate_t *gamestate)
         sfClock_restart(gamestate->torch_clock);
     }
     if (timer >= 0.5) {
+        gamestate->count_down += 1;
+        if (gamestate->count_down == 4) {
+            gamestate->count_down = 0;
+            sfSound_play(gamestate->sounds[4]);
+        }
         animate_all_traps(layers);
         sfClock_restart(gamestate->trap_clock);
     }

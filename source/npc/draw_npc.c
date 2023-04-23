@@ -5,7 +5,6 @@
 ** draw_npc
 */
 
-#include "player.h"
 #include "npc.h"
 
 void draw_mobs(npc_t *npc, sfRenderWindow *window)

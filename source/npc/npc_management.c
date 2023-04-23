@@ -8,6 +8,7 @@
 #include "player.h"
 #include "npc.h"
 #include "moves.h"
+#include "gamestate.h"
 
 static npc_t *check_for_depop(npc_t *npc, npc_t **mobs)
 {
